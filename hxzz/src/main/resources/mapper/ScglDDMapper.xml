@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzz.demo.mapper.ScglDDMapper">
+    <select id="show" resultType="com.hxzz.demo.entity.ScglSelect">
+    select * from ScglDD where (id=(select MAX(id) from ScglDD))
+</select>
+    <select id="getData" resultType="com.hxzz.demo.entity.ScglDD">
+    select *  from ScglDD  where (date &gt;=#{date1} and date  &lt;= #{date2})
+</select>
+    <insert id="add" >
+    insert into ScglDD( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat)
+    values(#{targetCapacity},#{actualCapacity},#{targetEfficiency},#{workingHours},#{beat})
+</insert>
+    <delete id="del">
+    delete  from ScglDD where date=#{date}
+</delete>
+    <update id="change" >
+    update ScglDD set ( targetCapacity=#{ targetCapacity}, actualCapacity=#{actualCapacity},  targetEfficiency=#{targetEfficiency}, workingHours=#{ workingHours}, beat=#{beat}, date=#{date}) where date=#{date}
+</update>
+</mapper>

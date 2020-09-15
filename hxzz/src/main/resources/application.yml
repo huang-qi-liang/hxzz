@@ -1,0 +1,13 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.8.102:1433;DatabaseName=CPF
+    username: sa
+    password: 605471880
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+server:
+  port: 8081
+
+
