@@ -18,6 +18,7 @@ import java.util.List;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
+
 /**
  * <p>
  *  前端控制器
@@ -51,7 +52,35 @@ public class ScglController {
 
     public JSONObject show(){
 
+
+        JSONObject objectDC=new JSONObject(new LinkedHashMap<>());
+       JSONObject objecty=new JSONObject();
+        JSONObject object1= (JSONObject) JSONObject.toJSON(scglDCService.showIN());
+objecty.put("name","东C");
+objectDC.putAll(objecty);
+objectDC.putAll(object1);
+        JSONObject objectDD=new JSONObject(new LinkedHashMap<>());
+        JSONObject objecty2=new JSONObject();
+        JSONObject object12= (JSONObject) JSONObject.toJSON(scglDDService.showIN());
+        objecty2.put("name","东D");
+        objectDD.putAll(objecty2);
+        objectDD.putAll(object12);
+        JSONObject objectXC=new JSONObject(new LinkedHashMap<>());
+        JSONObject objecty3=new JSONObject();
+        JSONObject object13= (JSONObject) JSONObject.toJSON(scglXCService.showIN());
+        objecty3.put("name","西B");
+        objectXC.putAll(objecty3);
+        objectXC.putAll(object13);
+        JSONObject objectXD=new JSONObject(new LinkedHashMap<>());
+        JSONObject objecty4=new JSONObject();
+        JSONObject object14= (JSONObject) JSONObject.toJSON(scglXDService.showIN());
+        objecty4.put("name","西C");
+        objectXD.putAll(objecty4);
+        objectXD.putAll(object14);
+
+        //对合计部分进行封装
         JSONObject objectx=new JSONObject(new LinkedHashMap<>());
+        objectx.put("name","合计");
 objectx.put("targetCapacity",scgl.targetCapacitySum());
 objectx.put("actualCapacity",scgl.actualCapacitySum());
 objectx.put("targetEfficiency",scgl.targetEfficiencySum());
@@ -59,16 +88,17 @@ objectx.put("actualEfficiency",scgl.actualEfficiencySum());
 objectx.put("workingHours",scgl.workingHoursSum());
 objectx.put("theoreticalCapacity",scgl.theoreticalCapacitySum());
 JSONObject object5=new JSONObject();
+
 object5.put("sum",objectx);
 
 
 
 
         JSONArray jsonArray=new JSONArray();
-        jsonArray.add(0,scglDCService.showIN());
-        jsonArray.add(1,scglDDService.showIN());
-        jsonArray.add(2,scglXCService.showIN());
-        jsonArray.add(3,scglXDService.showIN());
+        jsonArray.add(0,objectDC);
+        jsonArray.add(1,objectDD);
+        jsonArray.add(2,objectXC);
+        jsonArray.add(3,objectXD);
         jsonArray.add(4,objectx);
 JSONObject result1=new JSONObject();
 result1.put("total",4);
@@ -78,6 +108,7 @@ result.put("data",result1);
 
 log.println(jsonArray.size());
 return  result;
+
 
 
     }
