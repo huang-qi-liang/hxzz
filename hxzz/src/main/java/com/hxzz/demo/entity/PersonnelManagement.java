@@ -9,7 +9,6 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * <p>
@@ -17,42 +16,39 @@ import com.alibaba.fastjson.annotation.JSONField;
  * </p>
  *
  * @author hql
- * @since 2020-09-14
+ * @since 2020-09-16
  */
-
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("ScglDC")
-public class ScglDC implements Serializable {
-    @JSONField(ordinal = 1)
+@TableName("PersonnelManagement")
+public class PersonnelManagement implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField("targetCapacity")
-    private Integer targetCapacity;
+    private String name;
 
-    @TableField("actualCapacity")
-    private Float actualCapacity;
+    private String establishment;
 
-    @TableField("targetEfficiency")
-    private Float targetEfficiency;
+    @TableField("actualNumber")
+    private Integer actualNumber;
 
-    @TableField("actualEfficiency")
-    private Float actualEfficiency;
+    @TableField("availableNumber")
+    private Integer availableNumber;
 
-    @TableField("workingHours")
-    private Float workingHours;
+    @TableField("attendanceRate")
+    private Float attendanceRate;
 
-    @TableField("theoreticalCapacity")
-    private Float theoreticalCapacity;
+    @TableField("shouldArrive")
+    private Integer shouldArrive;
 
-    private Float beat;
+    @TableField("actualArrive")
+    private Integer actualArrive;
 
     private LocalDate date;
 
 
 }
-

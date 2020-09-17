@@ -2,8 +2,11 @@ package com.hxzz.demo.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
 import com.hxzz.demo.entity.Date;
 import com.hxzz.demo.entity.ScglDC;
+import com.hxzz.demo.entity.ScglXC;
+import com.hxzz.demo.result.ScglList;
 import com.hxzz.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +16,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import com.hxzz.demo.result.Scgl;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -45,6 +50,8 @@ public class ScglController {
     ScglXDService scglXDService;
     @Autowired
     Scgl scgl;
+    @Autowired
+    ScglList scglList;
 
     @Autowired
     WebSocket webSocket;
@@ -55,7 +62,9 @@ public class ScglController {
 
         JSONObject objectDC=new JSONObject(new LinkedHashMap<>());
        JSONObject objecty=new JSONObject();
-        JSONObject object1= (JSONObject) JSONObject.toJSON(scglDCService.showIN());
+
+         JSONObject object1= (JSONObject) JSONObject.toJSON(scglDCService.showIN());
+
 objecty.put("name","东C");
 objectDC.putAll(objecty);
 objectDC.putAll(object1);
@@ -113,11 +122,21 @@ return  result;
 
     }
     @RequestMapping("/info")
-    public List<ScglDC> getinfo(@RequestBody Date date){
-        List<ScglDC> list1;
-        list1= scglDCService.getDataIN(date.getDate1(),date.getDate2());
-        return list1;
+    public List<JSONObject> getinfo(@RequestBody Date date){
+        int lenth;
+        lenth=scglDCService.getDataIN(date.getDate1(),date.getDate2()).size();
 
+log.println(lenth);
+       List<JSONObject> list=new ArrayList<>();
+       list=scglList.getData(date.getDate1(),date.getDate2(),lenth);
+       return list;
+
+        /*log.println(date.getDate1());
+        log.println(date.getDate2());
+        log.println(scglXCService.getDataIN(date.getDate1(),date.getDate2()));
+        return scglXCService.getDataIN(date.getDate1(),date.getDate2());
+
+*/
 
     }
     @RequestMapping("/add")
@@ -137,12 +156,27 @@ return  result;
         return  "success";
 }
 @RequestMapping("/test")
-    public  JSONObject test(){
+    public  List<JSONObject> test(){
+        /*
         JSONObject jsonObject=new JSONObject();
 
        log.println(scgl.targetCapacitySum());
         jsonObject.put("ScglDC",scgl.targetCapacitySum());
         return  jsonObject;
+
+         */
+    List<JSONObject> objecty = new ArrayList<>();
+  JSONObject object=new JSONObject();
+    JSONObject object1=new JSONObject();
+    JSONObject object2=new JSONObject();
+  object1.put("sex",64);
+  object.put("name",1);
+  objecty.add(object);
+  objecty.set(0,object1);
+  object2=objecty.get(0);
+log.println(object2);
+  return objecty;
+
 }
 
 }

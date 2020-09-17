@@ -5,7 +5,7 @@
     select * from ScglDD where (id=(select MAX(id) from ScglDD))
 </select>
     <select id="getData" resultType="com.hxzz.demo.entity.ScglDD">
-    select *  from ScglDD  where (date &gt;=#{date1} and date  &lt;= #{date2})
+    select *  from ScglDD  where ((date &gt;= #{date1} )and (date &lt;= #{date2}))
 </select>
     <insert id="add" >
     insert into ScglDD( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat)
