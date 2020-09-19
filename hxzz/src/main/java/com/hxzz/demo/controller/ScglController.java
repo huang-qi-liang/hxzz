@@ -1,5 +1,6 @@
 package com.hxzz.demo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
@@ -7,6 +8,7 @@ import com.hxzz.demo.entity.Date;
 import com.hxzz.demo.entity.ScglDC;
 import com.hxzz.demo.entity.ScglXC;
 import com.hxzz.demo.result.ScglList;
+import com.hxzz.demo.result.ScglPackage;
 import com.hxzz.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import com.hxzz.demo.result.Scgl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -41,6 +45,8 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @RequestMapping("/scgl")
 public class ScglController {
     @Autowired
+    ScglPackage scglPackage;
+    @Autowired
     ScglDCService scglDCService;
     @Autowired
     ScglDDService scglDDService;
@@ -58,9 +64,16 @@ public class ScglController {
     @RequestMapping("/show")
 
     public JSONObject show(){
-
-
         JSONObject objectDC=new JSONObject(new LinkedHashMap<>());
+        JSONObject objectDD=new JSONObject(new LinkedHashMap<>());
+        JSONObject objectXC=new JSONObject(new LinkedHashMap<>());
+        JSONObject objectXD=new JSONObject(new LinkedHashMap<>());
+       objectDC=scglPackage.ScglDC();
+       objectDD=scglPackage.ScglDD();
+       objectXC=scglPackage.ScglXC();
+       objectXD=scglPackage.ScglXD();
+
+      /*  JSONObject objectDC=new JSONObject(new LinkedHashMap<>());
        JSONObject objecty=new JSONObject();
 
          JSONObject object1= (JSONObject) JSONObject.toJSON(scglDCService.showIN());
@@ -68,12 +81,17 @@ public class ScglController {
 objecty.put("name","东C");
 objectDC.putAll(objecty);
 objectDC.putAll(object1);
+
+
         JSONObject objectDD=new JSONObject(new LinkedHashMap<>());
         JSONObject objecty2=new JSONObject();
         JSONObject object12= (JSONObject) JSONObject.toJSON(scglDDService.showIN());
+
         objecty2.put("name","东D");
         objectDD.putAll(objecty2);
         objectDD.putAll(object12);
+
+
         JSONObject objectXC=new JSONObject(new LinkedHashMap<>());
         JSONObject objecty3=new JSONObject();
         JSONObject object13= (JSONObject) JSONObject.toJSON(scglXCService.showIN());
@@ -86,7 +104,10 @@ objectDC.putAll(object1);
         objecty4.put("name","西C");
         objectXD.putAll(objecty4);
         objectXD.putAll(object14);
+log.println(objectXD);
 
+
+       */
         //对合计部分进行封装
         JSONObject objectx=new JSONObject(new LinkedHashMap<>());
         objectx.put("name","合计");
@@ -96,6 +117,7 @@ objectx.put("targetEfficiency",scgl.targetEfficiencySum());
 objectx.put("actualEfficiency",scgl.actualEfficiencySum());
 objectx.put("workingHours",scgl.workingHoursSum());
 objectx.put("theoreticalCapacity",scgl.theoreticalCapacitySum());
+log.println(objectx);
 JSONObject object5=new JSONObject();
 
 object5.put("sum",objectx);
@@ -122,13 +144,24 @@ return  result;
 
     }
     @RequestMapping("/info")
-    public List<JSONObject> getinfo(@RequestBody Date date){
+    public List<JSONObject> getinfo(@RequestParam(value="time1",required =false) String time1,@RequestParam(value="time2",required = false) String time2){
+
+       log.println(time1);
+
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
+
+        log.println(date1);
         int lenth;
-        lenth=scglDCService.getDataIN(date.getDate1(),date.getDate2()).size();
+        log.println(date2);
+       // lenth=scglDCService.getDataIN(date.getDate1(),date.getDate2()).size();
+    lenth=scglDCService.getDataIN(date1,date2).size();
 
 log.println(lenth);
        List<JSONObject> list=new ArrayList<>();
-       list=scglList.getData(date.getDate1(),date.getDate2(),lenth);
+       list=scglList.getData(date1,date2,lenth);
        return list;
 
         /*log.println(date.getDate1());
@@ -140,14 +173,18 @@ log.println(lenth);
 
     }
     @RequestMapping("/add")
-    public String  add(@RequestBody ScglDC scglDC){
+    public String  add(@RequestBody JSONObject object){
 
-        scglDCService.addIN(scglDC.getTargetCapacity(),scglDC.getActualCapacity(),scglDC.getTargetEfficiency(),scglDC.getWorkingHours(),scglDC.getBeat());
+        scglDCService.addIN(object.getInteger("targetCapacity"),object.getFloat("actualCapacity"),object.getFloat( "targetEfficiency"),object.getFloat( "workingHours"),object.getFloat( "theoreticalCapacity"));
         return "success";
     }
 @RequestMapping("/delete")
     public String delete(@RequestBody ScglDC scglDC){
         scglDCService.delIN(scglDC.getDate());
+    scglDDService.delIN(scglDC.getDate());
+    scglXCService.delIN(scglDC.getDate());
+    scglXDService.delIN(scglDC.getDate());
+
         return "success";
 }
 @RequestMapping("/change")
@@ -156,26 +193,13 @@ log.println(lenth);
         return  "success";
 }
 @RequestMapping("/test")
-    public  List<JSONObject> test(){
-        /*
-        JSONObject jsonObject=new JSONObject();
+    public  void test(@RequestBody JSONObject json){
+        log.println(json);
 
-       log.println(scgl.targetCapacitySum());
-        jsonObject.put("ScglDC",scgl.targetCapacitySum());
-        return  jsonObject;
-
-         */
-    List<JSONObject> objecty = new ArrayList<>();
-  JSONObject object=new JSONObject();
-    JSONObject object1=new JSONObject();
-    JSONObject object2=new JSONObject();
-  object1.put("sex",64);
-  object.put("name",1);
-  objecty.add(object);
-  objecty.set(0,object1);
-  object2=objecty.get(0);
-log.println(object2);
-  return objecty;
+   JSONArray jsonArray=new JSONArray();
+   jsonArray=json.getJSONArray("data");
+JSONObject objectDC=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
+    log.println(objectDC);
 
 }
 

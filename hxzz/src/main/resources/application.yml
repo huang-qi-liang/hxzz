@@ -3,9 +3,9 @@ spring:
   datasource:
 
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://192.168.8.102:1433;DatabaseName=CPF
+    url: jdbc:sqlserver://localhost;DatabaseName=CPF
     username: sa
-    password: 605471880
+    password: root
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
