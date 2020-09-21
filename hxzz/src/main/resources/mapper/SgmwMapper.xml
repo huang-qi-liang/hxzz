@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.SgmwMapper">
-        <select id="show" resultType="com.hxzz.demo.bean.SgmwSelect">
-    select * from SGMW where (id=(select MAX(id) from ScglXD))
+<select id="showaim" resultType="com.hxzz.demo.bean.SgmwSelect">
+    select * from SGMW where (id=(select MAX(id) from ScglXD) and name="目标")
 </select>
+<select id="showactual" resultType="com.hxzz.demo.bean.SgmwSelect">
+    select * from SGMW where (id=(select MAX(id) from ScglXD) and name="实际")
+</select>
+
 <select id="getData" resultType="com.hxzz.demo.bean.SgmwSelect">
     select *  from SGMW  where (date &gt;=#{date1} and date  &lt;= #{date2})
 </select>
 <insert id="add" >
-    insert into SGMW( String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,String energyConsumption,Float equipment)
+    insert into SGMW( String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment)
     values(#{name},#{safe},#{production},#{workingHours},#{lzc},#{quality},#{personnel},#{energyConsumption},#{equipment})
 </insert>
 <delete id="del">

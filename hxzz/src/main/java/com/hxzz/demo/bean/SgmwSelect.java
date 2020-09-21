@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class SgmwSelect {
+    private  String name;
     private Integer safe;
 
     private Integer production;
@@ -16,7 +17,7 @@ public class SgmwSelect {
     private Integer personnel;
 
 
-    private String energyConsumption;
+    private Float energyConsumption;
 
     private Float equipment;
 }

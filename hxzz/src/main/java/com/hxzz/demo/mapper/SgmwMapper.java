@@ -20,10 +20,11 @@ import java.util.List;
  */
 @Component
 public interface SgmwMapper extends BaseMapper<Sgmw> {
-    SgmwSelect show();
-    void add(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,String energyConsumption,Float equipment);
+    SgmwSelect showaim();
+    SgmwSelect showactual();
+    void add(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment);
     List<SgmwSelect> getData(LocalDate date1, LocalDate date2);
     void del(LocalDate date);
-    void change(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,String energyConsumption,Float equipment);
+    void change(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment);
 
 }

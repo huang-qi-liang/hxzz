@@ -42,7 +42,7 @@ public class Sgmw implements Serializable {
     private Integer personnel;
 
     @TableField("energyConsumption")
-    private String energyConsumption;
+    private Float energyConsumption;
 
     private Float equipment;
 

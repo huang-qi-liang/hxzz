@@ -1,7 +1,8 @@
 package com.hxzz.demo;
 
-
+import com.alibaba.fastjson.JSONObject;
 //测试用代码
+import com.hxzz.demo.service.ScglDDService;
 import com.hxzz.demo.service.UserService;
 import com.hxzz.demo.entity.User;
 import com.hxzz.demo.service.UserService;
@@ -14,7 +15,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 @Component
 @Configuration
@@ -25,7 +30,8 @@ public class TestApplication {
 
     @Autowired
     UserService userService;
-
+@Autowired
+    ScglDDService scglDDService;
     @Test
     //@Scheduled(fixedRate = 1000)
     public void contextLoads() {
@@ -48,7 +54,9 @@ public class TestApplication {
         System.err.println("执行静态定时任务时间: " + LocalDateTime.now());*/
         /*List<User> list=userService.getDataIN( "b");
        System.out.println( list.get(0).getUsername());*/
-System.out.println("success");
+
+        JSONObject object12= (JSONObject) new JSONObject(new HashMap<>()).toJSON(scglDDService.showIN());
+        log.println(object12);
     }
 
 

@@ -1,12 +1,9 @@
 package com.hxzz.demo.controller;
+import java.time.*;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.parser.Feature;
-import com.hxzz.demo.entity.Date;
 import com.hxzz.demo.entity.ScglDC;
-import com.hxzz.demo.entity.ScglXC;
 import com.hxzz.demo.result.ScglList;
 import com.hxzz.demo.result.ScglPackage;
 import com.hxzz.demo.service.*;
@@ -20,10 +17,7 @@ import com.hxzz.demo.result.Scgl;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
@@ -61,6 +55,8 @@ public class ScglController {
 
     @Autowired
     WebSocket webSocket;
+
+
     @RequestMapping("/show")
 
     public JSONObject show(){
@@ -72,6 +68,7 @@ public class ScglController {
        objectDD=scglPackage.ScglDD();
        objectXC=scglPackage.ScglXC();
        objectXD=scglPackage.ScglXD();
+
 
       /*  JSONObject objectDC=new JSONObject(new LinkedHashMap<>());
        JSONObject objecty=new JSONObject();
@@ -137,7 +134,7 @@ result1.put("message",jsonArray);
 JSONObject result=new JSONObject();
 result.put("data",result1);
 
-log.println(jsonArray.size());
+
 return  result;
 
 
@@ -188,8 +185,40 @@ log.println(lenth);
         return "success";
 }
 @RequestMapping("/change")
-    public  String change(@RequestBody ScglDC scglDC){
-        scglDCService.changeIN(scglDC.getTargetCapacity(),scglDC.getActualCapacity(),scglDC.getTargetEfficiency(),scglDC.getWorkingHours(),scglDC.getBeat(),scglDC.getDate());
+    public  String change(@RequestBody JSONObject jsonobject){
+        JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
+        jsondata=jsonobject.getJSONObject("data");
+        JSONArray jsonArray=new JSONArray();
+        jsonArray=jsondata.getJSONArray("message");
+        //对ScglDC数据进行修改
+    JSONObject objectDC=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
+   Date dateDC=objectDC.getDate("date");
+    Instant instantDC = dateDC.toInstant();
+    ZoneId zone = ZoneId.systemDefault();
+    LocalDateTime localDateTimeDC = LocalDateTime.ofInstant(instantDC, zone);
+       LocalDate localDateDC = localDateTimeDC.toLocalDate();
+        scglDCService.changeIN(objectDC.getInteger("getTargetCapacity"),objectDC.getFloat("getActualCapacity"),objectDC.getFloat("targetEfficiency"),objectDC.getFloat("getWorkingHours"),objectDC.getFloat("beat"),localDateDC);
+        //对ScglDD数据进行修改
+    JSONObject objectDD=(JSONObject) JSONObject.toJSON(jsonArray.get(1));
+    Date dateDD=objectDD.getDate("date");
+    Instant instantDD = dateDD.toInstant();
+     LocalDateTime localDateTimeDD = LocalDateTime.ofInstant(instantDD, zone);
+    LocalDate localDateDD = localDateTimeDD.toLocalDate();
+    scglDCService.changeIN(objectDD.getInteger("getTargetCapacity"),objectDD.getFloat("getActualCapacity"),objectDD.getFloat("targetEfficiency"),objectDD.getFloat("getWorkingHours"),objectDD.getFloat("beat"),localDateDD);
+    //对ScglXC数据进行修改
+    JSONObject objectXC=(JSONObject) JSONObject.toJSON(jsonArray.get(2));
+    Date dateXC=objectXC.getDate("date");
+    Instant instantXC = dateXC.toInstant();
+    LocalDateTime localDateTimeXC = LocalDateTime.ofInstant(instantXC, zone);
+    LocalDate localDateXC = localDateTimeXC.toLocalDate();
+    scglDCService.changeIN(objectXC.getInteger("getTargetCapacity"),objectXC.getFloat("getActualCapacity"),objectXC.getFloat("targetEfficiency"),objectXC.getFloat("getWorkingHours"),objectXC.getFloat("beat"),localDateXC);
+    //对ScglXD数据进行修改
+    JSONObject objectXD=(JSONObject) JSONObject.toJSON(jsonArray.get(2));
+    Date dateXD=objectXD.getDate("date");
+    Instant instantXD = dateXD.toInstant();
+    LocalDateTime localDateTimeXD = LocalDateTime.ofInstant(instantXD, zone);
+    LocalDate localDateXD = localDateTimeXD.toLocalDate();
+    scglDCService.changeIN(objectXD.getInteger("getTargetCapacity"),objectXD.getFloat("getActualCapacity"),objectXD.getFloat("targetEfficiency"),objectXD.getFloat("getWorkingHours"),objectXD.getFloat("beat"),localDateXD);
         return  "success";
 }
 @RequestMapping("/test")
