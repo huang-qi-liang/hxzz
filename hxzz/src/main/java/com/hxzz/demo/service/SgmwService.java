@@ -16,10 +16,11 @@ import java.util.List;
  * @since 2020-09-16
  */
 public interface SgmwService extends IService<Sgmw> {
-    SgmwSelect showaimIN();
-    SgmwSelect showactualIN();
+    Sgmw showaimIN();
+    Sgmw showactualIN();
     void addIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment);
-    List<SgmwSelect> getDataIN(LocalDate date1, LocalDate date2);
+    List<Sgmw> getAimDataIN(LocalDate date1, LocalDate date2);
+    List<Sgmw> getActualDataIN(LocalDate date1, LocalDate date2);
     void delIN(LocalDate date);
     void changeIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment);
 

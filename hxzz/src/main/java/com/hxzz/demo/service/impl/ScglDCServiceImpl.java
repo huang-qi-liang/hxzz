@@ -31,7 +31,7 @@ public  List<ScglDC> getDataIN(LocalDate date1, LocalDate date2){
 
 
     }
-    public ScglSelect showIN(){
+    public ScglDC showIN(){
     return scglDCMapper.show();
     }
   public   void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat){

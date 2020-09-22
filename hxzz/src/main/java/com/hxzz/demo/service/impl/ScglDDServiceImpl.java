@@ -34,7 +34,7 @@ public class ScglDDServiceImpl extends ServiceImpl<ScglDDMapper, ScglDD> impleme
 
     }
     @Override
-    public ScglSelect showIN(){
+    public ScglDD showIN(){
        return scglDDMapper.show();
     }
     public   void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat){

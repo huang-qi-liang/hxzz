@@ -26,6 +26,7 @@ public class ScglPackage
 
     public JSONObject ScglDC(){
     JSONObject objectx=new JSONObject(new LinkedHashMap<>());
+    objectx.put("id",scglDCService.showIN().getId());
     objectx.put("name","东C");
     objectx.put("targetCapacity",scglDCService.showIN().getTargetCapacity());
     objectx.put("actualCapacity",scglDCService.showIN().getActualCapacity());
@@ -38,6 +39,7 @@ public class ScglPackage
     }
    public JSONObject ScglDD(){
         JSONObject objectx=new JSONObject(new LinkedHashMap<>());
+        objectx.put("id",scglDDService.showIN().getId());
         objectx.put("name","东D");
         objectx.put("targetCapacity",scglDDService.showIN().getTargetCapacity());
         objectx.put("actualCapacity",scglDDService.showIN().getActualCapacity());
@@ -51,6 +53,7 @@ public class ScglPackage
 
     public JSONObject ScglXC(){
         JSONObject objectx=new JSONObject(new LinkedHashMap<>());
+        objectx.put("id",scglXCService.showIN().getId());
         objectx.put("name","西B");
         objectx.put("targetCapacity",scglXCService.showIN().getTargetCapacity());
         objectx.put("actualCapacity",scglXCService.showIN().getActualCapacity());
@@ -63,6 +66,7 @@ public class ScglPackage
     }
     public JSONObject ScglXD(){
         JSONObject objectx=new JSONObject(new LinkedHashMap<>());
+        objectx.put("id",scglXDService.showIN().getId());
         objectx.put("name","西C");
         objectx.put("targetCapacity",scglXDService.showIN().getTargetCapacity());
         objectx.put("actualCapacity",scglXDService.showIN().getActualCapacity());

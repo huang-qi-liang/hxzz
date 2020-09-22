@@ -170,18 +170,36 @@ log.println(lenth);
 
     }
     @RequestMapping("/add")
-    public String  add(@RequestBody JSONObject object){
+    public String  add(@RequestBody JSONObject jsonobject){
+        JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
+        jsondata=jsonobject.getJSONObject("data");
+        JSONArray jsonArray=new JSONArray();
+        jsonArray=jsondata.getJSONArray("message");
+        //对ScglDC数据进行插入
+        JSONObject objectDC=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
 
-        scglDCService.addIN(object.getInteger("targetCapacity"),object.getFloat("actualCapacity"),object.getFloat( "targetEfficiency"),object.getFloat( "workingHours"),object.getFloat( "theoreticalCapacity"));
-        return "success";
+        scglDCService.addIN(objectDC.getInteger("targetCapacity"),objectDC.getFloat("actualCapacity"),objectDC.getFloat( "targetEfficiency"),objectDC.getFloat( "workingHours"),objectDC.getFloat( "theoreticalCapacity"));
+        //对ScglDD数据进行插入
+        JSONObject objectDD=(JSONObject) JSONObject.toJSON(jsonArray.get(1));
+        scglDDService.addIN(objectDD.getInteger("targetCapacity"),objectDD.getFloat("actualCapacity"),objectDD.getFloat( "targetEfficiency"),objectDD.getFloat( "workingHours"),objectDD.getFloat( "theoreticalCapacity"));
+
+        JSONObject objectXC=(JSONObject) JSONObject.toJSON(jsonArray.get(2));
+        scglXCService.addIN(objectXC.getInteger("targetCapacity"),objectXC.getFloat("actualCapacity"),objectXC.getFloat( "targetEfficiency"),objectXC.getFloat( "workingHours"),objectXC.getFloat( "theoreticalCapacity"));
+        JSONObject objectXD=(JSONObject) JSONObject.toJSON(jsonArray.get(3));
+        scglXDService.addIN(objectXD.getInteger("targetCapacity"),objectXD.getFloat("actualCapacity"),objectXD.getFloat( "targetEfficiency"),objectXD.getFloat( "workingHours"),objectXD.getFloat( "theoreticalCapacity"));
+        return  "success";
+
     }
 @RequestMapping("/delete")
-    public String delete(@RequestBody ScglDC scglDC){
-        scglDCService.delIN(scglDC.getDate());
-    scglDDService.delIN(scglDC.getDate());
-    scglXCService.delIN(scglDC.getDate());
-    scglXDService.delIN(scglDC.getDate());
-
+    public String delete(@RequestBody JSONObject jsonObject){
+    JSONObject jsonData=new JSONObject(new LinkedHashMap<>());
+    jsonData=jsonObject.getJSONObject("data");
+    JSONArray jsonArray=new JSONArray();
+    jsonArray=jsonData.getJSONArray("message");
+    JSONObject objectDC=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
+    JSONObject objectDD=(JSONObject) JSONObject.toJSON(jsonArray.get(1));
+    JSONObject objectXC=(JSONObject) JSONObject.toJSON(jsonArray.get(2));
+    JSONObject objectXD=(JSONObject) JSONObject.toJSON(jsonArray.get(3));
         return "success";
 }
 @RequestMapping("/change")
@@ -204,21 +222,24 @@ log.println(lenth);
     Instant instantDD = dateDD.toInstant();
      LocalDateTime localDateTimeDD = LocalDateTime.ofInstant(instantDD, zone);
     LocalDate localDateDD = localDateTimeDD.toLocalDate();
-    scglDCService.changeIN(objectDD.getInteger("getTargetCapacity"),objectDD.getFloat("getActualCapacity"),objectDD.getFloat("targetEfficiency"),objectDD.getFloat("getWorkingHours"),objectDD.getFloat("beat"),localDateDD);
+    scglDDService.changeIN(objectDD.getInteger("getTargetCapacity"),objectDD.getFloat("getActualCapacity"),
+            objectDD.getFloat("targetEfficiency"),objectDD.getFloat("getWorkingHours"),objectDD.getFloat("beat"),localDateDD);
     //对ScglXC数据进行修改
     JSONObject objectXC=(JSONObject) JSONObject.toJSON(jsonArray.get(2));
     Date dateXC=objectXC.getDate("date");
     Instant instantXC = dateXC.toInstant();
     LocalDateTime localDateTimeXC = LocalDateTime.ofInstant(instantXC, zone);
     LocalDate localDateXC = localDateTimeXC.toLocalDate();
-    scglDCService.changeIN(objectXC.getInteger("getTargetCapacity"),objectXC.getFloat("getActualCapacity"),objectXC.getFloat("targetEfficiency"),objectXC.getFloat("getWorkingHours"),objectXC.getFloat("beat"),localDateXC);
+    scglXCService.changeIN(objectXC.getInteger("getTargetCapacity"),objectXC.getFloat("getActualCapacity"),
+            objectXC.getFloat("targetEfficiency"),objectXC.getFloat("getWorkingHours"),objectXC.getFloat("beat"),localDateXC);
     //对ScglXD数据进行修改
     JSONObject objectXD=(JSONObject) JSONObject.toJSON(jsonArray.get(2));
     Date dateXD=objectXD.getDate("date");
     Instant instantXD = dateXD.toInstant();
     LocalDateTime localDateTimeXD = LocalDateTime.ofInstant(instantXD, zone);
     LocalDate localDateXD = localDateTimeXD.toLocalDate();
-    scglDCService.changeIN(objectXD.getInteger("getTargetCapacity"),objectXD.getFloat("getActualCapacity"),objectXD.getFloat("targetEfficiency"),objectXD.getFloat("getWorkingHours"),objectXD.getFloat("beat"),localDateXD);
+    scglXDService.changeIN(objectXD.getInteger("getTargetCapacity"),objectXD.getFloat("getActualCapacity"),
+            objectXD.getFloat("targetEfficiency"),objectXD.getFloat("getWorkingHours"),objectXD.getFloat("beat"),localDateXD);
         return  "success";
 }
 @RequestMapping("/test")

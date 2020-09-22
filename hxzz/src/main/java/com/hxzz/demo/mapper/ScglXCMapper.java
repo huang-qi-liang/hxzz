@@ -18,7 +18,7 @@ import java.util.List;
  * @since 2020-09-14
  */@Component
 public interface ScglXCMapper extends BaseMapper<ScglXC> {
-    ScglSelect show();
+    ScglXC show();
     void add(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat);
     List<ScglXC> getData(LocalDate date1, LocalDate date2);
     void del(LocalDate date);

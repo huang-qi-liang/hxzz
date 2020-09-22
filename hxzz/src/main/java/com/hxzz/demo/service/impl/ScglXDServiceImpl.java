@@ -33,7 +33,7 @@ public class ScglXDServiceImpl extends ServiceImpl<ScglXDMapper, ScglXD> impleme
 
 
     }
-    public ScglSelect showIN(){
+    public ScglXD showIN(){
         return scglXDMapper.show();
     }
     public   void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat){

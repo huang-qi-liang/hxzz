@@ -19,7 +19,7 @@ import java.util.List;
 @Component
 public interface ScglDCMapper extends BaseMapper<ScglDC> {
 
-   ScglSelect show();
+   ScglDC show();
     void add(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat);
     List<ScglDC> getData(LocalDate date1, LocalDate date2);
     void del(LocalDate date);

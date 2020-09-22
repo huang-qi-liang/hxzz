@@ -24,11 +24,11 @@ public class SgmwServiceImpl extends ServiceImpl<SgmwMapper, Sgmw> implements Sg
 @Autowired
 SgmwMapper sgmwMapper;
 @Override
-    public SgmwSelect showaimIN(){
+    public Sgmw showaimIN(){
     return sgmwMapper.showaim();
 }
 @Override
-public SgmwSelect showactualIN(){
+public Sgmw showactualIN(){
     return  sgmwMapper.
             showactual();
 }
@@ -36,8 +36,11 @@ public SgmwSelect showactualIN(){
    public void addIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment){
     sgmwMapper.add(name,safe,production,lzc,quality,personnel,energyConsumption,equipment);
    }
-    public  List<SgmwSelect> getDataIN(LocalDate date1, LocalDate date2){
-    return  sgmwMapper.getData(date1,date2);
+    public  List<Sgmw> getAimDataIN(LocalDate date1, LocalDate date2){
+    return  sgmwMapper.getAimData(date1,date2);
+    }
+    public  List<Sgmw> getActualDataIN(LocalDate date1, LocalDate date2){
+        return  sgmwMapper.getActualData(date1,date2);
     }
    public void delIN(LocalDate date){
     sgmwMapper.del(date);

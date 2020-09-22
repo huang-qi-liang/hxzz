@@ -17,7 +17,7 @@ import java.util.List;
  * @since 2020-09-14
  */
 public interface ScglXCService extends IService<ScglXC> {
-    ScglSelect showIN();
+    ScglXC showIN();
     List<ScglXC> getDataIN(LocalDate date1, LocalDate date2);
     void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat);
     void delIN(LocalDate date);
