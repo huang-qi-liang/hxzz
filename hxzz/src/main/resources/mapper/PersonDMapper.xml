@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxzz.demo.mapper.PersonDMapper">
+    <select id="showDCTrim" resultType="com.hxzz.demo.entity.PersonD">
+        select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C内饰")) )
+    </select>
+    <select id="showDCDomain" resultType="com.hxzz.demo.entity.PersonD">
+      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C底盘")) )
+      
+    </select>
+    <select id="showDCGateLine" resultType="com.hxzz.demo.entity.PersonD">
+      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C门线")) )
+    </select>
+    <select id="showDCTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
+       select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C终线")) )
+    </select>
+    <select id="showDDTrim" resultType="com.hxzz.demo.entity.PersonD">
+        select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D内饰")) )
+    </select>
+    <select id="showDDDomain" resultType="com.hxzz.demo.entity.PersonD">
+      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D底盘")) )
+
+    </select>
+    <select id="showDDGateLine" resultType="com.hxzz.demo.entity.PersonD">
+      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D门线")) )
+    </select>
+    <select id="showDDTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
+       select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D终线")) )
+    </select>
+    <select id="showDDebug" resultType="com.hxzz.demo.entity.PersonD">
+      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东部调试")) )
+    </select>
+    <select id="getDCTrim" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C内饰")
+    </select>
+
+</mapper>
+
+

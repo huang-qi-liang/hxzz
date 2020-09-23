@@ -11,10 +11,11 @@
     insert into ScglXC( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat)
     values(#{targetCapacity},#{actualCapacity},#{targetEfficiency},#{workingHours},#{beat})
 </insert>
-    <delete id="del">
-    delete  from ScglXC where date=#{date}
+<delete id="del">
+    delete  from ScglXC where id=#{id}
 </delete>
-    <update id="change" >
-    update ScglXC set ( targetCapacity=#{ targetCapacity}, actualCapacity=#{actualCapacity},  targetEfficiency=#{targetEfficiency}, workingHours=#{ workingHours}, beat=#{beat}, date=#{date}) where date=#{date}
+<update id="change" >
+    update ScglXC set ( targetCapacity=#{ targetCapacity}, actualCapacity=#{actualCapacity},
+     targetEfficiency=#{targetEfficiency}, workingHours=#{ workingHours}, beat=#{beat}) where id=#{id}
 </update>
 </mapper>

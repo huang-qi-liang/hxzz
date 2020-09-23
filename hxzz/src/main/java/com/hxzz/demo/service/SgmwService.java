@@ -21,7 +21,8 @@ public interface SgmwService extends IService<Sgmw> {
     void addIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment);
     List<Sgmw> getAimDataIN(LocalDate date1, LocalDate date2);
     List<Sgmw> getActualDataIN(LocalDate date1, LocalDate date2);
-    void delIN(LocalDate date);
-    void changeIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment);
+    void delIN(Integer id);
+    void changeIN(Integer id,String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,
+                  Float energyConsumption,Float equipment);
 
 }

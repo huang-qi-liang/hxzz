@@ -1,5 +1,4 @@
 package com.hxzz.demo.service.impl;
-import com.hxzz.demo.entity.ScglSelect;
 import com.hxzz.demo.entity.ScglXC;
 import com.hxzz.demo.mapper.ScglXCMapper;
 import com.hxzz.demo.service.ScglXCService;
@@ -36,10 +35,12 @@ public class ScglXCServiceImpl extends ServiceImpl<ScglXCMapper, ScglXC> impleme
     public   void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat){
         scglXCMapper.add( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat);
     }
-    public  void delIN(LocalDate date){
-        scglXCMapper.del(date);
+    public  void delIN(Integer id){
+        scglXCMapper.del(id);
     }
-    public void changeIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat, LocalDate date){
-        scglXCMapper.change( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat,  date);
+    public void changeIN(Integer id,Integer targetCapacity, Float actualCapacity, Float targetEfficiency,
+                         Float workingHours,
+                         Float beat){
+        scglXCMapper.change(id, targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat);
     }
 }

@@ -4,7 +4,11 @@ import com.hxzz.demo.entity.PersonnelManagement;
 import com.hxzz.demo.mapper.PersonnelManagementMapper;
 import com.hxzz.demo.service.PersonnelManagementService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +20,33 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagementMapper, PersonnelManagement> implements PersonnelManagementService {
-
+@Autowired
+PersonnelManagementMapper personnelManagementMapper;
+@Override
+   public PersonnelManagement showSgmwIN(){
+    return personnelManagementMapper.showSgmw();
+}
+  public   PersonnelManagement showOutsourceIN(){
+      return personnelManagementMapper.showOutsource();
+  }
+  public   List<PersonnelManagement> getSgmwDataIN(LocalDate date1, LocalDate date2){
+      return personnelManagementMapper.getSgmwData(date1,date2);
+  }
+  public   List<PersonnelManagement> getOutsourceIn(LocalDate date1, LocalDate date2){
+      return personnelManagementMapper.getOutsource(date1,date2);
+  }
+  public   void addIN(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
+               Integer shouldArrive,Integer actualArrive){
+      personnelManagementMapper.add(name, establishment, actualNumber, availableNumber, attendanceRate,
+              shouldArrive,actualArrive);
+  }
+   public void delIN(Integer id){
+    personnelManagementMapper.del(id);
+   };
+  public   void changeIN(Integer id,String name,Integer establishment,Integer actualNumber,Integer availableNumber,
+                  Float attendanceRate,
+                  Integer shouldArrive,Integer actualArrive){
+      personnelManagementMapper.change(id,name, establishment, actualNumber, availableNumber, attendanceRate,
+              shouldArrive,actualArrive);
+  };
 }

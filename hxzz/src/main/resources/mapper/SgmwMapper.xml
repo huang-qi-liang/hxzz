@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.SgmwMapper">
 <select id="showaim" resultType="com.hxzz.demo.entity.Sgmw">
-    select * from SGMW where (id=(select MAX(id) from ScglXD) and name="目标")
+    select * from SGMW where (id=(select MAX(id) from (select id from SGMW where name="目标")) )
 </select>
 <select id="showactual" resultType="com.hxzz.demo.entity.Sgmw">
-    select * from SGMW where (id=(select MAX(id) from ScglXD) and name="实际")
+    select * from SGMW where (id=(select MAX(id) from (select id from SGMW where name="实际")) )
 </select>
 
 <select id="getAimData" resultType="com.hxzz.demo.entity.Sgmw">
@@ -17,13 +17,14 @@
     and (name="实际")
 </select>
 <insert id="add" >
-    insert into SGMW( String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment)
+    insert into SGMW( name, safe, production, lzc,quality, personnel, energyConsumption, equipment)
     values(#{name},#{safe},#{production},#{workingHours},#{lzc},#{quality},#{personnel},#{energyConsumption},#{equipment})
 </insert>
 <delete id="del">
-    delete  from SGMW where date=#{date}
+    delete  from SGMW where id=#{id}
 </delete>
     <update id="change" >
-    update SGMW set ( name=#{name},safe=#{safe},production=#{production},workingHours=#{workingHours},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment}) where date=#{date}
+    update SGMW set (
+    name=#{name},safe=#{safe},production=#{production},workingHours=#{workingHours},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment}) where id=#{id}
 </update>
 </mapper>

@@ -42,11 +42,13 @@ public Sgmw showactualIN(){
     public  List<Sgmw> getActualDataIN(LocalDate date1, LocalDate date2){
         return  sgmwMapper.getActualData(date1,date2);
     }
-   public void delIN(LocalDate date){
-    sgmwMapper.del(date);
+   public void delIN(Integer id){
+    sgmwMapper.del(id);
    }
-   public void changeIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment){
-    sgmwMapper.change(name,safe,production,lzc,quality,personnel,energyConsumption,equipment);
+   public void changeIN(Integer id,String name,Integer safe,Integer production,Integer lzc,Float quality,
+                        Integer personnel,
+                        Float energyConsumption,Float equipment){
+    sgmwMapper.change(id,name,safe,production,lzc,quality,personnel,energyConsumption,equipment);
    }
 
 

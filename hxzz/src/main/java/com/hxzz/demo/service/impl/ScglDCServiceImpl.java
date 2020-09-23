@@ -1,7 +1,6 @@
 package com.hxzz.demo.service.impl;
 
 import com.hxzz.demo.entity.ScglDC;
-import com.hxzz.demo.entity.ScglSelect;
 import com.hxzz.demo.mapper.ScglDCMapper;
 import com.hxzz.demo.service.ScglDCService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -37,10 +36,12 @@ public  List<ScglDC> getDataIN(LocalDate date1, LocalDate date2){
   public   void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat){
     scglDCMapper.add( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat);
     }
-    public  void delIN(LocalDate date){
-    scglDCMapper.del(date);
+    public  void delIN(Integer id){
+    scglDCMapper.del(id);
     }
-    public void changeIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat, LocalDate date){
-    scglDCMapper.change( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat,  date);
+    public void changeIN(Integer id,Integer targetCapacity, Float actualCapacity, Float targetEfficiency,
+                         Float workingHours,
+                         Float beat){
+    scglDCMapper.change(id, targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat);
     }
 }

@@ -3,7 +3,6 @@ package com.hxzz.demo.service.impl;
 
 import com.hxzz.demo.entity.ScglDD;
 
-import com.hxzz.demo.entity.ScglSelect;
 import com.hxzz.demo.mapper.ScglDDMapper;
 import com.hxzz.demo.service.ScglDDService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -40,10 +39,12 @@ public class ScglDDServiceImpl extends ServiceImpl<ScglDDMapper, ScglDD> impleme
     public   void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat){
         scglDDMapper.add( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat);
     }
-    public  void delIN(LocalDate date){
-        scglDDMapper.del(date);
+    public  void delIN(Integer id){
+        scglDDMapper.del(id);
     }
-    public void changeIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat, LocalDate date){
-        scglDDMapper.change( targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat,  date);
+    public void changeIN(Integer id,Integer targetCapacity, Float actualCapacity, Float targetEfficiency,
+                         Float workingHours,
+                         Float beat){
+        scglDDMapper.change(id, targetCapacity,  actualCapacity,  targetEfficiency,  workingHours, beat);
     }
 }

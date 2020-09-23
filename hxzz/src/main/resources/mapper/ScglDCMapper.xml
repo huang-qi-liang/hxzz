@@ -12,9 +12,10 @@
     values(#{targetCapacity},#{actualCapacity},#{targetEfficiency},#{workingHours},#{beat})
 </insert>
 <delete id="del">
-    delete  from ScglDC where date=#{date}
+    delete  from ScglDC where id=#{id}
 </delete>
 <update id="change" >
-    update ScglDC set ( targetCapacity=#{ targetCapacity}, actualCapacity=#{actualCapacity},  targetEfficiency=#{targetEfficiency}, workingHours=#{ workingHours}, beat=#{beat}, date=#{date}) where date=#{date}
+    update ScglDC set ( targetCapacity=#{ targetCapacity}, actualCapacity=#{actualCapacity},
+     targetEfficiency=#{targetEfficiency}, workingHours=#{ workingHours}, beat=#{beat}) where id=#{id}
 </update>
 </mapper>

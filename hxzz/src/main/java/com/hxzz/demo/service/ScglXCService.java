@@ -1,7 +1,6 @@
 package com.hxzz.demo.service;
 
 
-import com.hxzz.demo.entity.ScglSelect;
 import com.hxzz.demo.entity.ScglXC;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -20,6 +19,7 @@ public interface ScglXCService extends IService<ScglXC> {
     ScglXC showIN();
     List<ScglXC> getDataIN(LocalDate date1, LocalDate date2);
     void addIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat);
-    void delIN(LocalDate date);
-    void changeIN(Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,Float beat, LocalDate date);
+    void delIN(Integer id);
+    void changeIN(Integer id,Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
+                  Float beat);
 }

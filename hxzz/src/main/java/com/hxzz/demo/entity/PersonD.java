@@ -16,37 +16,37 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author hql
- * @since 2020-09-16
+ * @since 2020-09-23
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("PersonnelManagement")
-public class PersonnelManagement implements Serializable {
+@TableName("PersonD")
+public class PersonD implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String name;
+    private String region;
 
-    private Integer establishment;
+    @TableField("personalLeave")
+    private Integer personalLeave;
 
-    @TableField("actualNumber")
-    private Integer actualNumber;
+    @TableField("sickLeave")
+    private Integer sickLeave;
 
-    @TableField("availableNumber")
-    private Integer availableNumber;
+    @TableField("annualLeave")
+    private Integer annualLeave;
 
-    @TableField("attendanceRate")
-    private Float attendanceRate;
+    @TableField("nursingLeave")
+    private Integer nursingLeave;
 
-    @TableField("shouldArrive")
-    private Integer shouldArrive;
+    @TableField("bereavementLeave")
+    private Integer bereavementLeave;
 
-    @TableField("actualArrive")
-    private Integer actualArrive;
+    private Integer total;
 
     private LocalDate date;
 

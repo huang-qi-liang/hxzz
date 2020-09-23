@@ -2,6 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.PersonnelManagementMapper">
 <select id="showSgmw" resultType="com.hxzz.demo.entity.PersonnelManagement">
-
+select * from PersonnelManagement where (id=(select MAX(id) from (select id from PersonnelManagement where name="SGMW")) )
 </select>
+<select id="showOutsource" resultType="com.hxzz.demo.entity.PersonnelManagement">
+select * from PersonnelManagement where (id=(select MAX(id) from (select id from PersonnelManagement where name="外包")) )
+</select>
+<select id="getSgmwData" resultType="com.hxzz.demo.entity.PersonnelManagement">
+ select *  from PersonnelManagement  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="SGMW")
+</select>
+<select id="getOutsource" resultType="com.hxzz.demo.entity.PersonnelManagement">
+select *  from PersonnelManagement  where (date &gt;=#{date1} and date  &lt;= #{date2})
+    and (name="外包")
+</select>
+<insert id="add">
+insert into PersonnelManagement( name, establishment, actualNumber, availableNumber, attendanceRate,
+              shouldArrive,actualArrive) values
+              (#{name},#{establishment},#{actualNumber},#{ availableNumber},#{ attendanceRate},#{shouldArrive},#{actualArrive})
+</insert>
+<update id="change" >
+    update PersonnelManagement
+    set(name=#{name},establishment=#{establishment},actualNumber=#{actualNumber},availableNumber=#{ availableNumber},attendanceRate=#{ attendanceRate},shouldArrive=#{shouldArrive},actualArrive=#{actualArrive})
+</update>
+<delete id="del"  >
+    delete from PersonnelManagement where id=#{id}
+</delete>
 </mapper>
