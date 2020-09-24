@@ -53,11 +53,11 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:sqlserver://192.168.8.102:1433;DatabaseName=CPF");
+        dsc.setUrl("jdbc:sqlserver://localhost;DatabaseName=CPF");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         dsc.setUsername("sa");
-        dsc.setPassword("605471880");
+        dsc.setPassword("root");
         mpg.setDataSource(dsc);
 
         // 包配置

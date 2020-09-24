@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.PersonXMapper">
+    <select id="showXBTrim" resultType="com.hxzz.demo.entity.PersonX">
+        select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西B内饰")) )
+    </select>
+    <select id="showXBDomain" resultType="com.hxzz.demo.entity.PersonX">
+      select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西B底盘")) )
 
+    </select>
+    <select id="showXBGateLine" resultType="com.hxzz.demo.entity.PersonX">
+      select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西B门线")) )
+    </select>
+    <select id="showXBTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
+       select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西B终线")) )
+    </select>
+    <select id="showXCTrim" resultType="com.hxzz.demo.entity.PersonX">
+        select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西C内饰")) )
+    </select>
+    <select id="showXCDomain" resultType="com.hxzz.demo.entity.PersonX">
+      select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西C底盘")) )
+
+    </select>
+    <select id="showXCGateLine" resultType="com.hxzz.demo.entity.PersonX">
+      select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西C门线")) )
+    </select>
+    <select id="showXCTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
+       select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西C终线")) )
+    </select>
+    <select id="showXDebug" resultType="com.hxzz.demo.entity.PersonX">
+      select * from PersonX where  (id=(select MAX(id) from (select id from PersonX where name="西部调试")) )
+    </select>
+    <select id="getXBTrim" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西B内饰")
+    </select>
+    <select id="getXBDomain" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西B底盘")
+    </select>
+    <select id="getXBGateLine" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西B门线")
+    </select>
+    <select id="getXBTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西B终线")
+    </select>
+    <select id="getXCTrim" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西C内饰")
+    </select>
+    <select id="getXCDomain" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西C底盘")
+    </select>
+    <select id="getXCGateLine" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西C门线")
+    </select>
+    <select id="getXCTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西C终线")
+    </select>
+    <select id="getXDebug" resultType="com.hxzz.demo.entity.PersonX">
+        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="西部调试")
+    </select>
+    <insert id="add">
+        insert into PersonX(  region, personalLeave,  sickLeave, annualLeave, nursingLeave,
+           bereavementLeave)
+           values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave})
+    </insert>
+    <delete id="del">
+     delete from PersonX where id=#{id}
+
+    </delete>
+    <update id="change">
+        update PersonX set( personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
+        annualLeave=#{annualLeave},nursingLeave=#{nursingLeave},
+            bereavementLeave=#{bereavementLeave}) where id=#{id}
+    </update>
 </mapper>

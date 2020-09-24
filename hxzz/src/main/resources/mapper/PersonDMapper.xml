@@ -33,6 +33,45 @@
     <select id="getDCTrim" resultType="com.hxzz.demo.entity.PersonD">
         select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C内饰")
     </select>
+    <select id="getDCDomain" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C底盘")
+    </select>
+    <select id="getDCGateLine" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C门线")
+    </select>
+    <select id="getDCTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C终线")
+    </select>
+    <select id="getDDTrim" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D内饰")
+    </select>
+    <select id="getDDDomain" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D底盘")
+    </select>
+    <select id="getDDGateLine" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D门线")
+    </select>
+    <select id="getDDTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D终线")
+    </select>
+    <select id="getDDebug" resultType="com.hxzz.demo.entity.PersonD">
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东部调试")
+    </select>
+    <insert id="add">
+        insert into PersonD(  region, personalLeave,  sickLeave, annualLeave, nursingLeave,
+           bereavementLeave)
+           values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave})
+    </insert>
+    <delete id="del">
+     delete from PersonD where id=#{id}
+
+    </delete>
+    <update id="change">
+        update PersonD set( personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
+        annualLeave=#{annualLeave},nursingLeave=#{nursingLeave},
+            bereavementLeave=#{bereavementLeave}) where id=#{id}
+    </update>
+
 
 </mapper>
 
