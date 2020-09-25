@@ -20,13 +20,14 @@
         select *  from  Energy where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="单台气")
     </select>
     <insert id="add">
-        insert into Energy( name,  standardsWater, water, standardsElectricity, electricity, standardsGas, gas)
+        insert into Energy( name, standardsWater, water, standardsElectricity, electricity, standardsGas, gas) values (#{name},#{water},#{standardsElectricity},#{electricity},#{standardsGas},#{gas})
     </insert>
     <delete id="del">
         delete from Energy where id=#{id}
     </delete>
     <update id="change">
-        update Energy set(name=#{name}, standardsWater=#{standardsWater}, water, standardsElectricity, electricity, standardsGas, gas)
+        update Energy set(name=#{name}, standardsWater=#{standardsWater}, water=#{water}, standardsElectricity=#{standardsElectricity},
+        electricity=#{electricity},standardsGas=#{standardsGas}, gas=#{gas})
         where (id=#{id})
     </update>
 

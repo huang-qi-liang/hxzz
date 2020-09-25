@@ -58,7 +58,7 @@
         select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东部调试")
     </select>
     <insert id="add">
-        insert into PersonD(  region, personalLeave,  sickLeave, annualLeave, nursingLeave,
+        insert into PersonD( region, personalLeave,  sickLeave, annualLeave, nursingLeave,
            bereavementLeave)
            values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave})
     </insert>

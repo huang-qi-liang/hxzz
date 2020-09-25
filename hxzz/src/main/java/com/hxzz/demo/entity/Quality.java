@@ -47,7 +47,7 @@ public class Quality implements Serializable {
     private Float roadTest;
 
     @TableField("DR")
-    private Float dr;
+    private Float DR;
 
     private LocalDate date;
 

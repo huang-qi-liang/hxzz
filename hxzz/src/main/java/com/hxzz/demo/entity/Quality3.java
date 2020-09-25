@@ -32,16 +32,16 @@ public class Quality3 implements Serializable {
     private String name;
 
     @TableField("DC")
-    private Integer dc;
+    private Integer DC;
 
     @TableField("DD")
-    private Integer dd;
+    private Integer DD;
 
     @TableField("XB")
-    private Integer xb;
+    private Integer XB;
 
     @TableField("XC")
-    private Integer xc;
+    private Integer XC;
 
     private Integer total;
 
