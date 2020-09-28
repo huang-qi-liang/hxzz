@@ -15,12 +15,10 @@ import java.util.List;
  * @since 2020-09-24
  */
 public interface EnergyService extends IService<Energy> {
-    Energy showWater();
-    Energy showElectricity();
-    Energy showGas();
-    List<Energy> getWaterData(LocalDate date1, LocalDate date2);
-    List<Energy> getElectricityData(LocalDate date1,LocalDate date2);
-    List<Energy> getGasData(LocalDate date1,LocalDate date2);
+   Energy show();
+
+    List<Energy> getData(LocalDate date1, LocalDate date2);
+
     void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,Float standardsGas,Float gas);
     void del(Integer id);
     void change( Integer id,String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,

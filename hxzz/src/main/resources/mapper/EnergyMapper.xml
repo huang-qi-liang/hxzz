@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.EnergyMapper">
-    <select id="showWater" resultType="com.hxzz.demo.entity.Energy">
-        select * from Energy where (id=(select MAX(id) from (select id from Energy where name="单台水")) )
+    <select id="show" resultType="com.hxzz.demo.entity.Energy">
+        select * from Energy where (id=(select MAX(id) from Energy))
     </select>
-    <select id="showElectricity" resultType="com.hxzz.demo.entity.Energy">
-        select * from Energy where (id=(select MAX(id) from (select id from Energy where name="单台电")) )
+
+    <select id="getData" resultType="com.hxzz.demo.entity.Energy">
+        select *  from  Energy where (date &gt;=#{date1} and date  &lt;= #{date2})
     </select>
-    <select id="showGas" resultType="com.hxzz.demo.entity.Energy">
-        select * from Energy where (id=(select MAX(id) from (select id from Energy where name="单台气")) )
-    </select>
-    <select id="getWaterData" resultType="com.hxzz.demo.entity.Energy">
-        select *  from  Energy where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="单台水")
-    </select>
-    <select id="getElectricityData" resultType="com.hxzz.demo.entity.Energy">
-        select *  from  Energy where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="单台电")
-    </select>
-    <select id="getGasData" resultType="com.hxzz.demo.entity.Energy">
-        select *  from  Energy where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="单台气")
-    </select>
+
     <insert id="add">
         insert into Energy( name, standardsWater, water, standardsElectricity, electricity, standardsGas, gas) values (#{name},#{water},#{standardsElectricity},#{electricity},#{standardsGas},#{gas})
     </insert>

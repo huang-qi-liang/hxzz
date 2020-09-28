@@ -23,24 +23,14 @@ public class EnergyServiceImpl extends ServiceImpl<EnergyMapper, Energy> impleme
 @Autowired
     EnergyMapper energyMapper;
 @Override
-public Energy showWater(){
-    return energyMapper.showWater();
+public Energy show(){
+    return energyMapper.show();
 }
-  public   Energy showElectricity(){
-    return energyMapper.showElectricity();
-  }
-   public Energy showGas(){
-    return energyMapper.showGas();
+
+   public List<Energy> getData(LocalDate date1, LocalDate date2){
+    return energyMapper.getData(date1,date2);
    }
-   public List<Energy> getWaterData(LocalDate date1, LocalDate date2){
-    return energyMapper.getWaterData(date1,date2);
-   }
-  public   List<Energy> getElectricityData(LocalDate date1,LocalDate date2){
-    return energyMapper.getElectricityData(date1,date2);
-  }
-    public List<Energy> getGasData(LocalDate date1,LocalDate date2){
-    return energyMapper.getGasData(date1,date2);
-    }
+
     public void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,
                Float standardsGas,Float gas){
     energyMapper.add( name,  standardsWater, water, standardsElectricity, electricity,

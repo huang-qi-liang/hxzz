@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.LzcsjMapper">
+<select id="show" resultType="com.hxzz.demo.entity.Lzcsj">
+    select * from Lzcsj where  date=#{date}
+</select>
+    <select id="getData" resultType="com.hxzz.demo.entity.Lzcsj">
+         select *  from Lzcsj  where (date &gt;=#{date1} and date  &lt;= #{date2})
+    </select>
+    <insert id="add">
+        insert into Lzcsj(name,waitingToBeLoaded,loopToCrossTheLine,bhCirculation,actualCirculation) values
+        (#{name},#{waitingToBeLoaded},#{loopToCrossTheLine},#{bhCirculation},#{actualCirculation})
+    </insert>
+    <delete id="del">
+        delete from Lzcsj where id=#{id}
+    </delete>
+    <update id="change">
+        update Lzcsj
+        set(name=#{name},waitingToBeLoaded=#{waitingToBeLoaded},loopToCrossTheLine=#{loopToCrossTheLine},bhCirculation=#{bhCirculation},actualCirculation=#{actualCirculation})
+        where id=#{id}
+    </update>
 
 </mapper>

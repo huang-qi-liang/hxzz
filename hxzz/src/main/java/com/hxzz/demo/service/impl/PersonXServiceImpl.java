@@ -47,9 +47,9 @@ public PersonX showXBTrim(){return personXMapper.showXBTrim();}
    public void del(Integer id){
     personXMapper.del(id);
    }
-    public void change(Integer id,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+    public void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
                 Integer bereavementLeave){
-    personXMapper.change(id, personalLeave,  sickLeave,  annualLeave,  nursingLeave,
+    personXMapper.change(id, region,personalLeave,  sickLeave,  annualLeave,  nursingLeave,
             bereavementLeave);
     }
 }

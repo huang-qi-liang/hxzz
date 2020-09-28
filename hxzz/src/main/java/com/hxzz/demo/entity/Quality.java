@@ -38,6 +38,7 @@ public class Quality implements Serializable {
     private Float dLine;
 
     @TableField("lingYu")
+
     private Float lingYu;
 
     @TableField("careLine")

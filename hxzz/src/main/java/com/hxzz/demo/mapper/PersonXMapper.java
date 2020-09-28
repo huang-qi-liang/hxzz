@@ -39,7 +39,7 @@ public interface PersonXMapper extends BaseMapper<PersonX> {
     void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
               Integer bereavementLeave);
     void del(Integer id);
-    void change(Integer id,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+    void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
                 Integer bereavementLeave);
 
 }
