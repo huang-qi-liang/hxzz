@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Component
 public interface LzcsjMapper extends BaseMapper<Lzcsj> {
-Lzcsj show(LocalDate date);
+List<Lzcsj> show(LocalDate date);
 List<Lzcsj> getData(LocalDate date1,LocalDate date2);
 void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
          Integer actualCirculation);

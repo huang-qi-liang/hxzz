@@ -17,7 +17,7 @@ public class EnergyList {
     @Autowired
     EnergyService energyService;
     public List<JSONObject> EnergyList(LocalDate date1,LocalDate date2,int size){
-       int i,water,electricity,gas;;
+       int i,water,electricity,gas;
         List<JSONObject> arrayList = new ArrayList<>();
         for(i=0;i<size;i++){
             JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());

@@ -1,5 +1,6 @@
 package com.hxzz.demo.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -63,9 +64,38 @@ return jsonObject;
           return list;
     }
     @RequestMapping("/add")
-    public void add(@RequestBody JSONObject jsonObject){
+    public String add(@RequestBody JSONObject jsonObject){
+        JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
+        jsondata=jsonObject.getJSONObject("data");
+        JSONArray jsonArray=new JSONArray();
+        jsonArray=jsondata.getJSONArray("message");
+        JSONObject jsonObjectEnergy=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
+        energyService.add(jsonObjectEnergy.getString("name"),jsonObjectEnergy.getFloat("standardsWater"),
+                jsonObjectEnergy.getFloat("water"),jsonObjectEnergy.getFloat("standardsElectricity"),
+                jsonObjectEnergy.getFloat("electricity"),jsonObjectEnergy.getFloat("standardsGas"),
+                jsonObjectEnergy.getFloat("gas"));
+        return "success";
 
     }
+   @RequestMapping("/delete")
+    public String del(@RequestParam(value="id",required =false)Integer id){
+        energyService.del(id);
+        return "success";
+   }
+   @RequestMapping("/change")
+    public String change(@RequestBody JSONObject jsonObject){
+       JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
+       jsondata=jsonObject.getJSONObject("data");
+       JSONArray jsonArray=new JSONArray();
+       jsonArray=jsondata.getJSONArray("message");
+       JSONObject jsonObjectEnergy=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
+        energyService.change(jsonObjectEnergy.getInteger("id"),jsonObjectEnergy.getString("name"),jsonObjectEnergy.getFloat("standardsWater"),
+                jsonObjectEnergy.getFloat("water"),jsonObjectEnergy.getFloat("standardsElectricity"),
+                jsonObjectEnergy.getFloat("electricity"),jsonObjectEnergy.getFloat("standardsGas"),
+                jsonObjectEnergy.getFloat("gas"));
+        return "success";
+   }
+
 
 
 }
