@@ -2,60 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.PersonDMapper">
     <select id="showDCTrim" resultType="com.hxzz.demo.entity.PersonD">
-        select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C内饰")) )
+         select * from PersonD where  (id=(select MAX (id) from  PersonD where region='A线内饰'))
     </select>
     <select id="showDCDomain" resultType="com.hxzz.demo.entity.PersonD">
-      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C底盘")) )
+       select * from PersonD where  (id=(select MAX (id) from  PersonD where region='A线底盘'))
       
     </select>
     <select id="showDCGateLine" resultType="com.hxzz.demo.entity.PersonD">
-      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C门线")) )
+       select * from PersonD where  (id=(select MAX (id) from  PersonD where region='A线门线'))
     </select>
     <select id="showDCTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
-       select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东C终线")) )
+        select * from PersonD where  (id=(select MAX (id) from  PersonD where region='A线终线'))
     </select>
     <select id="showDDTrim" resultType="com.hxzz.demo.entity.PersonD">
-        select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D内饰")) )
+         select * from PersonD where  (id=(select MAX (id) from  PersonD where region='B线内饰'))
     </select>
     <select id="showDDDomain" resultType="com.hxzz.demo.entity.PersonD">
-      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D底盘")) )
+       select * from PersonD where  (id=(select MAX (id) from  PersonD where region='B线底盘'))
 
     </select>
     <select id="showDDGateLine" resultType="com.hxzz.demo.entity.PersonD">
-      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D门线")) )
+     select * from PersonD where  (id=(select MAX (id) from  PersonD where region='B线门线'))
     </select>
     <select id="showDDTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
-       select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东D终线")) )
+        select * from PersonD where  (id=(select MAX (id) from  PersonD where region='B线终线'))
     </select>
     <select id="showDDebug" resultType="com.hxzz.demo.entity.PersonD">
-      select * from PersonD where  (id=(select MAX(id) from (select id from PersonD where name="东部调试")) )
+       select * from PersonD where  (id=(select MAX (id) from  PersonD where region='东部调试'))
     </select>
     <select id="getDCTrim" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C内饰")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='A线内饰')
     </select>
     <select id="getDCDomain" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C底盘")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='A线底盘')
     </select>
     <select id="getDCGateLine" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C门线")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='A线门线')
     </select>
     <select id="getDCTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东C终线")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='A线终线')
     </select>
     <select id="getDDTrim" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D内饰")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='B线内饰')
     </select>
     <select id="getDDDomain" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D底盘")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='B线底盘')
     </select>
     <select id="getDDGateLine" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D门线")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='B线门线')
     </select>
     <select id="getDDTerminalLine" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东D终线")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='B线终线')
     </select>
     <select id="getDDebug" resultType="com.hxzz.demo.entity.PersonD">
-        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="东部调试")
+        select *  from PersonD  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name='东部调试')
     </select>
     <insert id="add">
         insert into PersonD( region, personalLeave,  sickLeave, annualLeave, nursingLeave,

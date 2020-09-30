@@ -1,6 +1,10 @@
 package com.hxzz.demo.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.hxzz.demo.result.PersonDPackage;
+import com.hxzz.demo.service.PersonDService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -9,6 +13,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -24,7 +32,18 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/person-d")
+@RequestMapping("/personD")
 public class PersonDController {
+    @Autowired
+    PersonDService personDService;
+    @Autowired
+    PersonDPackage personDPackage;
+    @RequestMapping("/show")
+    public List<JSONObject> show(){
+        List<JSONObject> list=new ArrayList<>();
+        list=personDPackage.PersonDPackage();
+        return list;
+
+    }
 
 }
