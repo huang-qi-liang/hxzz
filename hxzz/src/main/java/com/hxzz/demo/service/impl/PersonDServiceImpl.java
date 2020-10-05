@@ -48,9 +48,9 @@ public class PersonDServiceImpl extends ServiceImpl<PersonDMapper, PersonD> impl
         personDMapper.add(region,  personalLeave,  sickLeave,  annualLeave,  nursingLeave,
              bereavementLeave);}
     public void del(Integer id){personDMapper.del(id);}
-    public void change(Integer id,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+    public void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
                 Integer bereavementLeave){
-        personDMapper.change( id, personalLeave,  sickLeave,  annualLeave,  nursingLeave,
+        personDMapper.change( id,region, personalLeave,  sickLeave,  annualLeave,  nursingLeave,
                  bereavementLeave);
     }
 }

@@ -59,7 +59,7 @@ public class LzcsjController {
         return arrayList;
 
     }
-@RequestMapping("add")
+@RequestMapping("/add")
     public String add(@RequestBody JSONObject jsonObject){
     JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
     jsondata=jsonObject.getJSONObject("data");

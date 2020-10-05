@@ -67,7 +67,7 @@
 
     </delete>
     <update id="change">
-        update PersonD set( personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
+        update PersonD set( region=#{region},personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
         annualLeave=#{annualLeave},nursingLeave=#{nursingLeave},
             bereavementLeave=#{bereavementLeave}) where id=#{id}
     </update>

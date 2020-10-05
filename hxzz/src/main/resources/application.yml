@@ -11,5 +11,15 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
 server:
   port: 8081
+hxzz:
+  jwt:
+    secret: f4e2e5034348f86b67cde581c0f9eb5
+    expire: 604800
+    header: Authorization
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 127.0.0.1:6379
+
 
 

@@ -3,6 +3,8 @@ package com.hxzz.demo.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hxzz.demo.common.lang.Result;
+import com.hxzz.demo.entity.Sgmw;
 import com.hxzz.demo.result.SgmwList;
 import com.hxzz.demo.result.SgmwPackage;
 import com.hxzz.demo.service.SgmwService;
@@ -48,7 +50,7 @@ public class SgmwController {
     @Autowired
     SgmwList sgmwList;
     @RequestMapping("/show")
-    public JSONObject show(){
+    public Result show(){
         JSONObject objectaim=new JSONObject(new LinkedHashMap<>());
         JSONObject objectactual=new JSONObject(new LinkedHashMap<>());
 objectaim=sgmwPackage.aimwjson();
@@ -62,7 +64,7 @@ objectactual=sgmwPackage.actualjson();
         JSONObject result=new JSONObject();
         result.put("data",result1);
 
-return result;
+return Result.succ(jsonArray);
     }
     @RequestMapping("/info")
     public List<JSONObject> getinfo(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",required = false) String time2){
@@ -92,7 +94,7 @@ return result;
 
 */
 
-    }
+    }/*
     @RequestMapping("/add")
     public String  add(@RequestBody JSONObject jsonObject){
         JSONObject jsonData=new JSONObject(new LinkedHashMap<>());
@@ -113,6 +115,14 @@ return result;
                         "equipment"));
        return "success";
 
+    }
+    ***/
+    @RequestMapping("/add")
+    public Result add(@RequestBody Sgmw sgmw){
+        log.println(sgmw);
+        sgmwService.addIN(sgmw.getName(),sgmw.getSafe(),sgmw.getProduction(),sgmw.getLzc(),sgmw.getQuality(),
+                sgmw.getPersonnel(),sgmw.getEnergyConsumption(),sgmw.getEquipment());
+        return Result.succ("success");
     }
     @RequestMapping("/change")
     public  String change(@RequestBody JSONObject jsonObject){
