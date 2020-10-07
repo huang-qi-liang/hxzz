@@ -48,9 +48,14 @@ public class EnergyController {
     @RequestMapping("/show")
     public Result show(){
 
-      JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-      jsonObject=energyPackage.EnergyPackage();
-return Result.succ(jsonObject);
+        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+        jsonObject=energyPackage.EnergyPackage();
+        return Result.succ(jsonObject);
+    }
+    @RequestMapping("/showMan")
+    public Result showMan(){
+
+   return  Result.succ(energyService.show());
     }
 
     @RequestMapping("/info")
@@ -68,6 +73,22 @@ return Result.succ(jsonObject);
         List<JSONObject> list=new ArrayList<>();
         list=energyList.EnergyList(date1,date2,size);
           return Result.succ(list);
+
+
+    }
+    @RequestMapping("/infoMan")
+    public Result infoMan(@RequestParam(value="time1",required =false) String time1, @RequestParam(value=
+            "time2",
+            required = false) String time2){
+
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
+
+
+
+        return Result.succ(energyService.getData(date1,date2));
 
 
     }

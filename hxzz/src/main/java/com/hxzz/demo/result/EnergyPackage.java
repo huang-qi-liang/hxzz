@@ -32,7 +32,7 @@ public class EnergyPackage {
         }
         else
             gas=1;
-        jsonObject.put("id",energyService.show().getId());
+
         jsonObject.put("water",water);
         jsonObject.put("eletricity",electricity);
         jsonObject.put("gas",gas);

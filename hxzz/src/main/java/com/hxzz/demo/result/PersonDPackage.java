@@ -100,6 +100,8 @@ public class PersonDPackage {
         jsonObject8.put("total",personDService.showDDTerminalLine().getTotal());
         jsonObject8.put("date",personDService.showDDTerminalLine().getDate());
         list.add(jsonObject8);
+        JSONObject jsonObject9=new JSONObject(new LinkedHashMap<>());
+
         log.println(list);
         return list;
     }

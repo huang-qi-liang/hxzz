@@ -1,6 +1,9 @@
 package com.hxzz.demo.service;
 
+import com.hxzz.demo.bean.PersonDShow;
+
 import com.hxzz.demo.entity.PersonD;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.time.LocalDate;
@@ -15,24 +18,45 @@ import java.util.List;
  * @since 2020-09-23
  */
 public interface PersonDService extends IService<PersonD> {
-    PersonD showDCTrim();
-    PersonD showDCDomain();
-    PersonD showDCGateLine();
-    PersonD showDCTerminalLine();
-    PersonD showDDTrim();
-    PersonD showDDDomain();
-    PersonD showDDGateLine();
-    PersonD showDDTerminalLine();
-    PersonD showDDebug();
-    List<PersonD> getDCTrim(LocalDate date1, LocalDate date2);
-    List<PersonD> getDCDomain(LocalDate date1,LocalDate date2);
-    List<PersonD> getDCGateLine(LocalDate date1,LocalDate date2);
-    List<PersonD> getDCTerminalLine(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDTrim(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDDomain(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDGateLine(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDTerminalLine(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDebug(LocalDate date1,LocalDate date2);
+    /*
+    PersonD showDCTrimMan();
+    PersonD showDCDomainMan();
+    PersonD showDCGateLineMan();
+    PersonD showDCTerminalLineMan();
+    PersonD showDDTrimman();
+    PersonD showDDDomainMan();
+    PersonD showDDGateLineMan();
+    PersonD showDDTerminalLineMan();
+    PersonD showDDebugMna();
+    PersonDShow showDCTrim();
+    PersonDShow showDCDomain();
+    PersonDShow showDCGateLine();
+    PersonDShow showDCTerminalLine();
+    PersonDShow showDDTrim();
+    PersonDShow showDDDomain();
+    PersonDShow showDDGateLine();
+    PersonDShow showDDTerminalLine();
+    PersonDShow showDDebug();
+    List<PersonD> getDCTrimMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDCDomainMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDCGateLineMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDCTerminalLineMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDDTrimMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDDDomainMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDDGateLineMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDDTerminalLineMan(LocalDate date1,LocalDate date2);
+    List<PersonD> getDDebugMan(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDCTrim(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDCDomain(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDCGateLine(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDCTerminalLine(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDDTrim(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDDDomain(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDDGateLine(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDDTerminalLine(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getDDebug(LocalDate date1,LocalDate date2);
+
+     */
     void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
               Integer bereavementLeave);
     void del(Integer id);

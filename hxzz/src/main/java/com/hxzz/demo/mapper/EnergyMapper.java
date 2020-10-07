@@ -19,6 +19,7 @@ import java.util.List;
 public interface EnergyMapper extends BaseMapper<Energy> {
     Energy show();
 
+
     List<Energy> getData(LocalDate date1,LocalDate date2);
 
     void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,Float standardsGas,Float gas);
