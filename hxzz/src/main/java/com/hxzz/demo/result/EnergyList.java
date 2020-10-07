@@ -37,9 +37,11 @@ public class EnergyList {
             }
             else
                 gas=1;
+            jsonObject.put("id",energyService.getData(date1,date2).get(i).getId());
             jsonObject.put("water",water);
             jsonObject.put("eletricity",electricity);
             jsonObject.put("gas",gas);
+            jsonObject.put("date",energyService.getData(date1,date2).get(i).getDate());
             jsonObject.put("date",energyService.getData(date1,date2).get(i).getDate());
             arrayList.add(jsonObject);
 

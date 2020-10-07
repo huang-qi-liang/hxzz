@@ -1,5 +1,7 @@
 package com.hxzz.demo.service.impl;
 
+import com.hxzz.demo.bean.LzcsjShow;
+import com.hxzz.demo.bean.LzcsjSum;
 import com.hxzz.demo.entity.Lzcsj;
 import com.hxzz.demo.mapper.LzcsjMapper;
 import com.hxzz.demo.service.LzcsjService;
@@ -23,7 +25,11 @@ public class LzcsjServiceImpl extends ServiceImpl<LzcsjMapper, Lzcsj> implements
     @Autowired
     LzcsjMapper lzcsjMapper;
    public List<Lzcsj> show(LocalDate date){return lzcsjMapper.show(date);}
-   public List<Lzcsj> getData(LocalDate date1, LocalDate date2){return lzcsjMapper.getData(date1,date2);}
+   public List<Lzcsj> showMan(){return lzcsjMapper.showMan();}
+   public List<LzcsjShow> getData(LocalDate date1, LocalDate date2){return lzcsjMapper.getData(date1,date2);}
+   public List<Lzcsj> getDataMan(LocalDate date1,LocalDate date2){return lzcsjMapper.getDataMan(date1,date2);}
+    public List<LzcsjShow> SumData(LocalDate date1,LocalDate date2){return lzcsjMapper.SumData(date1,date2);}
+    public LzcsjSum Sum(LocalDate date){return lzcsjMapper.Sum(date);}
     public    void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
              Integer actualCirculation){lzcsjMapper.add(name, waitingToBeLoaded, loopToCrossTheLine, bhCirculation, actualCirculation);}
    public void del(Integer id){lzcsjMapper.del(id);}

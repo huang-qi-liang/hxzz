@@ -1,5 +1,7 @@
 package com.hxzz.demo.service;
 
+import com.hxzz.demo.bean.LzcsjShow;
+import com.hxzz.demo.bean.LzcsjSum;
 import com.hxzz.demo.entity.Lzcsj;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,7 +18,11 @@ import java.util.List;
  */
 public interface LzcsjService extends IService<Lzcsj> {
    List<Lzcsj> show(LocalDate date);
-    List<Lzcsj> getData(LocalDate date1, LocalDate date2);
+    List<Lzcsj> showMan();
+    List<Lzcsj> getDataMan(LocalDate date1,LocalDate date2);
+    List<LzcsjShow> SumData(LocalDate date1,LocalDate date2);
+    List<LzcsjShow> getData(LocalDate date1, LocalDate date2);
+ LzcsjSum Sum(LocalDate date);
     void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
              Integer actualCirculation);
     void del(Integer id);

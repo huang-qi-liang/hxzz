@@ -5,6 +5,8 @@ import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.hxzz.demo.common.lang.Result;
+import com.hxzz.demo.entity.Energy;
 import com.hxzz.demo.result.EnergyList;
 import com.hxzz.demo.result.EnergyPackage;
 import com.hxzz.demo.service.EnergyService;
@@ -44,27 +46,36 @@ public class EnergyController {
     @Autowired
     EnergyList energyList;
     @RequestMapping("/show")
-    public JSONObject show(){
+    public Result show(){
 
       JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
       jsonObject=energyPackage.EnergyPackage();
-return jsonObject;
+return Result.succ(jsonObject);
     }
 
     @RequestMapping("/info")
-    public List<JSONObject> info(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
-            required = false) String time2){
+    public Result info(@RequestParam(value="time1",required =false) LocalDate date1, @RequestParam(value=
+            "time2",
+            required = false) LocalDate date2){
+        /*
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
 
         LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
+
+         */
         int size=energyService.getData(date1,date2).size();
         List<JSONObject> list=new ArrayList<>();
         list=energyList.EnergyList(date1,date2,size);
-          return list;
+          return Result.succ(list);
+
+
     }
     @RequestMapping("/add")
-    public String add(@RequestBody JSONObject jsonObject){
+    public Result add(@RequestBody Energy energy){
+        energyService.add(energy.getName(),energy.getStandardsWater(),energy.getWater(),
+                energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas());
+        /*
         JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
         jsondata=jsonObject.getJSONObject("data");
         JSONArray jsonArray=new JSONArray();
@@ -74,16 +85,19 @@ return jsonObject;
                 jsonObjectEnergy.getFloat("water"),jsonObjectEnergy.getFloat("standardsElectricity"),
                 jsonObjectEnergy.getFloat("electricity"),jsonObjectEnergy.getFloat("standardsGas"),
                 jsonObjectEnergy.getFloat("gas"));
-        return "success";
+
+         */
+        return Result.succ("success");
 
     }
    @RequestMapping("/delete")
-    public String del(@RequestParam(value="id",required =false)Integer id){
+    public Result del(@RequestParam(value="id",required =false)Integer id){
         energyService.del(id);
-        return "success";
+        return Result.succ("success");
    }
    @RequestMapping("/change")
-    public String change(@RequestBody JSONObject jsonObject){
+    public Result change(@RequestBody Energy energy){
+        /*
        JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
        jsondata=jsonObject.getJSONObject("data");
        JSONArray jsonArray=new JSONArray();
@@ -94,6 +108,12 @@ return jsonObject;
                 jsonObjectEnergy.getFloat("electricity"),jsonObjectEnergy.getFloat("standardsGas"),
                 jsonObjectEnergy.getFloat("gas"));
         return "success";
+
+         */
+        energyService.change(energy.getId(),energy.getName(),energy.getStandardsWater(),energy.getWater(),
+                energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas());
+        return Result.succ("success");
+
    }
 
 
