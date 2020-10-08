@@ -25,7 +25,7 @@
     delete  from SGMW where id=#{id}
 </delete>
     <update id="change" >
-    update SGMW set (
-    name=#{name},safe=#{safe},production=#{production},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment}) where id=#{id}
+    update SGMW set
+    name=#{name},safe=#{safe},production=#{production},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment} where id=#{id}
 </update>
 </mapper>

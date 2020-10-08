@@ -16,7 +16,8 @@
     </delete>
     <update id="change">
         update Quality4
-        set(target=#{target},actual=#{actual},responsibility=#{responsibility},InterceptionProblem=#{InterceptionProblem},quantity=#{quantity})
+        set
+        target=#{target},actual=#{actual},responsibility=#{responsibility},InterceptionProblem=#{InterceptionProblem},quantity=#{quantity}
         where id=#{id}
     </update>
 

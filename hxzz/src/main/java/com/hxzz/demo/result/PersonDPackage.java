@@ -17,6 +17,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 public class PersonDPackage {
     @Autowired
     PersonDService personDService;
+    /*
     public List<JSONObject> PersonDPackage(){
        List<JSONObject> list=new ArrayList<>();
        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
@@ -105,6 +106,8 @@ public class PersonDPackage {
         log.println(list);
         return list;
     }
+
+     */
     public void PersonList(){
 
     }

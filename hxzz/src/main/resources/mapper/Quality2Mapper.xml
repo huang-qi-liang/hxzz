@@ -34,7 +34,7 @@
     </delete>
     <update id="change">
         update Quality2 set
-        (productionLine=#{productionLine},breakpoint=#{breakpoint},paa=#{paa},ptr=#{ptr},craft=#{craft},tools=#{tools})
+        productionLine=#{productionLine},breakpoint=#{breakpoint},paa=#{paa},ptr=#{ptr},craft=#{craft},tools=#{tools}
         where id=#{id}
     </update>
 

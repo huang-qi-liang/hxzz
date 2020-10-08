@@ -1,5 +1,6 @@
 package com.hxzz.demo.mapper;
 
+import com.hxzz.demo.bean.PersonnelManagementClient;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Component;
@@ -18,9 +19,14 @@ import java.util.List;
 @Component
 public interface PersonnelManagementMapper extends BaseMapper<PersonnelManagement> {
     PersonnelManagement showSgmw();
-    PersonnelManagement showOutsource();
-    List<PersonnelManagement> getSgmwData(LocalDate date1, LocalDate date2);
-    List<PersonnelManagement> getOutsource(LocalDate date1, LocalDate date2);
+        PersonnelManagement showOutsource();
+
+    List<PersonnelManagement> getData(LocalDate date1, LocalDate date2);
+
+    PersonnelManagementClient showSgmwClient();
+    PersonnelManagementClient showOutsourceClient();
+
+    List<PersonnelManagementClient> getClient(LocalDate date1, LocalDate date2);
     void add(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
              Integer shouldArrive,Integer actualArrive);
     void del(Integer id);

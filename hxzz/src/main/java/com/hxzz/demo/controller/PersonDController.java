@@ -14,8 +14,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * <p>
@@ -40,7 +43,7 @@ public class PersonDController {
     @RequestMapping("/show")
     public Result show(){
         List<JSONObject> list=new ArrayList<>();
-        list=personDPackage.PersonDPackage();
+        //list=personDPackage.PersonDPackage();
         return Result.succ(list);
 
     }
@@ -67,5 +70,17 @@ return Result.succ("success");
                 personD.getAnnualLeave(),personD.getNursingLeave(),personD.getBereavementLeave());
         return Result.succ("success");
     }
+    @RequestMapping("/test")
+    public Result test(@RequestParam(value="time1",required =false) String time){
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date=LocalDate.parse(time,dateTimeFormatter);
+
+
+        List list=new ArrayList();
+        list=personDService.getClient(date);
+        log.println(list);
+        return Result.succ(list);
+    }
+
 
 }

@@ -18,45 +18,12 @@ import java.util.List;
  * @since 2020-09-23
  */
 public interface PersonDService extends IService<PersonD> {
-    /*
-    PersonD showDCTrimMan();
-    PersonD showDCDomainMan();
-    PersonD showDCGateLineMan();
-    PersonD showDCTerminalLineMan();
-    PersonD showDDTrimman();
-    PersonD showDDDomainMan();
-    PersonD showDDGateLineMan();
-    PersonD showDDTerminalLineMan();
-    PersonD showDDebugMna();
-    PersonDShow showDCTrim();
-    PersonDShow showDCDomain();
-    PersonDShow showDCGateLine();
-    PersonDShow showDCTerminalLine();
-    PersonDShow showDDTrim();
-    PersonDShow showDDDomain();
-    PersonDShow showDDGateLine();
-    PersonDShow showDDTerminalLine();
-    PersonDShow showDDebug();
-    List<PersonD> getDCTrimMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDCDomainMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDCGateLineMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDCTerminalLineMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDTrimMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDDomainMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDGateLineMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDTerminalLineMan(LocalDate date1,LocalDate date2);
-    List<PersonD> getDDebugMan(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDCTrim(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDCDomain(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDCGateLine(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDCTerminalLine(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDDTrim(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDDDomain(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDDGateLine(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDDTerminalLine(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getDDebug(LocalDate date1,LocalDate date2);
-
-     */
+    PersonD show();
+    PersonDShow showClient();
+    PersonDShow Sum();
+    List<PersonD> getData(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getClient(LocalDate date);
+    List<PersonDShow> sumClient(LocalDate date1,LocalDate date2);
     void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
               Integer bereavementLeave);
     void del(Integer id);

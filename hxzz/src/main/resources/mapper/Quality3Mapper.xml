@@ -21,7 +21,7 @@
         delete  from Quality3 where id=#{id}
     </delete>
     <update id="change">
-        update Quality3 set(name=#{name},DC=#{DC},DD=#{DD},XB=#{XB},XC=#{XC}) where id=#{id}
+        update Quality3 set name=#{name},DC=#{DC},DD=#{DD},XB=#{XB},XC=#{XC}  where id=#{id}
     </update>
 
 </mapper>

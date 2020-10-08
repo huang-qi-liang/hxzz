@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.hxzz.demo.entity.User;
 import com.hxzz.demo.service.UserService;
 import com.hxzz.demo.service.WebSocket;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Async;
@@ -44,7 +45,7 @@ public class UserController {
 
     @PostMapping("/login")
 
-
+    @ApiOperation(value = "用户登录")
  public String login(@RequestBody User user1){
 System.out.println(getType(user1.getUsername()));
         Map<String,Object> map=new HashMap<>();

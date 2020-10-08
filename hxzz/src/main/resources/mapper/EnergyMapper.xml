@@ -16,8 +16,9 @@
         delete from Energy where id=#{id}
     </delete>
     <update id="change">
-        update Energy set(name=#{name}, standardsWater=#{standardsWater}, water=#{water}, standardsElectricity=#{standardsElectricity},
-        electricity=#{electricity},standardsGas=#{standardsGas}, gas=#{gas})
+        update Energy set name=#{name}, standardsWater=#{standardsWater}, water=#{water},
+        standardsElectricity=#{standardsElectricity},
+        electricity=#{electricity},standardsGas=#{standardsGas}, gas=#{gas}
         where (id=#{id})
     </update>
 

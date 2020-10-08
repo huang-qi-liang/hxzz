@@ -76,7 +76,7 @@ return Result.succ(list);
 
         List list=new ArrayList<>();
         list=lzcsjPackage.LzcsjList(date1,date2);
-
+        Collections.reverse(list);
 
         return Result.succ(list);
 

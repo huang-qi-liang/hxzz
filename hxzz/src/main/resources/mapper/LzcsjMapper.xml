@@ -39,8 +39,7 @@
     </delete>
     <update id="change">
         update Lzcsj
-        set(name=#{name},waitingToBeLoaded=#{waitingToBeLoaded},loopToCrossTheLine=#{loopToCrossTheLine},bhCirculation=#{bhCirculation},actualCirculation=#{actualCirculation})
-        where id=#{id}
+        set name=#{name},waitingToBeLoaded=#{waitingToBeLoaded},loopToCrossTheLine=#{loopToCrossTheLine},bhCirculation=#{bhCirculation},actualCirculation=#{actualCirculation} where id=#{id}
     </update>
 
 </mapper>

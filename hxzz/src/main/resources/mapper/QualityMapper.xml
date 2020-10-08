@@ -16,7 +16,7 @@
     </delete>
     <update id="change">
         update Quality
-        set(name=#{name},offLine=#{offLine},dLine=#{dLine},lingYu=#{lingYu},careLine=#{careLine},roadTest=#{roadTest})
+        set name=#{name},offLine=#{offLine},dLine=#{dLine},lingYu=#{lingYu},careLine=#{careLine},roadTest=#{roadTest}
         where id=#{id}
     </update>
 
