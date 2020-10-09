@@ -43,7 +43,7 @@ public class LzcsjController {
     LzcsjService lzcsjService;
     @Autowired
     LzcsjPackage lzcsjPackage;
-    @RequestMapping("/show")
+    @RequestMapping("/showClient")
     public Result show(){
         List list=new ArrayList();
         LocalDate date=LocalDate.now();
@@ -57,7 +57,7 @@ log.println(list);
 
 return Result.succ(list);
     }
-    @RequestMapping("/showMan")
+    @RequestMapping("/show")
     public Result showMan(){
         List list=new ArrayList();
        list=lzcsjService.showMan();
@@ -65,7 +65,7 @@ return Result.succ(list);
         return Result.succ(list);
     }
 
-    @RequestMapping("/info")
+    @RequestMapping("/infoClient")
     public Result getData(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
             required = false) String time2){
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -81,7 +81,7 @@ return Result.succ(list);
         return Result.succ(list);
 
     }
-    @RequestMapping("/infoMan")
+    @RequestMapping("/info")
     public Result getDataMan(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
             required = false) String time2){
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 /**
  * <p>
  *  前端控制器
@@ -45,20 +47,20 @@ public class EnergyController {
     EnergyPackage energyPackage;
     @Autowired
     EnergyList energyList;
-    @RequestMapping("/show")
+    @RequestMapping("/showClient")
     public Result show(){
 
         JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
         jsonObject=energyPackage.EnergyPackage();
         return Result.succ(jsonObject);
     }
-    @RequestMapping("/showMan")
+    @RequestMapping("/show")
     public Result showMan(){
 
    return  Result.succ(energyService.show());
     }
 
-    @RequestMapping("/info")
+    @RequestMapping("/infoClient")
     public Result info(@RequestParam(value="time1",required =false) LocalDate date1, @RequestParam(value=
             "time2",
             required = false) LocalDate date2){
@@ -76,7 +78,7 @@ public class EnergyController {
 
 
     }
-    @RequestMapping("/infoMan")
+    @RequestMapping("/info")
     public Result infoMan(@RequestParam(value="time1",required =false) String time1, @RequestParam(value=
             "time2",
             required = false) String time2){
@@ -137,6 +139,20 @@ public class EnergyController {
 
    }
 
+@RequestMapping("/save")
+    public Result save(@RequestBody Energy energy){
+        log.println(energy);
+        if(energy.getId()==null){
+            energyService.add(energy.getName(),energy.getStandardsWater(),energy.getWater(),
+                    energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas());
 
+        }
+        else{
+            energyService.change(energy.getId(),energy.getName(),energy.getStandardsWater(),energy.getWater(),
+                    energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas());
+    return Result.succ("success");}
+        return Result.succ("success");
+
+}
 
 }

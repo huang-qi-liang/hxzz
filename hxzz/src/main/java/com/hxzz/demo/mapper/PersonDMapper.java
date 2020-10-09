@@ -20,8 +20,8 @@ import java.util.List;
 @Component
 
 public interface PersonDMapper extends BaseMapper<PersonD> {
-    PersonD show();
-    PersonDShow showClient();
+   List <PersonD> show();
+   List <PersonDShow> showClient();
     PersonDShow Sum();
     List<PersonD> getData(LocalDate date1,LocalDate date2);
     List<PersonDShow> getClient(LocalDate date);

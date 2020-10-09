@@ -24,8 +24,8 @@ public class PersonDServiceImpl extends ServiceImpl<PersonDMapper, PersonD> impl
     @Autowired
     PersonDMapper personDMapper;
     @Override
-    public PersonD show(){return personDMapper.show();}
-    public PersonDShow showClient(){return personDMapper.showClient();}
+    public List<PersonD> show(){return personDMapper.show();}
+    public List<PersonDShow> showClient(){return personDMapper.showClient();}
     public PersonDShow Sum(){return personDMapper.Sum();}
     public List<PersonD> getData(LocalDate date1,LocalDate date2){return personDMapper.getData(date1,date2);}
     public List<PersonDShow> getClient(LocalDate date){return personDMapper.getClient(date);}

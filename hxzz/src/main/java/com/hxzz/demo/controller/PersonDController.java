@@ -2,6 +2,7 @@ package com.hxzz.demo.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.hxzz.demo.bean.PersonDShow;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonD;
 import com.hxzz.demo.result.PersonDPackage;
@@ -42,9 +43,23 @@ public class PersonDController {
     PersonDPackage personDPackage;
     @RequestMapping("/show")
     public Result show(){
-        List<JSONObject> list=new ArrayList<>();
-        //list=personDPackage.PersonDPackage();
+       List list=new ArrayList<>();
+      list.add(personDService.show());
         return Result.succ(list);
+
+    }
+    @RequestMapping("/showClient")
+    public Result showClient(){
+   List list1=new ArrayList();
+   List list2=new ArrayList();
+   list1.add(personDService.showClient());
+        PersonDShow personDShow=new PersonDShow();
+  personDService.Sum().setRegion("合计");
+  list2.add(personDService.Sum());
+
+  list1.addAll(list2);
+  return  Result.succ(list1);
+
 
     }
     @RequestMapping("/info")
