@@ -1,5 +1,6 @@
 package com.hxzz.demo.service;
 
+import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.PersonDShow;
 
 import com.hxzz.demo.entity.PersonD;
@@ -22,12 +23,14 @@ public interface PersonDService extends IService<PersonD> {
     List <PersonDShow> showClient();
     PersonDShow Sum();
     List<PersonD> getData(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getClient(LocalDate date);
-    List<PersonDShow> sumClient(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getClient(LocalDate date1,LocalDate date2);
+   PersonDShow sumClient(LocalDate date1,LocalDate date2);
     void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
               Integer bereavementLeave);
     void del(Integer id);
     void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave,
                 Integer nursingLeave,
                 Integer bereavementLeave);
+    PageInfo<PersonD> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
+
 }

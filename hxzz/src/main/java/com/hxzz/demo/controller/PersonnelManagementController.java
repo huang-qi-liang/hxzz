@@ -2,6 +2,7 @@ package com.hxzz.demo.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.hxzz.demo.bean.Date;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.hxzz.demo.service.PersonnelManagementService;
@@ -69,12 +70,11 @@ public class PersonnelManagementController {
 
     }
     @RequestMapping("/infoClient")
-    public Result infoClient(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
-            required = false) String time2){
+    public Result infoClient(@RequestBody Date date){
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+        LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
+        LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
         List list= new ArrayList();
         list.add(personnelManagementService.getClient(date1,date2));
         return Result.succ(list);

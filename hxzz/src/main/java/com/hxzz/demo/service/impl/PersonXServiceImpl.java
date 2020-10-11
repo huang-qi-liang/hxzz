@@ -1,6 +1,11 @@
 package com.hxzz.demo.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.PersonXShow;
 import com.hxzz.demo.entity.PersonX;
+import com.hxzz.demo.entity.PersonX;
+import com.hxzz.demo.mapper.PersonDMapper;
 import com.hxzz.demo.mapper.PersonXMapper;
 import com.hxzz.demo.service.PersonXService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -22,34 +27,29 @@ import java.util.List;
 public class PersonXServiceImpl extends ServiceImpl<PersonXMapper, PersonX> implements PersonXService {
 @Autowired
     PersonXMapper personXMapper;
-@Autowired
-public PersonX showXBTrim(){return personXMapper.showXBTrim();}
- public    PersonX showXBDomain(){return personXMapper.showXBDomain();}
- public    PersonX showXBGateLine(){return personXMapper.showXBGateLine();}
- public    PersonX showXBTerminalLine(){return personXMapper.showXBTerminalLine();}
- public    PersonX showXCTrim(){return personXMapper.showXCTrim();}
-  public   PersonX showXCDomain(){return personXMapper.showXCDomain();}
-  public PersonX showXCGateLine(){return personXMapper.showXCGateLine();}
-   public PersonX showXCTerminalLine(){return personXMapper.showXCTerminalLine();}
-  public   PersonX showXDebug(){return personXMapper.showXDebug();}
-   public List<PersonX> getXBTrim(LocalDate date1, LocalDate date2){return personXMapper.getXBTrim(date1,date2);}
-   public List<PersonX> getXBDomain(LocalDate date1,LocalDate date2){return personXMapper.getXBDomain(date1,date2);}
-   public List<PersonX> getXBGateLine(LocalDate date1,LocalDate date2){return personXMapper.getXBGateLine(date1,date2);}
-   public List<PersonX> getXBTerminalLine(LocalDate date1,LocalDate date2){return personXMapper.getXBTerminalLine(date1,date2);}
-    public List<PersonX> getXCTrim(LocalDate date1,LocalDate date2){return personXMapper.getXCTrim(date1,date2);}
-   public List<PersonX> getXCDomain(LocalDate date1,LocalDate date2){return personXMapper.getXCDomain(date1,date2);}
-   public List<PersonX> getXCGateLine(LocalDate date1,LocalDate date2){return personXMapper.getXCGateLine(date1,date2);}
-   public List<PersonX> getXCTerminalLine(LocalDate date1,LocalDate date2){return personXMapper.getXCTerminalLine(date1,date2);}
-   public List<PersonX> getXDebug(LocalDate date1,LocalDate date2){return personXMapper.getXDebug(date1,date2);}
-   public void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-              Integer bereavementLeave){personXMapper.add(region,  personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-           bereavementLeave);}
-   public void del(Integer id){
-    personXMapper.del(id);
-   }
-    public void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                Integer bereavementLeave){
-    personXMapper.change(id, region,personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-            bereavementLeave);
-    }
+
+ @Override
+ public List<PersonX> show(){return personXMapper.show();}
+ public List<PersonXShow> showClient(){return personXMapper.showClient();}
+ public PersonXShow Sum(){return personXMapper.Sum();}
+ public List<PersonX> getData(LocalDate date1,LocalDate date2){return personXMapper.getData(date1,date2);}
+ public List<PersonXShow> getClient(LocalDate date1,LocalDate date2){return personXMapper.getClient(date1,date2);}
+ public PersonXShow sumClient(LocalDate date1,LocalDate date2){return personXMapper.sumClient(date1,date2);}
+ public void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+                  Integer bereavementLeave){
+  personXMapper.add(region,  personalLeave,  sickLeave,  annualLeave,  nursingLeave,
+          bereavementLeave);}
+ public void del(Integer id){personXMapper.del(id);}
+ public void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+                    Integer bereavementLeave){
+  personXMapper.change( id,region, personalLeave,  sickLeave,  annualLeave,  nursingLeave,
+          bereavementLeave);
+ }
+ public PageInfo<PersonX> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
+  PageHelper.startPage(pageNum,pageSize);
+  List<PersonX> list=personXMapper.getData(date1,date2);
+  PageInfo<PersonX> pageInfo=new PageInfo<PersonX>(list);
+  return pageInfo;
+ }
+
 }

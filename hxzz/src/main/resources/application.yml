@@ -20,6 +20,8 @@ shiro-redis:
   enabled: true
   redis-manager:
     host: 127.0.0.1:6379
-
+pagehelper:
+  reasonable: true
+  support-methods-arguments: true
 
 

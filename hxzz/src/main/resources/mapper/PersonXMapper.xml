@@ -1,64 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.PersonXMapper">
-    <select id="showXBTrim" resultType="com.hxzz.demo.entity.PersonX">
-          select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西B内饰'))
+    <select id="show" resultType="com.hxzz.demo.entity.PersonX">
+        select * from PersonX where date=(select date from PersonX where id=(select MAX(id) as id from PersonX)) order
+         by region,id DESC
     </select>
-    <select id="showXBDomain" resultType="com.hxzz.demo.entity.PersonX">
-        select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西B底盘'))
+    <select id="showClient" resultType="com.hxzz.demo.bean.PersonXShow">
+        select region, sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
+				  sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX where date=(select
+				  date from PersonX where id=(select MAX(id) as id from PersonX))  group by date,region
+    </select>
+    <select id="Sum" resultType="com.hxzz.demo.bean.PersonXShow">
+        select sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
+				  sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX where date=(select
+				  date from PersonX where id=(select MAX(id) as id from PersonX))  group by date
+    </select>
+    <select id="getData" resultType="com.hxzz.demo.entity.PersonX">
+        select * from PersonX where date>=#{date1} and date &lt;= #{date2}
+    </select>
+    <select id="getClient" resultType="com.hxzz.demo.bean.PersonXShow">
+        select region, sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
+        sum(bereavementLeave) as bereavementLeave,sum(total) as total from PersonX where date>=#{date1} and
+        date&lt;=#{date2} group by region
 
     </select>
-    <select id="showXBGateLine" resultType="com.hxzz.demo.entity.PersonX">
-       select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西B门线'))
-    </select>
-    <select id="showXBTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
-       select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西B终线'))
-    </select>
-    <select id="showXCTrim" resultType="com.hxzz.demo.entity.PersonX">
-         select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西C内饰'))
-    </select>
-    <select id="showXCDomain" resultType="com.hxzz.demo.entity.PersonX">
-      select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西C底盘'))
-
-    </select>
-    <select id="showXCGateLine" resultType="com.hxzz.demo.entity.PersonX">
-     select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西C门线'))
-    </select>
-    <select id="showXCTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
-       select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西C终线'))
-    </select>
-    <select id="showXDebug" resultType="com.hxzz.demo.entity.PersonX">
-       select * from PersonX where  (id=(select MAX (id) from  PersonX where region='西部调试'))
-    </select>
-    <select id="getXBTrim" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西B内饰")
-    </select>
-    <select id="getXBDomain" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西B底盘")
-    </select>
-    <select id="getXBGateLine" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西B门线")
-    </select>
-    <select id="getXBTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西B终线")
-    </select>
-    <select id="getXCTrim" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西C内饰")
-    </select>
-    <select id="getXCDomain" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西C底盘")
-    </select>
-    <select id="getXCGateLine" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西C门线")
-    </select>
-    <select id="getXCTerminalLine" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西C终线")
-    </select>
-    <select id="getXDebug" resultType="com.hxzz.demo.entity.PersonX">
-        select *  from PersonX  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (region="西部调试")
+    <select id="sumClient" resultType="com.hxzz.demo.bean.PersonXShow">
+        select sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
+        sum(bereavementLeave) as bereavementLeave,sum(total) as total  from PersonX  where  date>=#{date1} and
+        date&lt;=#{date2}
     </select>
     <insert id="add">
-        insert into PersonX(  region, personalLeave,  sickLeave, annualLeave, nursingLeave,
+        insert into PersonX( region, personalLeave,  sickLeave, annualLeave, nursingLeave,
            bereavementLeave)
            values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave})
     </insert>
@@ -67,8 +39,9 @@
 
     </delete>
     <update id="change">
-        update PersonX set(region=#{region}, personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
+        update PersonX set  region=#{region},personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
         annualLeave=#{annualLeave},nursingLeave=#{nursingLeave},
-            bereavementLeave=#{bereavementLeave}) where id=#{id}
+            bereavementLeave=#{bereavementLeave} where id=#{id}
     </update>
+
 </mapper>

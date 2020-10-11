@@ -13,18 +13,18 @@
 				  sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonD where date=(select date from PersonD where id=(select MAX(id) as id from PersonD))  group by date
     </select>
     <select id="getData" resultType="com.hxzz.demo.entity.PersonD">
-        select * from PersonD where date1>=#{date1} and date2>=#{date2}
+        select * from PersonD where date>=#{date1} and date &lt;= #{date2}
     </select>
     <select id="getClient" resultType="com.hxzz.demo.bean.PersonDShow">
         select region, sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
-        sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonD where date=#{date} group by
-        date,region  order by date DESC
+        sum(bereavementLeave) as bereavementLeave,sum(total) as total from PersonD where date>=#{date1} and
+        date&lt;=#{date2} group by region
 
     </select>
     <select id="sumClient" resultType="com.hxzz.demo.bean.PersonDShow">
         select sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
-        sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonD  where (date &gt;=#{date1} and
-         date  &lt;= #{date2})  group by date
+        sum(bereavementLeave) as bereavementLeave,sum(total) as total  from PersonD  where  date>=#{date1} and
+        date&lt;=#{date2}
     </select>
     <insert id="add">
         insert into PersonD( region, personalLeave,  sickLeave, annualLeave, nursingLeave,

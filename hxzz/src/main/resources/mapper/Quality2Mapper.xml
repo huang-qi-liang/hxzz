@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.Quality2Mapper">
-    <select id="showA" resultType="com.hxzz.demo.entity.Quality2">
-         select * from Quality2 where  (id=(select MAX(id) from (select id from Quality2 where name="A线")) )
+   <select id="show" resultType="com.hxzz.demo.entity.Quality2">
+ select * from Quality2 where date=(select date from Quality2 where id=(select MAX(id) as id from Quality2)) order
+         by productionLine,id DESC
+   </select>
+    <select id="showClient" resultType="com.hxzz.demo.entity.Quality2">
+select productionLine,sum(breakpoint) as breakpoint,sum(paa) as paa,sum(ptr) as ptr,sum(craft) as craft,sum(tools) as tools,sum(total) as total,date from Quality2  where date=(select
+				  date from Quality2 where id=(select MAX(id) as id from Quality2))  group by date,productionLine
     </select>
-    <select id="showB" resultType="com.hxzz.demo.entity.Quality2">
-         select * from Quality2 where  (id=(select MAX(id) from (select id from Quality2 where name="B线")) )
+    <select id="showSum" resultType="com.hxzz.demo.entity.Quality2">
+
+select sum(breakpoint) as breakpoint,sum(paa) as paa,sum(ptr) as ptr,sum(craft) as craft,sum(tools) as tools,sum(total) as total,date from Quality2  where date=(select
+				  date from Quality2 where id=(select MAX(id) as id from Quality2))  group by date
     </select>
-    <select id="showC" resultType="com.hxzz.demo.entity.Quality2">
-         select * from Quality2 where  (id=(select MAX(id) from (select id from Quality2 where name="C线")) )
+    <select id="info" resultType="com.hxzz.demo.entity.Quality2">
+         select * from Quality2 where date>=#{date1} and date &lt;= #{date2} order by productionLine,id DESC
     </select>
-    <select id="showD" resultType="com.hxzz.demo.entity.Quality2">
-         select * from Quality2 where  (id=(select MAX(id) from (select id from Quality2 where name="D线")) )
+    <select id="infoClient" resultType="com.hxzz.demo.entity.Quality2">
+        select productionLine,sum(breakpoint) as breakpoint,sum(paa) as paa,sum(ptr) as ptr,sum(craft) as craft,sum(tools) as tools,sum(total) as total from Quality2
+        where (date&gt;=#{date1} and date&lt;= #{date2})  group by productionLine
     </select>
-    <select id="getDataA" resultType="com.hxzz.demo.entity.Quality2">
-        select *  from Quality2  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="A线")
-    </select>
-    <select id="getDataB" resultType="com.hxzz.demo.entity.Quality2">
-        select *  from Quality2  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="B线")
-    </select>
-    <select id="getDataC" resultType="com.hxzz.demo.entity.Quality2">
-        select *  from Quality2  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="C线")
-    </select>
-    <select id="getDataD" resultType="com.hxzz.demo.entity.Quality2">
-        select *  from Quality2  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="D线")
+    <select id="infoSum"  resultType="com.hxzz.demo.entity.Quality2">
+        select sum(breakpoint) as breakpoint,sum(paa) as paa,sum(ptr) as ptr,sum(craft) as craft,sum(tools) as tools,sum(total) as total from Quality2
+        where (date&gt;=#{date1} and date&lt;= #{date2})
+
     </select>
     <insert id="add">
         insert into Quality2( productionLine, breakpoint, paa, ptr, craft, tools) values

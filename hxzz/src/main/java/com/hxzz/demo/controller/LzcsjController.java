@@ -3,6 +3,7 @@ package com.hxzz.demo.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Lzcsj;
 import com.hxzz.demo.result.LzcsjPackage;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import com.hxzz.demo.bean.Date;
 
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -82,16 +84,21 @@ return Result.succ(list);
 
     }
     @RequestMapping("/info")
-    public Result getDataMan(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
-            required = false) String time2){
+    public Result getDataMan(@RequestBody Date date){
+        log.println(date);
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+        LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
+        LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
 
         List list=new ArrayList();
+        if(lzcsjService.getDataMan(date1,date2).isEmpty()){
+            list=null;
+        }
+        else{
         list=lzcsjService.getDataMan(date1,date2);
-        Collections.reverse(list);
+        Collections.reverse(list);}
+
         return Result.succ(list);
     }
 @RequestMapping("/add")

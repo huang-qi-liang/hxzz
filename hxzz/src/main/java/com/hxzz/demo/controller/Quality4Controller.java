@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,14 +37,37 @@ public class Quality4Controller {
     Quality4Service quality4Service;
     @RequestMapping("/show")
     public Result show(){
-        List<JSONObject> list=new ArrayList<>();
+        List list=new ArrayList<>();
+        return Result.succ(list);
+    }
+    @RequestMapping("/showClient")
+    public Result showClient(){
+        List list=new ArrayList<>();
         return Result.succ(list);
     }
     @RequestMapping("/info")
-    public Result info(@RequestParam(value="time1",required =false) LocalDate time1, @RequestParam(value="time2",
-            required = false) LocalDate time2){
-        List<JSONObject> list=new ArrayList<>();
+    public Result info(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
+            required = false) String time2){
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
+        List list= new ArrayList();
+
         return Result.succ(list);
+
+    }
+    @RequestMapping("/infoClient")
+    public Result infoClient(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
+            required = false) String time2){
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
+        List list= new ArrayList();
+
+        return Result.succ(list);
+
     }
     @RequestMapping("/delete")
     public Result delete(@RequestParam(value="id",required =false)Integer id){

@@ -24,8 +24,8 @@ public interface PersonDMapper extends BaseMapper<PersonD> {
    List <PersonDShow> showClient();
     PersonDShow Sum();
     List<PersonD> getData(LocalDate date1,LocalDate date2);
-    List<PersonDShow> getClient(LocalDate date);
-    List<PersonDShow> sumClient(LocalDate date1,LocalDate date2);
+    List<PersonDShow> getClient(LocalDate date1,LocalDate date2);
+    PersonDShow sumClient(LocalDate date1,LocalDate date2);
 
 void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
           Integer bereavementLeave);

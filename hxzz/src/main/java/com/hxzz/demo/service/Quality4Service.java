@@ -1,5 +1,7 @@
 package com.hxzz.demo.service;
 
+import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.entity.Quality3;
 import com.hxzz.demo.entity.Quality4;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -20,4 +22,5 @@ public interface Quality4Service extends IService<Quality4> {
     void add(Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity);
     void del(Integer id);
     void change(Integer id,Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity);
+
 }

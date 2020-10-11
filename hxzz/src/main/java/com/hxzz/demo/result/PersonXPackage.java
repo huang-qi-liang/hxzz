@@ -1,48 +1,44 @@
 package com.hxzz.demo.result;
 
+
 import com.alibaba.fastjson.JSONObject;
-import com.hxzz.demo.service.PersonDService;
+import com.hxzz.demo.service.PersonXService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
-
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 @Configuration
 @Component
-public class PersonDPackage {
+public class PersonXPackage {
     @Autowired
-    PersonDService personDService;
+    PersonXService personXService;
     @Autowired
-    PersonDPackage personDPackage;
+    PersonXPackage personXPackage;
     public  JSONObject showClientPackage(){
         JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
         jsonObject.put("region","合计");
-        jsonObject.put("personalLeave",personDService.Sum().getPersonalLeave());
-        jsonObject.put("sickLeave",personDService.Sum().getSickLeave());
-        jsonObject.put("annualLeave",personDService.Sum().getAnnualLeave());
-        jsonObject.put( "nursingLeave",personDService.Sum().getNursingLeave());
-        jsonObject.put("bereavementLeave",personDService.Sum().getBereavementLeave());
-        jsonObject.put("total",personDService.Sum().getTotal());
-        jsonObject.put("date",personDService.Sum().getDate());
+        jsonObject.put("personalLeave", personXService.Sum().getPersonalLeave());
+        jsonObject.put("sickLeave", personXService.Sum().getSickLeave());
+        jsonObject.put("annualLeave", personXService.Sum().getAnnualLeave());
+        jsonObject.put( "nursingLeave", personXService.Sum().getNursingLeave());
+        jsonObject.put("bereavementLeave", personXService.Sum().getBereavementLeave());
+        jsonObject.put("total", personXService.Sum().getTotal());
+        jsonObject.put("date", personXService.Sum().getDate());
         return jsonObject;
     }
     public  JSONObject ClientPackage(LocalDate date1,LocalDate date2){
         JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
         jsonObject.put("region","合计");
-        jsonObject.put("personalLeave",personDService.sumClient(date1,date2).getPersonalLeave());
-        jsonObject.put("sickLeave",personDService.sumClient(date1,date2).getSickLeave());
-        jsonObject.put("annualLeave",personDService.sumClient(date1,date2).getAnnualLeave());
-        jsonObject.put( "nursingLeave",personDService.sumClient(date1,date2).getNursingLeave());
-        jsonObject.put("bereavementLeave",personDService.sumClient(date1,date2).getBereavementLeave());
-        jsonObject.put("total",personDService.sumClient(date1,date2).getTotal());
-        jsonObject.put("date",personDService.sumClient(date1,date2).getDate());
+        jsonObject.put("personalLeave", personXService.sumClient(date1,date2).getPersonalLeave());
+        jsonObject.put("sickLeave", personXService.sumClient(date1,date2).getSickLeave());
+        jsonObject.put("annualLeave", personXService.sumClient(date1,date2).getAnnualLeave());
+        jsonObject.put( "nursingLeave", personXService.sumClient(date1,date2).getNursingLeave());
+        jsonObject.put("bereavementLeave", personXService.sumClient(date1,date2).getBereavementLeave());
+        jsonObject.put("total", personXService.sumClient(date1,date2).getTotal());
+        jsonObject.put("date", personXService.sumClient(date1,date2).getDate());
         return jsonObject;
     }
    /* public List PersonDList(LocalDate date1, LocalDate date2) {

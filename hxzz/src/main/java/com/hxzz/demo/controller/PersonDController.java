@@ -2,9 +2,18 @@ package com.hxzz.demo.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.Date;
+import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.bean.PersonDShow;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonD;
+import com.hxzz.demo.page.PersonDPage;
 import com.hxzz.demo.result.PersonDPackage;
 import com.hxzz.demo.service.PersonDService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -41,8 +51,12 @@ public class PersonDController {
     PersonDService personDService;
     @Autowired
     PersonDPackage personDPackage;
+    @Autowired
+    PersonDPage personDPage;
+
     @RequestMapping("/show")
     public Result show(){
+
        List list=new ArrayList<>();
       list.add(personDService.show());
         return Result.succ(list);
@@ -50,23 +64,56 @@ public class PersonDController {
     }
     @RequestMapping("/showClient")
     public Result showClient(){
+List list=new ArrayList();
    List list1=new ArrayList();
    List list2=new ArrayList();
-   list1.add(personDService.showClient());
-        PersonDShow personDShow=new PersonDShow();
-  personDService.Sum().setRegion("合计");
-  list2.add(personDService.Sum());
+   list1=personDService.showClient();
 
-  list1.addAll(list2);
-  return  Result.succ(list1);
+  list2.add(personDPackage.showClientPackage());
+
+  list.addAll(list1);
+  list.addAll(list2);
+  return  Result.succ(list);
 
 
     }
     @RequestMapping("/info")
-    public void info(){
-        List<JSONObject> list=new ArrayList<>();
+    public Result info(@RequestBody Info info){
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(info.getTime1(),dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
+
+
+PageInfo<PersonD> pageInfo=personDService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
+
+
+
+
+
+//pageInfo.setPageSize(5);
+//pageInfo.setSize(5);
+        return Result.succ(pageInfo);
 
     }
+    @RequestMapping("/infoClient")
+    public Result infoClient(@RequestBody Date date) throws Exception {
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
+        List list=new ArrayList();
+JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+jsonObject=personDPackage.ClientPackage(date1,date2);
+list=personDService.getClient(date1,date2);
+list.add(jsonObject);
+
+
+
+        return Result.succ(list);
+
+    }
+
     @RequestMapping("/delete")
     public Result delete(@RequestParam(value="id",required =false)Integer id){
         personDService.del(id);
@@ -85,17 +132,7 @@ return Result.succ("success");
                 personD.getAnnualLeave(),personD.getNursingLeave(),personD.getBereavementLeave());
         return Result.succ("success");
     }
-    @RequestMapping("/test")
-    public Result test(@RequestParam(value="time1",required =false) String time){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date=LocalDate.parse(time,dateTimeFormatter);
 
-
-        List list=new ArrayList();
-        list=personDService.getClient(date);
-        log.println(list);
-        return Result.succ(list);
-    }
 
 
 }

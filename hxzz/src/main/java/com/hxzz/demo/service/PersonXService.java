@@ -1,6 +1,10 @@
 package com.hxzz.demo.service;
 
+import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.PersonDShow;
+import com.hxzz.demo.bean.PersonXShow;
 import com.hxzz.demo.entity.PersonX;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.time.LocalDate;
@@ -15,27 +19,17 @@ import java.util.List;
  * @since 2020-09-23
  */
 public interface PersonXService extends IService<PersonX> {
-    PersonX showXBTrim();
-    PersonX showXBDomain();
-    PersonX showXBGateLine();
-    PersonX showXBTerminalLine();
-    PersonX showXCTrim();
-    PersonX showXCDomain();
-    PersonX showXCGateLine();
-    PersonX showXCTerminalLine();
-    PersonX showXDebug();
-    List<PersonX> getXBTrim(LocalDate date1, LocalDate date2);
-    List<PersonX> getXBDomain(LocalDate date1,LocalDate date2);
-    List<PersonX> getXBGateLine(LocalDate date1,LocalDate date2);
-    List<PersonX> getXBTerminalLine(LocalDate date1,LocalDate date2);
-    List<PersonX> getXCTrim(LocalDate date1,LocalDate date2);
-    List<PersonX> getXCDomain(LocalDate date1,LocalDate date2);
-    List<PersonX> getXCGateLine(LocalDate date1,LocalDate date2);
-    List<PersonX> getXCTerminalLine(LocalDate date1,LocalDate date2);
-    List<PersonX> getXDebug(LocalDate date1,LocalDate date2);
+    List <PersonX> show();
+    List <PersonXShow> showClient();
+    PersonXShow Sum();
+    List<PersonX> getData(LocalDate date1,LocalDate date2);
+    List<PersonXShow> getClient(LocalDate date1,LocalDate date2);
+    PersonXShow sumClient(LocalDate date1,LocalDate date2);
     void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
               Integer bereavementLeave);
     void del(Integer id);
-    void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+    void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave,
+                Integer nursingLeave,
                 Integer bereavementLeave);
+    PageInfo<PersonX> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 }

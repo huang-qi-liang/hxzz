@@ -21,7 +21,7 @@ select * from PersonnelManagement where id=(select MAX(id) from PersonnelManagem
 
     <select id="getClient" resultType="com.hxzz.demo.bean.PersonnelManagementClient">
 select name, sum(establishment) as establishment, sum(actualNumber) as actualNumber, sum(availableNumber) as availableNumber, sum(attendanceRate) asattendanceRate,
-				  sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive,date from PersonnelManagement  group by name,date  order by date DESC
+				  sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement  group by name
 </select>
 <insert id="add">
 insert into PersonnelManagement( name, establishment, actualNumber, availableNumber, attendanceRate,

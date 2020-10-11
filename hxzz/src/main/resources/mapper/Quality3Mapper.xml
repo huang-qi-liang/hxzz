@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.Quality3Mapper">
-    <select id="showMissing" resultType="com.hxzz.demo.entity.Quality3">
-    select * from Quality3 where  (id=(select MAX(id) from (select id from Quality3 where name="总装责任错漏装")) )
+    <select id="show" resultType="com.hxzz.demo.entity.Quality3">
+select * from Quality3 where date=(select date from Quality3 where id=(select MAX(id) as id from Quality3)) order
+         by name,id DESC
+   </select>
+    <select id="showClient" resultType="com.hxzz.demo.entity.Quality3">
+select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC,date from Quality3  where date=(select
+				  date from Quality3 where id=(select MAX(id) as id from Quality3))  group by date,name
+    </select>
 
+    <select id="info" resultType="com.hxzz.demo.entity.Quality3">
+         select * from Quality3 where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
     </select>
-    <select id="showIntercept" resultType="com.hxzz.demo.entity.Quality3">
-        select * from Quality3 where  (id=(select MAX(id) from (select id from Quality3 where name="总装拦截问题")) )
+    <select id="infoClient" resultType="com.hxzz.demo.entity.Quality3">
+       select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC from Quality3   where (date&gt;=#{date1} and date&lt;= #{date2})  group by name
     </select>
-    <select id="getMissingData"  resultType="com.hxzz.demo.entity.Quality3">
-        select *  from Quality3  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="总装责任错漏装")
-    </select>
-    <select id="getInterceptData" resultType="com.hxzz.demo.entity.Quality3">
-        select *  from Quality3  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="总装拦截问题")
-    </select>
+
     <insert id="add">
         insert into Quality3(name,DC,DD,XB,XC) values (#{name},#{DC},#{DD},#{XB},#{XC})
     </insert>

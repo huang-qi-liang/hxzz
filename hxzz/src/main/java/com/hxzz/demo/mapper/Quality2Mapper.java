@@ -17,14 +17,14 @@ import java.util.List;
  */
 @Component
 public interface Quality2Mapper extends BaseMapper<Quality2> {
-Quality2 showA();
-    Quality2 showB();
-    Quality2 showC();
-    Quality2 showD();
-List<Quality2> getDataA(LocalDate date1,LocalDate date2);
-    List<Quality2> getDataB(LocalDate date1,LocalDate date2);
-    List<Quality2> getDataC(LocalDate date1,LocalDate date2);
-    List<Quality2> getDataD(LocalDate date1,LocalDate date2);
+List<Quality2> show();
+List<Quality2> showClient();
+Quality2 showSum();
+List<Quality2> info(LocalDate date1,LocalDate date2);
+List<Quality2> infoClient(LocalDate date1,LocalDate date2);
+Quality2 infoSum(LocalDate date1,LocalDate date2);
+
+
 void add(String productionLine,Integer breakpoint,Integer paa,Integer ptr,Integer craft,Integer tools);
 void del(Integer id);
 void change(Integer id,String productionLine,Integer breakpoint,Integer paa,  Integer ptr,Integer craft,Integer tools);
