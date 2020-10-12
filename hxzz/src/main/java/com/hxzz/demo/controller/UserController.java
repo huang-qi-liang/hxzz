@@ -36,7 +36,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
+@RequestMapping("/User")
 public class UserController {
     @Autowired
     UserService userService;

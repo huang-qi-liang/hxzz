@@ -34,7 +34,7 @@ import java.util.List;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/personnelManagement")
+@RequestMapping("/PersonnelManagement")
 public class PersonnelManagementController {
     @Autowired
     PersonnelManagementService personnelManagementService;

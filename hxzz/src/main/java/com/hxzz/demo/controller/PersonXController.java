@@ -37,7 +37,7 @@ import java.util.List;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/person-x")
+@RequestMapping("/PersonX")
 public class PersonXController {
     @Autowired
     PersonXService personXService;

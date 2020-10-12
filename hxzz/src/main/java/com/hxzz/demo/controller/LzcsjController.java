@@ -39,7 +39,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/lzcsj")
+@RequestMapping("/Lzcsj")
 public class LzcsjController {
     @Autowired
     LzcsjService lzcsjService;

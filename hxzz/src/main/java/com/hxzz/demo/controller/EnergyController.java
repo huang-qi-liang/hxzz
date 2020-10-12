@@ -39,7 +39,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/energy")
+@RequestMapping("/Energy")
 public class EnergyController {
     @Autowired
     EnergyService energyService;

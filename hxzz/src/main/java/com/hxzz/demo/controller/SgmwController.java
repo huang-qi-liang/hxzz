@@ -41,7 +41,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/sgmw")
+@RequestMapping("/Sgmw")
 public class SgmwController {
     @Autowired
     SgmwService sgmwService;

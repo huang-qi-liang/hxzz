@@ -37,7 +37,7 @@ import java.util.List;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/quality")
+@RequestMapping("/Quality")
 public class QualityController {
     @Autowired
     QualityService qualityService;

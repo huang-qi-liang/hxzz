@@ -32,7 +32,7 @@ import java.util.List;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/safe")
+@RequestMapping("/Safe")
 public class SafeController {
     @Autowired
 

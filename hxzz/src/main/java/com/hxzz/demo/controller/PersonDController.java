@@ -45,7 +45,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/personD")
+@RequestMapping("/PersonD")
 public class PersonDController {
     @Autowired
     PersonDService personDService;
