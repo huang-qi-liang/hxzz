@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.LzcsjMapper">
-<select id="show" resultType="com.hxzz.demo.bean.LzcsjShow">
-   select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
+    <select id="show" resultType="com.hxzz.demo.entity.Lzcsj">
+  select * from Lzcsj where date=(select date from Lzcsj where id=(select MAX(id) as id from Lzcsj)) order by name, id DESC
+   </select>
+    <select id="showClient" resultType="com.hxzz.demo.entity.Lzcsj">
+select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
         ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total,date as
         date
-        from Lzcsj where date=#{date} group by name,date
-</select>
-    <select id="showMan" resultType="com.hxzz.demo.entity.Lzcsj">
-        select * from Lzcsj
+        from Lzcsj where date=(select date from Lzcsj where id=(select MAX(id) as id from Lzcsj))  group by date,name
     </select>
-    <select id="Sum" resultType="com.hxzz.demo.bean.LzcsjSum">
-        select sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
+    <select id="showSum" resultType="com.hxzz.demo.entity.Lzcsj">
+
+ select sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
         ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total
-        from Lzcsj where date=#{date}
+        from Lzcsj where date=(select date from Lzcsj where id=(select MAX(id) as id from Lzcsj))  group by date
     </select>
-    <select id="getDataMan" resultType="com.hxzz.demo.entity.Lzcsj">
-         select *  from Lzcsj  where (date &gt;=#{date1} and date  &lt;= #{date2})
+    <select id="info" resultType="com.hxzz.demo.entity.Lzcsj">
+         select *  from Lzcsj  where (date &gt;=#{date1} and date  &lt;= #{date2}) order by name,id DESC
     </select>
-    <select id="getData" resultType="com.hxzz.demo.bean.LzcsjShow">
-        select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
-        ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total,date as
-        date
-        from Lzcsj where(date &gt;=#{date1} and date  &lt;= #{date2}) group by name,date
+    <select id="infoClient" resultType="com.hxzz.demo.entity.Lzcsj">
+          select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
+        ,sum(bhCirculation)a s bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total
+from Lzcsj where(date &gt;=#{date1} and date  &lt;= #{date2}) group by name
     </select>
-    <select id="SumData"  resultType="com.hxzz.demo.bean.LzcsjShow">
-         select sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
-        ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total,date as
-        date
-        from Lzcsj where (date &gt;=#{date1} and date  &lt;= #{date2}) group  by date
+    <select id="infoSum"  resultType="com.hxzz.demo.entity.Lzcsj">
+      select sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
+        ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total
+        from Lzcsj where (date &gt;=#{date1} and date  &lt;= #{date2})
+
     </select>
     <insert id="add">
         insert into Lzcsj(name,waitingToBeLoaded,loopToCrossTheLine,bhCirculation,actualCirculation) values

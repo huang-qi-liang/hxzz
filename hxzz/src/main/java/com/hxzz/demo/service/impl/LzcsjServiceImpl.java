@@ -1,8 +1,12 @@
 package com.hxzz.demo.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.LzcsjShow;
 import com.hxzz.demo.bean.LzcsjSum;
 import com.hxzz.demo.entity.Lzcsj;
+import com.hxzz.demo.entity.Lzcsj;
+import com.hxzz.demo.entity.Quality2;
 import com.hxzz.demo.mapper.LzcsjMapper;
 import com.hxzz.demo.service.LzcsjService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -24,16 +28,23 @@ import java.util.List;
 public class LzcsjServiceImpl extends ServiceImpl<LzcsjMapper, Lzcsj> implements LzcsjService {
     @Autowired
     LzcsjMapper lzcsjMapper;
-   public List<Lzcsj> show(LocalDate date){return lzcsjMapper.show(date);}
-   public List<Lzcsj> showMan(){return lzcsjMapper.showMan();}
-   public List<LzcsjShow> getData(LocalDate date1, LocalDate date2){return lzcsjMapper.getData(date1,date2);}
-   public List<Lzcsj> getDataMan(LocalDate date1,LocalDate date2){return lzcsjMapper.getDataMan(date1,date2);}
-    public List<LzcsjShow> SumData(LocalDate date1,LocalDate date2){return lzcsjMapper.SumData(date1,date2);}
-    public LzcsjSum Sum(LocalDate date){return lzcsjMapper.Sum(date);}
+    public  List<Lzcsj> show(){return lzcsjMapper.show();}
+    public List<Lzcsj> showClient(){return  lzcsjMapper.showClient();}
+    public Lzcsj showSum(){return  lzcsjMapper.showSum();}
+    public List<Lzcsj> info(LocalDate date1,LocalDate date2){return  lzcsjMapper.info(date1,date2);}
+    public List<Lzcsj> infoClient(LocalDate date1,LocalDate date2){return lzcsjMapper.infoClient(date1,date2);}
+    public Lzcsj infoSum(LocalDate date1,LocalDate date2){return  lzcsjMapper.infoSum(date1,date2);}
     public    void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
              Integer actualCirculation){lzcsjMapper.add(name, waitingToBeLoaded, loopToCrossTheLine, bhCirculation, actualCirculation);}
    public void del(Integer id){lzcsjMapper.del(id);}
    public void change(Integer id,String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
                 Integer actualCirculation){lzcsjMapper.change(id, name, waitingToBeLoaded, loopToCrossTheLine, bhCirculation, actualCirculation);}
+    public PageInfo<Lzcsj> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Lzcsj> list=lzcsjMapper.info(date1,date2);
+        PageInfo<Lzcsj> pageInfo=new PageInfo<Lzcsj>(list);
+        return pageInfo;
+    }
+
 
 }

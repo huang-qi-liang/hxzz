@@ -3,9 +3,11 @@ package com.hxzz.demo.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Lzcsj;
+import com.hxzz.demo.entity.Quality2;
 import com.hxzz.demo.result.LzcsjPackage;
 import com.hxzz.demo.service.LzcsjService;
 import net.sf.saxon.functions.AccessorFn;
@@ -45,61 +47,51 @@ public class LzcsjController {
     LzcsjService lzcsjService;
     @Autowired
     LzcsjPackage lzcsjPackage;
-    @RequestMapping("/showClient")
-    public Result show(){
-        List list=new ArrayList();
-        LocalDate date=LocalDate.now();
-        if(lzcsjService.show(date)==null){
-list.add(lzcsjPackage.LzcsjNull());
-log.println(list);
-        }
-        else {
-       list= lzcsjService.show(date);
-       list.add(lzcsjPackage.LzcsjObject(LocalDate.now()));}
 
-return Result.succ(list);
-    }
     @RequestMapping("/show")
-    public Result showMan(){
-        List list=new ArrayList();
-       list=lzcsjService.showMan();
-
+    public Result show(){
+        List list=new ArrayList<>();
+        list=lzcsjService.show();
         return Result.succ(list);
     }
-
-    @RequestMapping("/infoClient")
-    public Result getData(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
-            required = false) String time2){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
-
-        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
-
-
+    @RequestMapping("/showClient")
+    public Result showClient(){
         List list=new ArrayList<>();
-        list=lzcsjPackage.LzcsjList(date1,date2);
-        Collections.reverse(list);
-
+        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+        jsonObject=lzcsjPackage.showPackage();
+        list=lzcsjService.showClient();
+        list.add(jsonObject);
         return Result.succ(list);
-
     }
     @RequestMapping("/info")
-    public Result getDataMan(@RequestBody Date date){
-        log.println(date);
+    public Result info(@RequestBody Info info){
+
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(info.getTime1(),dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
+
+        PageInfo<Lzcsj> pageInfo=lzcsjService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
+
+        return Result.succ(pageInfo);
+
+    }
+    @RequestMapping("/infoClient")
+    public Result infoClient(@RequestBody Date date){
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
 
         LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
-
         List list=new ArrayList();
-        if(lzcsjService.getDataMan(date1,date2).isEmpty()){
-            list=null;
-        }
-        else{
-        list=lzcsjService.getDataMan(date1,date2);
-        Collections.reverse(list);}
+        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+        jsonObject=lzcsjPackage.ClientPackage(date1,date2);
+        list=lzcsjService.infoClient(date1,date2);
+        list.add(jsonObject);
+
+
 
         return Result.succ(list);
+
     }
 @RequestMapping("/add")
     public Result add(@RequestBody  Lzcsj lzcsj){

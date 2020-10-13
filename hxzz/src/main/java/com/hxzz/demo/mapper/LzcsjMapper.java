@@ -2,8 +2,11 @@ package com.hxzz.demo.mapper;
 
 import com.hxzz.demo.bean.LzcsjShow;
 import com.hxzz.demo.bean.LzcsjSum;
+import com.hxzz.demo.bean.PersonDShow;
 import com.hxzz.demo.entity.Lzcsj;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hxzz.demo.entity.PersonD;
+import com.hxzz.demo.entity.Lzcsj;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -19,13 +22,13 @@ import java.util.List;
  */
 @Component
 public interface LzcsjMapper extends BaseMapper<Lzcsj> {
-List<Lzcsj> show(LocalDate date);
-List<Lzcsj> showMan();
+   List<Lzcsj> show();
+   List<Lzcsj> showClient();
+   Lzcsj showSum();
+   List<Lzcsj> info(LocalDate date1,LocalDate date2);
+   List<Lzcsj> infoClient(LocalDate date1,LocalDate date2);
+   Lzcsj infoSum(LocalDate date1,LocalDate date2);
 
-List<LzcsjShow> getData(LocalDate date1,LocalDate date2);
-   LzcsjSum Sum(LocalDate date);
-   List<Lzcsj> getDataMan(LocalDate date1,LocalDate date2);
-   List<LzcsjShow> SumData(LocalDate date1,LocalDate date2);
    /* Integer waitingToBeLoadedSum(LocalDate date);
     Integer loopToCrossTheLineSum(LocalDate date);
     Integer bhCirculationSum(LocalDate date);
