@@ -7,13 +7,13 @@
 
    </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Quality">
-select name,sum(offLine) as offLine,sum(dLine) as dLine,sum(lingYu) as lingYu,sum(careLine) as careLine,sum(roadTest) as roadTest,sum(DR) as DR,date from Quality  where date=(select
+select name,sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest) as DR,date from Quality  where date=(select
 				  date from Quality where id=(select MAX(id) as id from Quality))  group by date,name
 
     </select>
     <select id="showSum" resultType="com.hxzz.demo.entity.Quality">
 
-select sum(offLine) as offLine,sum(dLine) as dLine,sum(lingYu) as lingYu,sum(careLine) as careLine,sum(roadTest) as roadTest,sum(DR) as DR,date from Quality  where date=(select
+select sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest) as DR,date from Quality  where date=(select
 				  date from Quality where id=(select MAX(id) as id from Quality))  group by date
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Quality">
@@ -21,10 +21,10 @@ select sum(offLine) as offLine,sum(dLine) as dLine,sum(lingYu) as lingYu,sum(car
 
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Quality">
-       select name,sum(offLine) as offLine,sum(dLine) as dLine,sum(lingYu) as lingYu,sum(careLine) as careLine,sum(roadTest) as roadTest,sum(DR) as DR from Quality where (date&gt;=#{date1} and date&lt;= #{date2})  group by name
+     select name,sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest) as DR,date from Quality  where (date&gt;=#{date1} and date&lt;= #{date2})  group by name
     </select>
     <select id="infoSum"  resultType="com.hxzz.demo.entity.Quality">
-select sum(offLine) as offLine,sum(dLine) as dLine,sum(lingYu) as lingYu,sum(careLine) as careLine,sum(roadTest) as roadTest,sum(DR) as DR from Quality where (date&gt;=#{date1} and date&lt;= #{date2})
+select sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest) as DR,date from Quality  where (date&gt;=#{date1} and date&lt;= #{date2})
 
     </select>
     <select id="month" resultType="com.hxzz.demo.entity.Quality">

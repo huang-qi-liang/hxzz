@@ -105,15 +105,17 @@ public class QualityController {
     }
     @RequestMapping("/add")
     public Result add(@RequestBody Quality quality){
-        qualityService.add(quality.getName(),quality.getOffLine(),quality.getDLine(),quality.getLingYu(),
-                quality.getCareLine(),quality.getRoadTest(),quality.getDate());
+        qualityService.add(quality.getName(),quality.getOffLine(),quality.getOffLine(),quality.getDLine(),
+                quality.getDLine(),quality.getLingYu(),quality.getAclingYu(),quality.getCareLine(),
+                quality.getCareLine(),quality.getRoadTest(),quality.getRoadTest(),quality.getDate());
 
         return Result.succ("success");
     }
     @RequestMapping("/change")
     public Result change(@RequestBody Quality quality){
-        qualityService.change(quality.getId(),quality.getName(),quality.getOffLine(),quality.getDLine(),quality.getLingYu(),
-                quality.getCareLine(),quality.getRoadTest(),quality.getDate());
+        qualityService.change(quality.getId(),quality.getName(),quality.getOffLine(),quality.getOffLine(),quality.getDLine(),
+                quality.getDLine(),quality.getLingYu(),quality.getAclingYu(),quality.getCareLine(),
+                quality.getCareLine(),quality.getRoadTest(),quality.getRoadTest(),quality.getDate());
         return Result.succ("success");
     }
 }

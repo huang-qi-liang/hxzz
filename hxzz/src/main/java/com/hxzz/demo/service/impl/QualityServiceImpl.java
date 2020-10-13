@@ -33,17 +33,21 @@ public class QualityServiceImpl extends ServiceImpl<QualityMapper, Quality> impl
     public List<Quality> info(LocalDate date1,LocalDate date2){return  qualityMapper.info(date1,date2);}
     public List<Quality> infoClient(LocalDate date1,LocalDate date2){return qualityMapper.infoClient(date1,date2);}
     public Quality infoSum(LocalDate date1,LocalDate date2){return  qualityMapper.infoSum(date1,date2);}
-  public   void add(String name,Float offLine,Float dLine,Float lingYu,Float careLine,Float roadTest,LocalDate date){
-        qualityMapper.add( name, offLine, dLine, lingYu, careLine, roadTest,date);
+  public   void add(String name,Float offLine,Float acoffLine,Float dLine,Float acdLine,Float lingYu,Float aclingYu,
+             Float careLine,Float accareLine,Float roadTest,Float acroadTest,
+             LocalDate date){ qualityMapper.add(name, offLine, acoffLine, dLine, acdLine, lingYu, aclingYu, careLine, accareLine, roadTest, acroadTest, date);}
 
-  }
+ public    void change(Integer id,String name,Float offLine,Float acoffLine,Float dLine,Float acdLine,Float lingYu,
+                 Float aclingYu,
+                Float careLine,Float accareLine,Float roadTest,Float acroadTest,
+                LocalDate date){qualityMapper.change(id, name, offLine, acoffLine, dLine, acdLine, lingYu, aclingYu, careLine, accareLine, roadTest, acroadTest, date);}
+
+
    public List<Quality> month(){return  qualityMapper.month();}
    public void del(Integer id){
         qualityMapper.del(id);
    }
-  public   void change(Integer id,String name,Float offLine,Float dLine,Float lingYu,Float careLine,Float roadTest,LocalDate date){
-        qualityMapper.change( id, name, offLine, dLine, lingYu, careLine, roadTest,date);
-  }
+
     public PageInfo<Quality> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
         PageHelper.startPage(pageNum,pageSize);
         List<Quality> list=qualityMapper.info(date1,date2);

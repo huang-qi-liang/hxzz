@@ -16,13 +16,13 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author hql
- * @since 2020-09-24
+ * @since 2020-10-14
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("Quality")
-public class Quality implements Serializable {
+@TableName("Equipmentstatus")
+public class Equipmentstatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,28 +31,15 @@ public class Quality implements Serializable {
 
     private String name;
 
+    private Float indicators;
 
-    private Float offLine;
-    private Float acoffLine;
+    @TableField("failureTime")
+    private Float failureTime;
 
-    private Float dLine;
-    private Float acdLine;
+    @TableField("officeTime")
+    private Float officeTime;
 
-
-
-    private Float lingYu;
-    private Float aclingYu;
-
-
-    private Float careLine;
-    private Float accareLine;
-
-
-    private Float roadTest;
-    private Float acroadTest;
-
-
-    private Float DR;
+    private Float rate;
 
     private LocalDate date;
 
