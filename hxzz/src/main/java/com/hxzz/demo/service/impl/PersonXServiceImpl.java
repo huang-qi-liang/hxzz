@@ -36,14 +36,14 @@ public class PersonXServiceImpl extends ServiceImpl<PersonXMapper, PersonX> impl
  public List<PersonXShow> getClient(LocalDate date1,LocalDate date2){return personXMapper.getClient(date1,date2);}
  public PersonXShow sumClient(LocalDate date1,LocalDate date2){return personXMapper.sumClient(date1,date2);}
  public void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                  Integer bereavementLeave){
+                  Integer bereavementLeave,LocalDate date){
   personXMapper.add(region,  personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-          bereavementLeave);}
+          bereavementLeave,date);}
  public void del(Integer id){personXMapper.del(id);}
  public void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                    Integer bereavementLeave){
+                    Integer bereavementLeave,LocalDate date){
   personXMapper.change( id,region, personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-          bereavementLeave);
+          bereavementLeave,date);
  }
  public PageInfo<PersonX> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
   PageHelper.startPage(pageNum,pageSize);

@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
+import com.hxzz.demo.bean.Id;
 import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.bean.PersonDShow;
 import com.hxzz.demo.common.lang.Result;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
@@ -115,21 +117,29 @@ list.add(jsonObject);
     }
 
     @RequestMapping("/delete")
-    public Result delete(@RequestParam(value="id",required =false)Integer id){
-        personDService.del(id);
+    public Result delete(@RequestBody List<JSONObject> list){
+
+        int size=list.size();
+        for(int i=0;i<size;i++){
+            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+            jsonObject=list.get(i);
+            String Id=jsonObject.getString("id");
+            Integer id=parseInt(Id,10);
+            personDService.del(id);
+        }
         return Result.succ("success");
     }
 @RequestMapping("/add")
     public Result add(@RequestBody PersonD personD){
         personDService.add(personD.getRegion(),personD.getPersonalLeave(),personD.getSickLeave(),
-                personD.getAnnualLeave(),personD.getNursingLeave(),personD.getBereavementLeave());
+                personD.getAnnualLeave(),personD.getNursingLeave(),personD.getBereavementLeave(),personD.getDate());
 return Result.succ("success");
 
     }
     @RequestMapping("/change")
     public Result change(@RequestBody PersonD personD){
         personDService.change(personD.getId(),personD.getRegion(),personD.getPersonalLeave(),personD.getSickLeave(),
-                personD.getAnnualLeave(),personD.getNursingLeave(),personD.getBereavementLeave());
+                personD.getAnnualLeave(),personD.getNursingLeave(),personD.getBereavementLeave(),personD.getDate());
         return Result.succ("success");
     }
 

@@ -25,12 +25,12 @@ public class Quality4ServiceImpl extends ServiceImpl<Quality4Mapper, Quality4> i
     @Override
   public   Quality4 show(){return quality4Mapper.show();}
    public List<Quality4> getData(LocalDate date1, LocalDate date2){return quality4Mapper.getData(date1,date2);}
-   public void add(Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity){
-        quality4Mapper.add(target, actual, responsibility, InterceptionProblem, quantity);
+   public void add(Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity,LocalDate date){
+        quality4Mapper.add(target, actual, responsibility, InterceptionProblem, quantity,date);
    }
    public void del(Integer id){quality4Mapper.del(id);}
    public void change(Integer id,Float target,Float actual,Float responsibility,Float InterceptionProblem,
-                      Float quantity){
-        quality4Mapper.change(id, target, actual, responsibility, InterceptionProblem, quantity);
+                      Float quantity,LocalDate date){
+        quality4Mapper.change(id, target, actual, responsibility, InterceptionProblem, quantity,date);
    }
 }

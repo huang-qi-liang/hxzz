@@ -2,6 +2,7 @@ package com.hxzz.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.ScglShow;
 import com.hxzz.demo.entity.Quality;
 import com.hxzz.demo.entity.Scgl;
 import com.hxzz.demo.entity.Scgl;
@@ -27,17 +28,19 @@ public class ScglServiceImpl extends ServiceImpl<ScglMapper, Scgl> implements Sc
     @Autowired ScglMapper scglMapper;
     @Override
     public List<Scgl> show(){return scglMapper.show();}
-    public List<Scgl> showClient(){return  scglMapper.showClient();}
-    public Scgl showSum(){return  scglMapper.showSum();}
+    public List<ScglShow> showClient(){return  scglMapper.showClient();}
+    public ScglShow showSum(){return  scglMapper.showSum();}
     public List<Scgl> info(LocalDate date1, LocalDate date2){return  scglMapper.info(date1,date2);}
-    public List<Scgl> infoClient(LocalDate date1,LocalDate date2){return scglMapper.infoClient(date1,date2);}
-    public Scgl infoSum(LocalDate date1,LocalDate date2){return  scglMapper.infoSum(date1,date2);}
+    public List<ScglShow> infoClient(LocalDate date1,LocalDate date2){return scglMapper.infoClient(date1,date2);}
+    public ScglShow infoSum(LocalDate date1,LocalDate date2){return  scglMapper.infoSum(date1,date2);}
   public   void add(String name,Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
-             Float beat){scglMapper.add(name, targetCapacity, actualCapacity, targetEfficiency, workingHours, beat);}
+             Float beat,LocalDate date){scglMapper.add(name, targetCapacity, actualCapacity, targetEfficiency,
+          workingHours, beat,date);}
   public   void del(Integer id){scglMapper.del(id);}
   public   void change(Integer id,String name,Integer targetCapacity, Float actualCapacity, Float targetEfficiency,
                  Float workingHours,
-                Float beat){scglMapper.change(id, name, targetCapacity, actualCapacity, targetEfficiency, workingHours, beat);}
+                Float beat,LocalDate date){scglMapper.change(id, name, targetCapacity, actualCapacity,
+          targetEfficiency, workingHours, beat,date);}
     public PageInfo<Scgl> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
         PageHelper.startPage(pageNum,pageSize);
         List<Scgl> list=scglMapper.info(date1,date2);

@@ -2,9 +2,12 @@ package com.hxzz.demo.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
+import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonnelManagement;
+import com.hxzz.demo.entity.Quality3;
 import com.hxzz.demo.service.PersonnelManagementService;
 import org.apache.shiro.web.filter.mgt.NamedFilterList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * <p>
@@ -40,33 +46,30 @@ public class PersonnelManagementController {
     PersonnelManagementService personnelManagementService;
     @RequestMapping("/show")
     public Result show(){
-        List list1=new ArrayList<>();
-        List list2=new ArrayList();
-        list1.add(personnelManagementService.showSgmwIN());
-        list2.add(personnelManagementService.showOutsourceIN());
-        list1.add(list2);
-        return Result.succ(list1);
+        List list=new ArrayList<>();
+        list=personnelManagementService.show();
+        return Result.succ(list);
     }
     @RequestMapping("/showClient")
     public Result showClient(){
+        List list=new ArrayList<>();
+        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
 
-        List list1=new ArrayList<>();
-        List list2=new ArrayList();
-        list1.add(personnelManagementService.showSgmwIN());
-        list2.add(personnelManagementService.showOutsourceIN());
-        list1.add(list2);
-        return Result.succ(list1);
+        list=personnelManagementService.showClient();
+        list.add(jsonObject);
+        return Result.succ(list);
     }
     @RequestMapping("/info")
-    public Result info(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
-            required = false) String time2){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+    public Result info(@RequestBody Info info){
 
-        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
-       List list= new ArrayList();
-       list.add(personnelManagementService.getData(date1,date2));
-        return Result.succ(list);
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(info.getTime1(),dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
+
+        PageInfo<PersonnelManagement> pageInfo=personnelManagementService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
+
+        return Result.succ(pageInfo);
 
     }
     @RequestMapping("/infoClient")
@@ -75,29 +78,44 @@ public class PersonnelManagementController {
         LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
 
         LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
-        List list= new ArrayList();
-        list.add(personnelManagementService.getClient(date1,date2));
+        List list=new ArrayList();
+
+        list=personnelManagementService.infoClient(date1,date2);
+        list.add(list);
+
+
+
         return Result.succ(list);
 
     }
 
     @RequestMapping("/delete")
-    public Result delete(@RequestParam(value="id",required =false)Integer id){
-        personnelManagementService.delIN(id);
+    public Result delete(@RequestBody List<JSONObject> list){
+
+        int size=list.size();
+        for(int i=0;i<size;i++){
+            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+            jsonObject=list.get(i);
+            String Id=jsonObject.getString("id");
+            Integer id=parseInt(Id,10);
+            personnelManagementService.delIN(id);
+        }
         return Result.succ("success");
     }
     @RequestMapping("/add")
     public Result add(@RequestBody PersonnelManagement personnelManagement){
         personnelManagementService.addIN(personnelManagement.getName(),personnelManagement.getEstablishment(),
                 personnelManagement.getActualNumber(),personnelManagement.getAvailableNumber(),
-                personnelManagement.getAttendanceRate(),personnelManagement.getShouldArrive(),personnelManagement.getActualArrive());
+                personnelManagement.getAttendanceRate(),personnelManagement.getShouldArrive(),
+                personnelManagement.getActualArrive(),personnelManagement.getDate());
         return Result.succ("success");
     }
     @RequestMapping("/change")
     public Result change(@RequestBody PersonnelManagement personnelManagement){
         personnelManagementService.changeIN(personnelManagement.getId(),personnelManagement.getName(),personnelManagement.getEstablishment(),
                 personnelManagement.getActualNumber(),personnelManagement.getAvailableNumber(),
-                personnelManagement.getAttendanceRate(),personnelManagement.getShouldArrive(),personnelManagement.getActualArrive());
+                personnelManagement.getAttendanceRate(),personnelManagement.getShouldArrive(),
+                personnelManagement.getActualArrive(),personnelManagement.getDate());
         return Result.succ("success");
     }
 

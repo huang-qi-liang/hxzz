@@ -31,15 +31,15 @@ select sum(offLine) as offLine,sum(dLine) as dLine,sum(lingYu) as lingYu,sum(car
         select * from Quality where datediff(mm,date,getdate()) = 0
     </select>
     <insert id="add">
-        insert into Quality( name, offLine, dLine, lingYu, careLine, roadTest) values
-        (#{name},#{offLine},#{dLine},#{lingYu},#{careLine},#{roadTest})
+        insert into Quality( name, offLine, dLine, lingYu, careLine, roadTest,date) values
+        (#{name},#{offLine},#{dLine},#{lingYu},#{careLine},#{roadTest},#{date})
     </insert>
     <delete id="del">
         delete from Quality where id=#{id}
     </delete>
     <update id="change">
         update Quality
-        set name=#{name},offLine=#{offLine},dLine=#{dLine},lingYu=#{lingYu},careLine=#{careLine},roadTest=#{roadTest}
+        set name=#{name},offLine=#{offLine},dLine=#{dLine},lingYu=#{lingYu},careLine=#{careLine},roadTest=#{roadTest},date=#{date}
         where id=#{id}
     </update>
 

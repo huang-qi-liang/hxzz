@@ -25,7 +25,7 @@ List<Quality2> infoClient(LocalDate date1,LocalDate date2);
 Quality2 infoSum(LocalDate date1,LocalDate date2);
 
 
-void add(String productionLine,Integer breakpoint,Integer paa,Integer ptr,Integer craft,Integer tools);
+void add(String productionLine,Integer breakpoint,Integer paa,Integer ptr,Integer craft,Integer tools,LocalDate date);
 void del(Integer id);
-void change(Integer id,String productionLine,Integer breakpoint,Integer paa,  Integer ptr,Integer craft,Integer tools);
+void change(Integer id,String productionLine,Integer breakpoint,Integer paa,  Integer ptr,Integer craft,Integer tools,LocalDate date);
 }

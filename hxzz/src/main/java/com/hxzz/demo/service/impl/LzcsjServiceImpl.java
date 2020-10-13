@@ -35,10 +35,12 @@ public class LzcsjServiceImpl extends ServiceImpl<LzcsjMapper, Lzcsj> implements
     public List<Lzcsj> infoClient(LocalDate date1,LocalDate date2){return lzcsjMapper.infoClient(date1,date2);}
     public Lzcsj infoSum(LocalDate date1,LocalDate date2){return  lzcsjMapper.infoSum(date1,date2);}
     public    void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-             Integer actualCirculation){lzcsjMapper.add(name, waitingToBeLoaded, loopToCrossTheLine, bhCirculation, actualCirculation);}
+             Integer actualCirculation,LocalDate date){lzcsjMapper.add(name, waitingToBeLoaded, loopToCrossTheLine,
+            bhCirculation, actualCirculation,date);}
    public void del(Integer id){lzcsjMapper.del(id);}
    public void change(Integer id,String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-                Integer actualCirculation){lzcsjMapper.change(id, name, waitingToBeLoaded, loopToCrossTheLine, bhCirculation, actualCirculation);}
+                Integer actualCirculation,LocalDate date){lzcsjMapper.change(id, name, waitingToBeLoaded,
+           loopToCrossTheLine, bhCirculation, actualCirculation,date);}
     public PageInfo<Lzcsj> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
         PageHelper.startPage(pageNum,pageSize);
         List<Lzcsj> list=lzcsjMapper.info(date1,date2);

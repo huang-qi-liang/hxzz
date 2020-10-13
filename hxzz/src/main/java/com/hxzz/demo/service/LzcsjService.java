@@ -27,10 +27,10 @@ public interface LzcsjService extends IService<Lzcsj> {
     Lzcsj infoSum(LocalDate date1,LocalDate date2);
 
     void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-             Integer actualCirculation);
+             Integer actualCirculation,LocalDate date);
     void del(Integer id);
     void change(Integer id,String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-                Integer actualCirculation);
+                Integer actualCirculation,LocalDate date);
     PageInfo<Lzcsj> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

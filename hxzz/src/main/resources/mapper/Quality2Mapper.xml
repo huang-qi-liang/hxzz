@@ -27,15 +27,15 @@ select sum(breakpoint) as breakpoint,sum(paa) as paa,sum(ptr) as ptr,sum(craft) 
 
     </select>
     <insert id="add">
-        insert into Quality2( productionLine, breakpoint, paa, ptr, craft, tools) values
-        (#{productionLine},#{breakpoint},#{paa},#{ptr},#{craft},#{tools})
+        insert into Quality2( productionLine, breakpoint, paa, ptr, craft, tools,date) values
+        (#{productionLine},#{breakpoint},#{paa},#{ptr},#{craft},#{tools},#{date})
     </insert>
     <delete id="del">
         delete from Quality2 where  id=#{id}
     </delete>
     <update id="change">
         update Quality2 set
-        productionLine=#{productionLine},breakpoint=#{breakpoint},paa=#{paa},ptr=#{ptr},craft=#{craft},tools=#{tools}
+        productionLine=#{productionLine},breakpoint=#{breakpoint},paa=#{paa},ptr=#{ptr},craft=#{craft},tools=#{tools},date=#{date}
         where id=#{id}
     </update>
 

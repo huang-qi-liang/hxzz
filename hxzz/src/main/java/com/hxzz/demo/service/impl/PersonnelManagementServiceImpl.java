@@ -1,6 +1,10 @@
 package com.hxzz.demo.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.PersonnelManagementClient;
+import com.hxzz.demo.entity.PersonnelManagement;
+import com.hxzz.demo.entity.PersonnelManagement;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.hxzz.demo.mapper.PersonnelManagementMapper;
 import com.hxzz.demo.service.PersonnelManagementService;
@@ -23,33 +27,29 @@ import java.util.List;
 public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagementMapper, PersonnelManagement> implements PersonnelManagementService {
 @Autowired
 PersonnelManagementMapper personnelManagementMapper;
-@Override
-   public PersonnelManagement showSgmwIN(){
-    return personnelManagementMapper.showSgmw();
-}
-  public   PersonnelManagement showOutsourceIN(){
-      return personnelManagementMapper.showOutsource();
-  }
-  public   List<PersonnelManagement> getData(LocalDate date1, LocalDate date2){
-      return personnelManagementMapper.getData(date1,date2);
-  }
+    public List<PersonnelManagement> show(){return personnelManagementMapper.show();}
+    public List<PersonnelManagement> showClient(){return personnelManagementMapper.showClient();}
 
-   public PersonnelManagementClient showSgmwClient(){return personnelManagementMapper.showSgmwClient();}
-    public  PersonnelManagementClient showOutsourceClient(){return personnelManagementMapper.showOutsourceClient();}
-
-    public List<PersonnelManagementClient> getClient(LocalDate date1, LocalDate date2){return personnelManagementMapper.getClient(date1,date2);}
+    public List<PersonnelManagement> info(LocalDate date1,LocalDate date2){return personnelManagementMapper.info(date1,date2);}
+    public List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2){return personnelManagementMapper.infoClient(date1,date2);}
   public   void addIN(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
-               Integer shouldArrive,Integer actualArrive){
+               Integer shouldArrive,Integer actualArrive,LocalDate date){
       personnelManagementMapper.add(name, establishment, actualNumber, availableNumber, attendanceRate,
-              shouldArrive,actualArrive);
+              shouldArrive,actualArrive,date);
   }
    public void delIN(Integer id){
     personnelManagementMapper.del(id);
    };
   public   void changeIN(Integer id,String name,Integer establishment,Integer actualNumber,Integer availableNumber,
                   Float attendanceRate,
-                  Integer shouldArrive,Integer actualArrive){
+                  Integer shouldArrive,Integer actualArrive,LocalDate date){
       personnelManagementMapper.change(id,name, establishment, actualNumber, availableNumber, attendanceRate,
-              shouldArrive,actualArrive);
-  };
+              shouldArrive,actualArrive,date);
+  }
+    public PageInfo<PersonnelManagement> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
+        PageHelper.startPage(pageNum,pageSize);
+        List<PersonnelManagement> list=personnelManagementMapper.info(date1,date2);
+        PageInfo<PersonnelManagement> pageInfo=new PageInfo<PersonnelManagement>(list);
+        return pageInfo;
+    }
 }

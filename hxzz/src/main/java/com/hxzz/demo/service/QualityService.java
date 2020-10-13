@@ -24,9 +24,9 @@ public interface QualityService extends IService<Quality> {
     List<Quality> infoClient(LocalDate date1,LocalDate date2);
     Quality infoSum(LocalDate date1,LocalDate date2);
     List<Quality> month();
-    void add(String name,Float offLine,Float dLine,Float lingYu,Float careLine,Float roadTest);
+    void add(String name,Float offLine,Float dLine,Float lingYu,Float careLine,Float roadTest,LocalDate date);
     void del(Integer id);
-    void change(Integer id,String name,Float offLine,Float dLine,Float lingYu,Float careLine,Float roadTest);
+    void change(Integer id,String name,Float offLine,Float dLine,Float lingYu,Float careLine,Float roadTest,LocalDate date);
     PageInfo<Quality> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 

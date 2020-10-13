@@ -26,11 +26,11 @@ public interface PersonDService extends IService<PersonD> {
     List<PersonDShow> getClient(LocalDate date1,LocalDate date2);
    PersonDShow sumClient(LocalDate date1,LocalDate date2);
     void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-              Integer bereavementLeave);
+              Integer bereavementLeave,LocalDate date);
     void del(Integer id);
     void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave,
                 Integer nursingLeave,
-                Integer bereavementLeave);
+                Integer bereavementLeave,LocalDate date);
     PageInfo<PersonD> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

@@ -26,10 +26,10 @@ public interface PersonXService extends IService<PersonX> {
     List<PersonXShow> getClient(LocalDate date1,LocalDate date2);
     PersonXShow sumClient(LocalDate date1,LocalDate date2);
     void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-              Integer bereavementLeave);
+              Integer bereavementLeave,LocalDate date);
     void del(Integer id);
     void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave,
                 Integer nursingLeave,
-                Integer bereavementLeave);
+                Integer bereavementLeave,LocalDate date);
     PageInfo<PersonX> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 }

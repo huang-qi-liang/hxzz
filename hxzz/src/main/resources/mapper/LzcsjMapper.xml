@@ -21,7 +21,7 @@ select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossT
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Lzcsj">
           select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
-        ,sum(bhCirculation)a s bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total
+        ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total
 from Lzcsj where(date &gt;=#{date1} and date  &lt;= #{date2}) group by name
     </select>
     <select id="infoSum"  resultType="com.hxzz.demo.entity.Lzcsj">
@@ -31,15 +31,16 @@ from Lzcsj where(date &gt;=#{date1} and date  &lt;= #{date2}) group by name
 
     </select>
     <insert id="add">
-        insert into Lzcsj(name,waitingToBeLoaded,loopToCrossTheLine,bhCirculation,actualCirculation) values
-        (#{name},#{waitingToBeLoaded},#{loopToCrossTheLine},#{bhCirculation},#{actualCirculation})
+        insert into Lzcsj(name,waitingToBeLoaded,loopToCrossTheLine,bhCirculation,actualCirculation,date) values
+        (#{name},#{waitingToBeLoaded},#{loopToCrossTheLine},#{bhCirculation},#{actualCirculation},#{date})
     </insert>
     <delete id="del">
         delete from Lzcsj where id=#{id}
     </delete>
     <update id="change">
         update Lzcsj
-        set name=#{name},waitingToBeLoaded=#{waitingToBeLoaded},loopToCrossTheLine=#{loopToCrossTheLine},bhCirculation=#{bhCirculation},actualCirculation=#{actualCirculation} where id=#{id}
+        set
+        name=#{name},waitingToBeLoaded=#{waitingToBeLoaded},loopToCrossTheLine=#{loopToCrossTheLine},bhCirculation=#{bhCirculation},actualCirculation=#{actualCirculation},date=#{date} where id=#{id}
     </update>
 
 </mapper>

@@ -19,11 +19,11 @@ import java.util.List;
 public interface SgmwMapper extends BaseMapper<Sgmw> {
     Sgmw showaim();
     Sgmw showactual();
-    void add(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment);
+    void add(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment,LocalDate date);
     List<Sgmw> getAimData(LocalDate date1, LocalDate date2);
     List<Sgmw> getActualData(LocalDate date1, LocalDate date2);
     void del(Integer id);
     void change(Integer id,String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,
-                Float energyConsumption,Float equipment);
+                Float energyConsumption,Float equipment,LocalDate date);
 
 }

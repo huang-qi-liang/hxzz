@@ -18,14 +18,14 @@
     and (name="实际")
 </select>
 <insert id="add" >
-    insert into SGMW( name, safe, production, lzc,quality, personnel, energyConsumption, equipment)
-    values(#{name},#{safe},#{production},#{lzc},#{quality},#{personnel},#{energyConsumption},#{equipment})
+    insert into SGMW( name, safe, production, lzc,quality, personnel, energyConsumption, equipment,date)
+    values(#{name},#{safe},#{production},#{lzc},#{quality},#{personnel},#{energyConsumption},#{equipment},#{date})
 </insert>
 <delete id="del">
     delete  from SGMW where id=#{id}
 </delete>
     <update id="change" >
     update SGMW set
-    name=#{name},safe=#{safe},production=#{production},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment} where id=#{id}
+    name=#{name},safe=#{safe},production=#{production},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment},date=#{date} where id=#{id}
 </update>
 </mapper>

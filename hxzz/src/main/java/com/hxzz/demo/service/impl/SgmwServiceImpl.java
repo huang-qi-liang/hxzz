@@ -33,8 +33,8 @@ public Sgmw showactualIN(){
             showactual();
 }
 @Override
-   public void addIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment){
-    sgmwMapper.add(name,safe,production,lzc,quality,personnel,energyConsumption,equipment);
+   public void addIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment,LocalDate date){
+    sgmwMapper.add(name,safe,production,lzc,quality,personnel,energyConsumption,equipment,date);
    }
     public  List<Sgmw> getAimDataIN(LocalDate date1, LocalDate date2){
     return  sgmwMapper.getAimData(date1,date2);
@@ -47,8 +47,8 @@ public Sgmw showactualIN(){
    }
    public void changeIN(Integer id,String name,Integer safe,Integer production,Integer lzc,Float quality,
                         Integer personnel,
-                        Float energyConsumption,Float equipment){
-    sgmwMapper.change(id,name,safe,production,lzc,quality,personnel,energyConsumption,equipment);
+                        Float energyConsumption,Float equipment,LocalDate date){
+    sgmwMapper.change(id,name,safe,production,lzc,quality,personnel,energyConsumption,equipment,date);
    }
 
 

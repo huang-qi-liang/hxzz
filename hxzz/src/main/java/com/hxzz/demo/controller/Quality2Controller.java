@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * <p>
  *  前端控制器
@@ -89,20 +91,28 @@ public class Quality2Controller {
 
     }
     @RequestMapping("/delete")
-    public Result delete(@RequestParam(value="id",required =false)Integer id){
-        quality2Service.del(id);
+    public Result delete(@RequestBody List<JSONObject> list){
+
+        int size=list.size();
+        for(int i=0;i<size;i++){
+            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+            jsonObject=list.get(i);
+            String Id=jsonObject.getString("id");
+            Integer id=parseInt(Id,10);
+            quality2Service.del(id);
+        }
         return Result.succ("success");
     }
     @RequestMapping("/add")
     public Result add(@RequestBody Quality2 quality2){
         quality2Service.add(quality2.getProductionLine(),quality2.getBreakpoint(),quality2.getPaa(),quality2.getPtr()
-                ,quality2.getCraft(),quality2.getTools());
+                ,quality2.getCraft(),quality2.getTools(),quality2.getDate());
         return Result.succ("success");
     }
     @RequestMapping("/change")
     public Result change(@RequestBody Quality2 quality2){
         quality2Service.change(quality2.getId(),quality2.getProductionLine(),quality2.getBreakpoint(),quality2.getPaa(),quality2.getPtr()
-                ,quality2.getCraft(),quality2.getTools());
+                ,quality2.getCraft(),quality2.getTools(),quality2.getDate());
         return Result.succ("success");
     }
 }

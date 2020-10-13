@@ -1,8 +1,10 @@
 package com.hxzz.demo.service;
 
+import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.PersonnelManagementClient;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hxzz.demo.entity.Quality3;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,19 +18,17 @@ import java.util.List;
  * @since 2020-09-16
  */
 public interface PersonnelManagementService extends IService<PersonnelManagement> {
-    PersonnelManagement showSgmwIN();
-    PersonnelManagement showOutsourceIN();
-    List<PersonnelManagement> getData(LocalDate date1, LocalDate date2);
+    List<PersonnelManagement> show();
+    List<PersonnelManagement> showClient();
 
-    PersonnelManagementClient showSgmwClient();
-    PersonnelManagementClient showOutsourceClient();
-
-    List<PersonnelManagementClient> getClient(LocalDate date1, LocalDate date2);
+    List<PersonnelManagement> info(LocalDate date1,LocalDate date2);
+    List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2);
     void addIN(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
-             Integer shouldArrive,Integer actualArrive);
+             Integer shouldArrive,Integer actualArrive,LocalDate date);
     void delIN(Integer id);
     void changeIN(Integer id,String name,Integer establishment,Integer actualNumber,Integer availableNumber,
                 Float attendanceRate,
-                Integer shouldArrive,Integer actualArrive);
+                Integer shouldArrive,Integer actualArrive,LocalDate date);
+    PageInfo<PersonnelManagement> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

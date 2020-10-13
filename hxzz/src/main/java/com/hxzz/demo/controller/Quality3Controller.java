@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * <p>
  *  前端控制器
@@ -86,19 +88,28 @@ public class Quality3Controller {
 
     }
     @RequestMapping("/delete")
-    public Result delete(@RequestParam(value="id",required =false)Integer id){
-        quality3Service.del(id);
+    public Result delete(@RequestBody List<JSONObject> list){
+
+        int size=list.size();
+        for(int i=0;i<size;i++){
+            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+            jsonObject=list.get(i);
+            String Id=jsonObject.getString("id");
+            Integer id=parseInt(Id,10);
+            quality3Service.del(id);
+        }
         return Result.succ("success");
     }
     @RequestMapping("/add")
     public Result add(@RequestBody Quality3 quality3){
-        quality3Service.add(quality3.getName(),quality3.getDC(),quality3.getDD(),quality3.getXB(),quality3.getXC());
+        quality3Service.add(quality3.getName(),quality3.getDC(),quality3.getDD(),quality3.getXB(),quality3.getXC(),
+                quality3.getDate());
         return Result.succ("success");
     }
     @RequestMapping("/change")
     public Result change(@RequestBody Quality3 quality3){
         quality3Service.change(quality3.getId(),quality3.getName(),quality3.getDC(),quality3.getDD(),quality3.getXB(),
-                quality3.getXC());
+                quality3.getXC(),quality3.getDate());
         return Result.succ("success");
     }
 }

@@ -2,6 +2,7 @@ package com.hxzz.demo.mapper;
 
 import com.hxzz.demo.entity.Energy;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hxzz.demo.entity.Energy;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -17,14 +18,16 @@ import java.util.List;
  */
 @Component
 public interface EnergyMapper extends BaseMapper<Energy> {
-    Energy show();
+    List<Energy> show();
+   Energy showClient();
 
+    List<Energy> info(LocalDate date1,LocalDate date2);
+    Energy infoClient(LocalDate date1,LocalDate date2);
 
-    List<Energy> getData(LocalDate date1,LocalDate date2);
-
-    void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,Float standardsGas,Float gas);
+    void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,
+              Float standardsGas,Float gas,LocalDate date);
 void del(Integer id);
 void change( Integer id,String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,
-             Float standardsGas,Float gas);
+             Float standardsGas,Float gas,LocalDate date);
 
 }

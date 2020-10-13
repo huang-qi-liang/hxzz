@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * <p>
  *  前端控制器
@@ -103,20 +105,28 @@ public class PersonXController {
 
     }
     @RequestMapping("/delete")
-    public Result delete(@RequestParam(value="id",required =false)Integer id){
-        personXService.del(id);
+    public Result delete(@RequestBody List<JSONObject> list){
+
+        int size=list.size();
+        for(int i=0;i<size;i++){
+            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+            jsonObject=list.get(i);
+            String Id=jsonObject.getString("id");
+            Integer id=parseInt(Id,10);
+            personXService.del(id);
+        }
         return Result.succ("success");
     }
     @RequestMapping("/add")
     public Result add(@RequestBody PersonX personX){
         personXService.add(personX.getRegion(),personX.getPersonalLeave(),personX.getSickLeave(),
-                personX.getAnnualLeave(),personX.getNursingLeave(),personX.getBereavementLeave());
+                personX.getAnnualLeave(),personX.getNursingLeave(),personX.getBereavementLeave(),personX.getDate());
         return Result.succ("success");
     }
     @RequestMapping("/change")
     public Result change(@RequestBody PersonX personX){
         personXService.change(personX.getId(),personX.getRegion(),personX.getPersonalLeave(),personX.getSickLeave(),
-                personX.getAnnualLeave(),personX.getNursingLeave(),personX.getBereavementLeave());
+                personX.getAnnualLeave(),personX.getNursingLeave(),personX.getBereavementLeave(),personX.getDate());
 
         return Result.succ("success");
     }

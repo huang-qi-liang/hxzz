@@ -18,13 +18,13 @@ select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC,date from Qu
     </select>
 
     <insert id="add">
-        insert into Quality3(name,DC,DD,XB,XC) values (#{name},#{DC},#{DD},#{XB},#{XC})
+        insert into Quality3(name,DC,DD,XB,XC,date) values (#{name},#{DC},#{DD},#{XB},#{XC},#{date})
     </insert>
     <delete id="del">
         delete  from Quality3 where id=#{id}
     </delete>
     <update id="change">
-        update Quality3 set name=#{name},DC=#{DC},DD=#{DD},XB=#{XB},XC=#{XC}  where id=#{id}
+        update Quality3 set name=#{name},DC=#{DC},DD=#{DD},XB=#{XB},XC=#{XC},date=#{date}  where id=#{id}
     </update>
 
 </mapper>

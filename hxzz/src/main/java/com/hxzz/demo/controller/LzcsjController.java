@@ -4,6 +4,7 @@ package com.hxzz.demo.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.Id;
 import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Lzcsj;
@@ -25,6 +26,7 @@ import java.util.*;
 import com.hxzz.demo.bean.Date;
 
 
+import static java.lang.Integer.parseInt;
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
@@ -72,7 +74,7 @@ public class LzcsjController {
         LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
 
         PageInfo<Lzcsj> pageInfo=lzcsjService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
-
+log.println("lzcsjinfo");
         return Result.succ(pageInfo);
 
     }
@@ -88,7 +90,7 @@ public class LzcsjController {
         list=lzcsjService.infoClient(date1,date2);
         list.add(jsonObject);
 
-
+        log.println("lzcsjinfoClient");
 
         return Result.succ(list);
 
@@ -96,7 +98,7 @@ public class LzcsjController {
 @RequestMapping("/add")
     public Result add(@RequestBody  Lzcsj lzcsj){
         lzcsjService.add(lzcsj.getName(),lzcsj.getWaitingToBeLoaded(),lzcsj.getLoopToCrossTheLine(),
-                lzcsj.getBhCirculation(),lzcsj.getActualCirculation());
+                lzcsj.getBhCirculation(),lzcsj.getActualCirculation(),lzcsj.getDate());
         /*
     JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
     jsondata=jsonObject.getJSONObject("data");
@@ -118,15 +120,23 @@ public class LzcsjController {
 
 }
     @RequestMapping("/delete")
-    public String del(@RequestParam(value="id",required =false)Integer id){
-        lzcsjService.del(id);
-        return "success";
+    public Result delete(@RequestBody List<JSONObject> list){
+
+        int size=list.size();
+        for(int i=0;i<size;i++){
+   JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+   jsonObject=list.get(i);
+     String Id=jsonObject.getString("id");
+     Integer id=parseInt(Id,10);
+           lzcsjService.del(id);
+        }
+        return Result.succ("success");
     }
     @RequestMapping("change")
     public Result change(@RequestBody  Lzcsj lzcsj){
 
         lzcsjService.change(lzcsj.getId(),lzcsj.getName(),lzcsj.getWaitingToBeLoaded(),lzcsj.getLoopToCrossTheLine(),
-                lzcsj.getBhCirculation(),lzcsj.getActualCirculation());
+                lzcsj.getBhCirculation(),lzcsj.getActualCirculation(),lzcsj.getDate());
         /*
         JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
         jsondata=jsonObject.getJSONObject("data");

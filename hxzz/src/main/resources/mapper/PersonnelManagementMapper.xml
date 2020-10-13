@@ -1,36 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.PersonnelManagementMapper">
-<select id="showSgmw" resultType="com.hxzz.demo.entity.PersonnelManagement">
-select * from PersonnelManagement where id=(select MAX(id) from PersonnelManagement where name='SGMW')
-where (id=(select MAX(id) from ScglDC))
-</select>
-<select id="showOutsource" resultType="com.hxzz.demo.entity.PersonnelManagement">
-select * from PersonnelManagement where id=(select MAX(id) from PersonnelManagement where name='外包')
-</select>
-<select id="getData" resultType="com.hxzz.demo.entity.PersonnelManagement">
- select *  from PersonnelManagement  where (date &gt;=#{date1} and date  &lt;= #{date2}) and (name="SGMW")
-</select>
+    <select id="show" resultType="com.hxzz.demo.entity.PersonnelManagement">
+select * from PersonnelManagement where date=(select date from PersonnelManagement where id=(select MAX(id) as id from PersonnelManagement)) order
+         by name,id DESC
+   </select>
+    <select id="showClient" resultType="com.hxzz.demo.entity.PersonnelManagement">
+select name,sum(establishment) as establishment,sum(actualNumber) as actualNumber,sum(availableNumber) as availableNumber,sum(attendanceRate) as attendanceRate,sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive,date from PersonnelManagement  where date=(select
+				  date from PersonnelManagement where id=(select MAX(id) as id from PersonnelManagement))  group by date,name
+    </select>
 
-    <select id="showSgmwClient" resultType="com.hxzz.demo.bean.PersonnelManagementClient">
-select * from PersonnelManagement where id=(select MAX(id) from PersonnelManagement where name='SGMW')
-</select>
-    <select id="showOutsourceClient" resultType="com.hxzz.demo.bean.PersonnelManagementClient">
-select * from PersonnelManagement where id=(select MAX(id) from PersonnelManagement where name='外包')
-</select>
-
-    <select id="getClient" resultType="com.hxzz.demo.bean.PersonnelManagementClient">
-select name, sum(establishment) as establishment, sum(actualNumber) as actualNumber, sum(availableNumber) as availableNumber, sum(attendanceRate) asattendanceRate,
-				  sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement  group by name
-</select>
+    <select id="info" resultType="com.hxzz.demo.entity.PersonnelManagement">
+         select * from PersonnelManagement where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+    </select>
+    <select id="infoClient" resultType="com.hxzz.demo.entity.PersonnelManagement">
+        select name,sum(establishment) as establishment,sum(actualNumber) as actualNumber,sum(availableNumber) as availableNumber,sum(attendanceRate) as attendanceRate,sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement    where (date&gt;=#{date1} and date&lt;= #{date2})  group by name
+    </select>
 <insert id="add">
 insert into PersonnelManagement( name, establishment, actualNumber, availableNumber, attendanceRate,
-              shouldArrive,actualArrive) values(#{name},#{establishment},#{actualNumber},#{ availableNumber},#{ attendanceRate},#{shouldArrive},#{actualArrive})
+              shouldArrive,actualArrive,date) values(#{name},#{establishment},#{actualNumber},#{ availableNumber},#{ attendanceRate},#{shouldArrive},#{actualArrive},#{date})
 </insert>
 <update id="change" >
     update PersonnelManagement
     set
-    name=#{name},establishment=#{establishment},actualNumber=#{actualNumber},availableNumber=#{ availableNumber},attendanceRate=#{ attendanceRate},shouldArrive=#{shouldArrive},actualArrive=#{actualArrive}  where id=#{id}
+    name=#{name},establishment=#{establishment},actualNumber=#{actualNumber},availableNumber=#{ availableNumber},attendanceRate=#{ attendanceRate},shouldArrive=#{shouldArrive},actualArrive=#{actualArrive},date=#{date}  where id=#{id}
 </update>
 <delete id="del"  >
     delete from PersonnelManagement where id=#{id}

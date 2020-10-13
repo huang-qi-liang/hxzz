@@ -35,14 +35,14 @@ public class PersonDServiceImpl extends ServiceImpl<PersonDMapper, PersonD> impl
     public List<PersonDShow> getClient(LocalDate date1,LocalDate date2){return personDMapper.getClient(date1,date2);}
     public PersonDShow sumClient(LocalDate date1,LocalDate date2){return personDMapper.sumClient(date1,date2);}
     public void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-              Integer bereavementLeave){
+              Integer bereavementLeave,LocalDate date){
         personDMapper.add(region,  personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-             bereavementLeave);}
+             bereavementLeave,date);}
     public void del(Integer id){personDMapper.del(id);}
     public void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                Integer bereavementLeave){
+                Integer bereavementLeave,LocalDate date){
         personDMapper.change( id,region, personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-                 bereavementLeave);
+                 bereavementLeave,date);
     }
     public PageInfo<PersonD> findAll(Integer pageNum,Integer pageSize,LocalDate date1,LocalDate date2){
         PageHelper.startPage(pageNum,pageSize);

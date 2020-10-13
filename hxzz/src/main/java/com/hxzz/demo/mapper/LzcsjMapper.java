@@ -37,8 +37,8 @@ public interface LzcsjMapper extends BaseMapper<Lzcsj> {
 
     */
 void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-         Integer actualCirculation);
+         Integer actualCirculation,LocalDate date);
 void del(Integer id);
 void change(Integer id,String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-            Integer actualCirculation);
+            Integer actualCirculation,LocalDate date);
 }

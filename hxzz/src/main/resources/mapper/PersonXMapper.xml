@@ -31,8 +31,8 @@
     </select>
     <insert id="add">
         insert into PersonX( region, personalLeave,  sickLeave, annualLeave, nursingLeave,
-           bereavementLeave)
-           values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave})
+           bereavementLeave,date)
+           values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave},#{date})
     </insert>
     <delete id="del">
      delete from PersonX where id=#{id}
@@ -41,7 +41,7 @@
     <update id="change">
         update PersonX set  region=#{region},personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
         annualLeave=#{annualLeave},nursingLeave=#{nursingLeave},
-            bereavementLeave=#{bereavementLeave} where id=#{id}
+            bereavementLeave=#{bereavementLeave},date=#{date} where id=#{id}
     </update>
 
 </mapper>

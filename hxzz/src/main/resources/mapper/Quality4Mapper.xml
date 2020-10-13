@@ -8,8 +8,8 @@
         select *  from Quality4  where ((date &gt;= #{date1} )and (date &lt;= #{date2}))
     </select>
     <insert id="add">
-        insert into Quality4( target, actual, responsibility, InterceptionProblem, quantity) values
-        (#{target},#{actual},#{responsibility},#{InterceptionProblem},{quantity})
+        insert into Quality4( target, actual, responsibility, InterceptionProblem, quantity,date) values
+        (#{target},#{actual},#{responsibility},#{InterceptionProblem},{quantity},#{date})
     </insert>
     <delete id="del">
         delete  from Quality4 where id=#{id}
@@ -17,7 +17,7 @@
     <update id="change">
         update Quality4
         set
-        target=#{target},actual=#{actual},responsibility=#{responsibility},InterceptionProblem=#{InterceptionProblem},quantity=#{quantity}
+        target=#{target},actual=#{actual},responsibility=#{responsibility},InterceptionProblem=#{InterceptionProblem},quantity=#{quantity},date=#{date}
         where id=#{id}
     </update>
 

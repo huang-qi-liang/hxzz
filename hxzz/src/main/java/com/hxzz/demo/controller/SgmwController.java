@@ -121,7 +121,7 @@ return Result.succ(jsonArray);
     public Result add(@RequestBody Sgmw sgmw){
         log.println(sgmw);
         sgmwService.addIN(sgmw.getName(),sgmw.getSafe(),sgmw.getProduction(),sgmw.getLzc(),sgmw.getQuality(),
-                sgmw.getPersonnel(),sgmw.getEnergyConsumption(),sgmw.getEquipment());
+                sgmw.getPersonnel(),sgmw.getEnergyConsumption(),sgmw.getEquipment(),sgmw.getDate());
         return Result.succ("success");
     }
     @RequestMapping("/change")

@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * <p>
@@ -70,20 +73,28 @@ public class Quality4Controller {
 
     }
     @RequestMapping("/delete")
-    public Result delete(@RequestParam(value="id",required =false)Integer id){
-        quality4Service.del(id);
+    public Result delete(@RequestBody List<JSONObject> list){
+
+        int size=list.size();
+        for(int i=0;i<size;i++){
+            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+            jsonObject=list.get(i);
+            String Id=jsonObject.getString("id");
+            Integer id=parseInt(Id,10);
+            quality4Service.del(id);
+        }
         return Result.succ("success");
     }
     @RequestMapping("/add")
     public Result add(@RequestBody Quality4 quality4){
         quality4Service.add(quality4.getTarget(),quality4.getActual(),quality4.getResponsibility(),
-                quality4.getInterceptionProblem(),quality4.getQuantity());
+                quality4.getInterceptionProblem(),quality4.getQuantity(),quality4.getDate());
         return Result.succ("success");
     }
     @RequestMapping("/change")
     public Result change(@RequestBody Quality4 quality4){
         quality4Service.change(quality4.getId(),quality4.getTarget(),quality4.getActual(),quality4.getResponsibility(),
-                quality4.getInterceptionProblem(),quality4.getQuantity());
+                quality4.getInterceptionProblem(),quality4.getQuantity(),quality4.getDate());
         return Result.succ("success");
     }
 }
