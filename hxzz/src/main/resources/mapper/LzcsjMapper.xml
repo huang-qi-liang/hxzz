@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.LzcsjMapper">
     <select id="show" resultType="com.hxzz.demo.entity.Lzcsj">
-  select * from Lzcsj where date=(select date from Lzcsj where id=(select MAX(id) as id from Lzcsj)) order by name, id DESC
+  select * from Lzcsj where date=( select MAX(date) as date from Lzcsj) order by name, id DESC
    </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Lzcsj">
 select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
         ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total,date as
         date
-        from Lzcsj where date=(select date from Lzcsj where id=(select MAX(id) as id from Lzcsj))  group by date,name
+        from Lzcsj where date=( select MAX(date) as date from Lzcsj)  group by date,name
     </select>
     <select id="showSum" resultType="com.hxzz.demo.entity.Lzcsj">
 
  select sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
         ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total
-        from Lzcsj where date=(select date from Lzcsj where id=(select MAX(id) as id from Lzcsj))  group by date
+        from Lzcsj where date=( select MAX(date) as date from Lzcsj)  group by date
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Lzcsj">
          select *  from Lzcsj  where (date &gt;=#{date1} and date  &lt;= #{date2}) order by name,id DESC

@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.PersonXMapper">
     <select id="show" resultType="com.hxzz.demo.entity.PersonX">
-        select * from PersonX where date=(select date from PersonX where id=(select MAX(id) as id from PersonX)) order
+        select * from PersonX  where date=( select MAX(date) as date from PersonX) order
          by region,id DESC
     </select>
     <select id="showClient" resultType="com.hxzz.demo.bean.PersonXShow">
         select region, sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
-				  sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX where date=(select
-				  date from PersonX where id=(select MAX(id) as id from PersonX))  group by date,region
+				  sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX  where date=(
+				  select MAX(date) as date from PersonX)  group by date,region
     </select>
     <select id="Sum" resultType="com.hxzz.demo.bean.PersonXShow">
         select sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave, sum(nursingLeave) nursingLeave,
-				  sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX where date=(select
-				  date from PersonX where id=(select MAX(id) as id from PersonX))  group by date
+				  sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX  where date=(
+				  select MAX(date) as date from PersonX)  group by date
     </select>
     <select id="getData" resultType="com.hxzz.demo.entity.PersonX">
         select * from PersonX where date>=#{date1} and date &lt;= #{date2}

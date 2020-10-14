@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.SafeMapper">
+    <select id="show" resultType="com.hxzz.demo.entity.Safe">
+ select * from Safe where date=	( select MAX(date) as date from Safe) order by id DESC
+   </select>
+    <select id="showClient" resultType="com.hxzz.demo.entity.Safe">
+select sum(grey)as grey,sum(blue) as blue,sum(yellow) as yellow,sum(red) as red,date from Safe where CONVERT(varchar(7),date, 120 ) = '2020-10' group by date
+    </select>
+
+    <select id="info" resultType="com.hxzz.demo.entity.Safe">
+         select * from Safe where date>=#{date1} and date &lt;= #{date2} order by id DESC
+    </select>
+
+    <insert id="add">
+        insert into Safe(  grey,  blue,  yellow,  red,  date) values
+        (#{grey},#{blue},#{yellow},#{red},#{date})
+    </insert>
+    <delete id="del">
+        delete from Safe where  id=#{id}
+    </delete>
+    <update id="change">
+        update Safe set
+        grey=#{grey},blue=#{blue},yellow=#{yellow},red=#{red},date=#{date}
+        where id=#{id}
+    </update>
 
 </mapper>

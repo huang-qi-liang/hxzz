@@ -31,7 +31,7 @@ public class Equipmentstatus implements Serializable {
 
     private String name;
 
-    private Float indicators;
+
 
     @TableField("failureTime")
     private Float failureTime;
