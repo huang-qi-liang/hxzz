@@ -2,6 +2,7 @@ package com.hxzz.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.Equipment;
 import com.hxzz.demo.entity.Equipmentstatus;
 import com.hxzz.demo.entity.Equipmentstatus;
 import com.hxzz.demo.mapper.EquipmentstatusMapper;
@@ -28,8 +29,12 @@ public class EquipmentstatusServiceImpl extends ServiceImpl<EquipmentstatusMappe
   public   List<Equipmentstatus> showClient(){return equipmentstatusMapper.showClient();}
   public   List<Equipmentstatus> info(LocalDate date1, LocalDate date2){return equipmentstatusMapper.info(date1,date2);}
   public   List<Equipmentstatus> infoClient(LocalDate date1,LocalDate date2){return equipmentstatusMapper.infoClient(date1,date2);}
-
-
+  //图表数据
+   public List<Equipment> each(String date, String name){return equipmentstatusMapper.each(date,name);}
+  public   Equipment eachYear(String date,String name){return equipmentstatusMapper.eachYear(date,name);}
+   public List<Equipment> total(String date){return equipmentstatusMapper.total(date);}
+   public Equipment totalYear(String date){return equipmentstatusMapper.totalYear(date);}
+//增删改方法
   public   void add(String name,Float failureTime,Float officeTime,LocalDate date){equipmentstatusMapper.add(name, failureTime, officeTime, date);}
    public void del(Integer id){equipmentstatusMapper.del(id);}
    public void change(Integer id,String name,Float failureTime,Float officeTime,LocalDate date){equipmentstatusMapper.change(id, name, failureTime, officeTime, date);}

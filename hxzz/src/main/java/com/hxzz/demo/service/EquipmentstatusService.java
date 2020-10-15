@@ -1,6 +1,7 @@
 package com.hxzz.demo.service;
 
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.Equipment;
 import com.hxzz.demo.entity.Equipmentstatus;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hxzz.demo.entity.Lzcsj;
@@ -30,6 +31,10 @@ public interface EquipmentstatusService extends IService<Equipmentstatus> {
      Integer totalSum(LocalDate date);
 
      */
+    List<Equipment> each(String date, String name);
+    Equipment eachYear(String date,String name);
+    List<Equipment> total(String date);
+    Equipment totalYear(String date);
     void add(String name,Float failureTime,Float officeTime,LocalDate date);
     void del(Integer id);
     void change(Integer id,String name,Float failureTime,Float officeTime,LocalDate date);

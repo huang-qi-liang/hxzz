@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * <p>
@@ -33,7 +34,7 @@ import static java.lang.Integer.parseInt;
  * @author hql
  * @since 2020-09-24
  */
-@Async
+
 @Component
 @Configuration
 @EnableScheduling
@@ -49,6 +50,7 @@ public class QualityController {
     public Result show(){
         List list=new ArrayList<>();
         list=qualityService.show();
+        log.println(list);
         return Result.succ(list);
     }
     @RequestMapping("/showClient")
@@ -69,7 +71,7 @@ public class QualityController {
         LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
 
         PageInfo<Quality> pageInfo=qualityService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
-
+log.println(pageInfo);
         return Result.succ(pageInfo);
 
     }

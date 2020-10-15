@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.EquipmentstatusMapper">
+    <select id="show" resultType="com.hxzz.demo.entity.Equipmentstatus">
+select * from Equipmentstatus  where date=( select MAX(date) as date from Equipmentstatus) order
+         by name,id DESC
+   </select>
+    <select id="showClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
+select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as rate,date from Equipmentstatus  where date=( select MAX(date)
+ as date from Equipmentstatus)  group by date,name
 
+
+    </select>
+
+    <select id="info" resultType="com.hxzz.demo.entity.Equipmentstatus">
+         select * from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+    </select>
+    <select id="infoClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
+    select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as rate from Equipmentstatus  where date>=#{date1} and date &lt;= #{date2}  group by name
+    </select>
+    <select id="each" resultType="com.hxzz.demo.bean.Equipment">
+        select Equipmentstatus.name as name,sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as rate,month(Equipmentstatus.date) as month from Equipmentstatus,Aim WHERE
+  YEAR (  Equipmentstatus.date ) = #{date}  and YEAR(Aim.date)=#{date} and Equipmentstatus.name=#{name}
+GROUP BY
+ MONTH (  Equipmentstatus.date  ),Aim.equipment ,Equipmentstatus.name
+    </select>
+    <select id="eachYear" resultType="com.hxzz.demo.bean.Equipment">
+        select Equipmentstatus.name as name,Aim.equipment as indicators,sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as yearRate from Equipmentstatus,Aim WHERE
+  YEAR (  Equipmentstatus.date ) = #{date}  and YEAR(Aim.date)=#{date} and Equipmentstatus.name =#{name}
+GROUP BY
+ Aim.equipment ,Equipmentstatus.name
+    </select>
+    <select id="total" resultType="com.hxzz.demo.bean.Equipment">
+         select sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as rate,month(Equipmentstatus.date) as month from Equipmentstatus,Aim WHERE
+  YEAR (  Equipmentstatus.date ) = #{date}   and YEAR(Aim.date)=#{date}
+GROUP BY
+ MONTH (  Equipmentstatus.date  ),Aim.equipment
+    </select>
+    <select id="totalYear" resultType="com.hxzz.demo.bean.Equipment">
+         select Aim.equipment as indicators,sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as yearRate from Equipmentstatus,Aim WHERE
+  YEAR (  Equipmentstatus.date ) = '2020'  and YEAR(Aim.date)='2020'
+GROUP BY
+ Aim.equipment
+    </select>
+
+    <insert id="add">
+        insert into Quality3(name,DC,DD,XB,XC,date) values (#{name},#{DC},#{DD},#{XB},#{XC},#{date})
+    </insert>
+    <delete id="del">
+        delete  from Quality3 where id=#{id}
+    </delete>
+    <update id="change">
+        update Quality3 set name=#{name},DC=#{DC},DD=#{DD},XB=#{XB},XC=#{XC},date=#{date}  where id=#{id}
+    </update>
 </mapper>

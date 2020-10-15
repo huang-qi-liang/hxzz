@@ -1,5 +1,6 @@
 package com.hxzz.demo.mapper;
 
+import com.hxzz.demo.bean.Equipment;
 import com.hxzz.demo.entity.Equipmentstatus;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hxzz.demo.entity.Equipmentstatus;
@@ -31,6 +32,12 @@ public interface EquipmentstatusMapper extends BaseMapper<Equipmentstatus> {
      Integer totalSum(LocalDate date);
 
      */
+    List<Equipment> each(String date,String name);
+    Equipment eachYear(String date,String name);
+    List<Equipment> total(String date);
+    Equipment totalYear(String date);
+
+
     void add(String name,Float failureTime,Float officeTime,LocalDate date);
     void del(Integer id);
     void change(Integer id,String name,Float failureTime,Float officeTime,LocalDate date);
