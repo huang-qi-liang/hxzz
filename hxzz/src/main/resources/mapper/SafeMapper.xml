@@ -5,11 +5,21 @@
  select * from Safe where date=	( select MAX(date) as date from Safe) order by id DESC
    </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Safe">
-select sum(grey)as grey,sum(blue) as blue,sum(yellow) as yellow,sum(red) as red,date from Safe where CONVERT(varchar(7),date, 120 ) = '2020-10' group by date
+select sum(grey)as grey,sum(blue) as blue,sum(yellow) as yellow,sum(red) as red,date from Safe where
+CONVERT(varchar(7),date, 120 ) = #{date} group by date
+    </select>
+    <select id="showSum" resultType="com.hxzz.demo.entity.Safe">
+        select sum(grey)+sum(blue)+sum(yellow)+sum(red) as red from Safe where date=	( select MAX(date) as date from Safe)
+    </select>
+    <select id="infoSum" resultType="com.hxzz.demo.entity.Safe">
+         select sum(grey)+sum(blue)+sum(yellow)+sum(red) as red from Safe where date>=#{date1} and date &lt;= #{date2}
     </select>
 
     <select id="info" resultType="com.hxzz.demo.entity.Safe">
          select * from Safe where date>=#{date1} and date &lt;= #{date2} order by id DESC
+    </select>
+    <select id="amount" resultType="com.hxzz.demo.entity.Safe">
+        select date from Safe where date>=#{date1} and date &lt;= #{date2} group by date
     </select>
 
     <insert id="add">

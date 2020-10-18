@@ -10,6 +10,16 @@ select name,sum(standardsWater) as standardsWater,sum(water) as water,sum(standa
 standardsElectricity,sum(electricity) as electricity,sum(electricity) as electricity,sum(standardsGas) as
 standardsGas,sum(gas) as gas,date from Energy  where date=	( select MAX(date) as date from Energy)  group by date,name
     </select>
+    <select id="showSum" resultType="com.hxzz.demo.entity.Energy">
+select name,sum(standardsWater)+sum(standardsElectricity)+sum(standardsGas) as standardsWater,sum(water)+sum(electricity)+sum(gas) as water,sum(standardsElectricity) as
+standardsElectricity,sum(electricity) as electricity,sum(electricity) as electricity,sum(standardsGas) as
+standardsGas,sum(gas) as gas,date from Energy  where date=	( select MAX(date) as date from Energy)  group by date,name
+    </select>
+    <select id="infoSum" resultType="com.hxzz.demo.entity.Energy">
+select name,sum(standardsWater)+sum(standardsElectricity)+sum(standardsGas) as standardsWater,sum(water)+sum(electricity)+sum(gas) as water,sum(standardsElectricity) as
+standardsElectricity,sum(electricity) as electricity,sum(electricity) as electricity,sum(standardsGas) as
+standardsGas,sum(gas) as gas from Energy  where date>=#{date1} and date &lt;= #{date2}
+    </select>
 
     <select id="info" resultType="com.hxzz.demo.entity.Energy">
          select * from Energy where date>=#{date1} and date &lt;= #{date2} order by name,id DESC

@@ -24,6 +24,9 @@ public interface PersonnelManagementMapper extends BaseMapper<PersonnelManagemen
 
     List<PersonnelManagement> info(LocalDate date1,LocalDate date2);
     List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2);
+    //最新数据集合
+    PersonnelManagement showSum();
+    PersonnelManagement infoSum(LocalDate date1,LocalDate date2);
 
     void add(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
              Integer shouldArrive,Integer actualArrive,LocalDate date);

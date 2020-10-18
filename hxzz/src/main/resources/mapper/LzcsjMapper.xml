@@ -30,6 +30,9 @@ from Lzcsj where(date &gt;=#{date1} and date  &lt;= #{date2}) group by name
         from Lzcsj where (date &gt;=#{date1} and date  &lt;= #{date2})
 
     </select>
+    <select id="amount" resultType="com.hxzz.demo.entity.Lzcsj">
+        select date from Lzcsj where date>=#{date1} and date &lt;= #{date2} group by date
+    </select>
     <insert id="add">
         insert into Lzcsj(name,waitingToBeLoaded,loopToCrossTheLine,bhCirculation,actualCirculation,date) values
         (#{name},#{waitingToBeLoaded},#{loopToCrossTheLine},#{bhCirculation},#{actualCirculation},#{date})

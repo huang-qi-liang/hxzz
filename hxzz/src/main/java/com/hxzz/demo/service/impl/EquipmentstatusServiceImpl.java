@@ -29,6 +29,8 @@ public class EquipmentstatusServiceImpl extends ServiceImpl<EquipmentstatusMappe
   public   List<Equipmentstatus> showClient(){return equipmentstatusMapper.showClient();}
   public   List<Equipmentstatus> info(LocalDate date1, LocalDate date2){return equipmentstatusMapper.info(date1,date2);}
   public   List<Equipmentstatus> infoClient(LocalDate date1,LocalDate date2){return equipmentstatusMapper.infoClient(date1,date2);}
+  public   Equipmentstatus showSum(){return  equipmentstatusMapper.showSum();}
+   public Equipmentstatus infoSum(LocalDate date1,LocalDate date2){return equipmentstatusMapper.infoSum(date1, date2);}
   //图表数据
    public List<Equipment> each(String date, String name){return equipmentstatusMapper.each(date,name);}
   public   Equipment eachYear(String date,String name){return equipmentstatusMapper.eachYear(date,name);}

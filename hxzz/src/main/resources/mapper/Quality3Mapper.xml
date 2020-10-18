@@ -6,7 +6,7 @@ select * from Quality3  where date=( select MAX(date) as date from Quality3) ord
          by name,id DESC
    </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Quality3">
-select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC,date from Quality3  where date=( select MAX(date)
+select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC,sum(total) as total,date from Quality3  where date=( select MAX(date)
  as date from Quality3)  group by date,name
     </select>
 
@@ -14,7 +14,8 @@ select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC,date from Qu
          select * from Quality3 where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Quality3">
-       select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC from Quality3   where (date&gt;=#{date1} and date&lt;= #{date2})  group by name
+       select name,sum(DC) as DC,sum(DD) as DD,sum(XB) as XB,sum(XC) as XC,sum(total) as total from Quality3   where (date&gt;=#{date1}
+       and date&lt;= #{date2})  group by name
     </select>
 
     <insert id="add">

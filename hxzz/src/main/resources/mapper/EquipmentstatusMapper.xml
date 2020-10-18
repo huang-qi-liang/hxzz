@@ -8,8 +8,10 @@ select * from Equipmentstatus  where date=( select MAX(date) as date from Equipm
     <select id="showClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
 select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as rate,date from Equipmentstatus  where date=( select MAX(date)
  as date from Equipmentstatus)  group by date,name
-
-
+    </select>
+    <select id="showSum" resultType="com.hxzz.demo.entity.Equipmentstatus">
+        select sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as rate,date from Equipmentstatus  where date=( select MAX(date)
+ as date from Equipmentstatus)  group by date
     </select>
 
     <select id="info" resultType="com.hxzz.demo.entity.Equipmentstatus">
@@ -17,6 +19,9 @@ select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(fa
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
     select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as rate from Equipmentstatus  where date>=#{date1} and date &lt;= #{date2}  group by name
+    </select>
+    <select id="infoSum" resultType="com.hxzz.demo.entity.Equipmentstatus">
+        select sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as rate from Equipmentstatus where date>=#{date1} and date &lt;= #{date2}
     </select>
     <select id="each" resultType="com.hxzz.demo.bean.Equipment">
         select Equipmentstatus.name as name,sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as rate,month(Equipmentstatus.date) as month from Equipmentstatus,Aim WHERE

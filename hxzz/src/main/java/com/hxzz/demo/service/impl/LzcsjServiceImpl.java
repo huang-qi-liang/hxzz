@@ -34,6 +34,7 @@ public class LzcsjServiceImpl extends ServiceImpl<LzcsjMapper, Lzcsj> implements
     public List<Lzcsj> info(LocalDate date1,LocalDate date2){return  lzcsjMapper.info(date1,date2);}
     public List<Lzcsj> infoClient(LocalDate date1,LocalDate date2){return lzcsjMapper.infoClient(date1,date2);}
     public Lzcsj infoSum(LocalDate date1,LocalDate date2){return  lzcsjMapper.infoSum(date1,date2);}
+   public List<Lzcsj> amount(LocalDate date1, LocalDate date2){return lzcsjMapper.amount(date1, date2);}
     public    void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
              Integer actualCirculation,LocalDate date){lzcsjMapper.add(name, waitingToBeLoaded, loopToCrossTheLine,
             bhCirculation, actualCirculation,date);}

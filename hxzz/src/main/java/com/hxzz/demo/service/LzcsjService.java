@@ -25,7 +25,7 @@ public interface LzcsjService extends IService<Lzcsj> {
     List<Lzcsj> info(LocalDate date1,LocalDate date2);
     List<Lzcsj> infoClient(LocalDate date1,LocalDate date2);
     Lzcsj infoSum(LocalDate date1,LocalDate date2);
-
+    List<Lzcsj> amount(LocalDate date1, LocalDate date2);
     void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
              Integer actualCirculation,LocalDate date);
     void del(Integer id);

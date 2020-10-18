@@ -28,7 +28,9 @@ SafeMapper safeMapper;
    public List<Safe> showClient(String date){return safeMapper.showClient(date);}
     public List<Safe> show(){return safeMapper.show();}
     public List<Safe> info(LocalDate date1,LocalDate date2){return safeMapper.info(date1,date2);}
-
+ public  Safe showSum(){return safeMapper.showSum();}
+   public Safe infoSum(LocalDate date1,LocalDate date2){return  safeMapper.infoSum( date1, date2);}
+   public List<Safe> amount(LocalDate date1,LocalDate date2){return  safeMapper.amount(date1,date2);}
     public void del(Integer id){safeMapper.del(id);}
     public void add(Integer grey, Integer blue, Integer yellow, Integer red, LocalDate date){safeMapper.add(grey, blue, yellow, red, date);}
     public void change(Integer id,Integer grey,Integer blue,Integer yellow,Integer red,LocalDate date){safeMapper.change(id, grey, blue, yellow, red, date);}

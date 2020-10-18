@@ -32,6 +32,8 @@ PersonnelManagementMapper personnelManagementMapper;
 
     public List<PersonnelManagement> info(LocalDate date1,LocalDate date2){return personnelManagementMapper.info(date1,date2);}
     public List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2){return personnelManagementMapper.infoClient(date1,date2);}
+    public PersonnelManagement showSum(){return personnelManagementMapper.showSum();}
+    public PersonnelManagement infoSum(LocalDate date1,LocalDate date2){return personnelManagementMapper.infoSum(date1, date2);}
   public   void addIN(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
                Integer shouldArrive,Integer actualArrive,LocalDate date){
       personnelManagementMapper.add(name, establishment, actualNumber, availableNumber, attendanceRate,

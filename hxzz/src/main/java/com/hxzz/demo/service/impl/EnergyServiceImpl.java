@@ -29,6 +29,8 @@ public class EnergyServiceImpl extends ServiceImpl<EnergyMapper, Energy> impleme
 @Override
 public List<Energy> show(){return energyMapper.show();}
     public Energy showClient(){return energyMapper.showClient();}
+    public Energy showSum(){return  energyMapper.showSum();}
+   public Energy infoSum(LocalDate date1,LocalDate date2){return energyMapper.infoSum(date1,date2);}
 
     public List<Energy> info(LocalDate date1,LocalDate date2){return energyMapper.info(date1,date2);}
     public Energy infoClient(LocalDate date1,LocalDate date2){return energyMapper.infoClient(date1,date2);}

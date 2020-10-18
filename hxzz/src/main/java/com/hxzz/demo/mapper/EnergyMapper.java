@@ -20,7 +20,8 @@ import java.util.List;
 public interface EnergyMapper extends BaseMapper<Energy> {
     List<Energy> show();
    Energy showClient();
-
+Energy showSum();
+Energy infoSum(LocalDate date1,LocalDate date2);
     List<Energy> info(LocalDate date1,LocalDate date2);
     Energy infoClient(LocalDate date1,LocalDate date2);
 

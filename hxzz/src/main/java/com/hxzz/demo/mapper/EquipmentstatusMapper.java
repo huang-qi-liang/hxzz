@@ -24,7 +24,9 @@ public interface EquipmentstatusMapper extends BaseMapper<Equipmentstatus> {
 
     List<Equipmentstatus> info(LocalDate date1, LocalDate date2);
     List<Equipmentstatus> infoClient(LocalDate date1,LocalDate date2);
-
+    Equipmentstatus showSum();
+    //计算一段时间的设备故障率
+    Equipmentstatus infoSum(LocalDate date1,LocalDate date2);
     /* Integer waitingToBeLoadedSum(LocalDate date);
      Integer loopToCrossTheLineSum(LocalDate date);
      Integer bhCirculationSum(LocalDate date);

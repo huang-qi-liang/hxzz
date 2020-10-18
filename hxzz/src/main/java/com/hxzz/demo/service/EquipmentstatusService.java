@@ -20,9 +20,10 @@ import java.util.List;
 public interface EquipmentstatusService extends IService<Equipmentstatus> {
     List<Equipmentstatus> show();
     List<Equipmentstatus> showClient();
-
+    Equipmentstatus showSum();
     List<Equipmentstatus> info(LocalDate date1, LocalDate date2);
     List<Equipmentstatus> infoClient(LocalDate date1,LocalDate date2);
+    Equipmentstatus infoSum(LocalDate date1,LocalDate date2);
 
     /* Integer waitingToBeLoadedSum(LocalDate date);
      Integer loopToCrossTheLineSum(LocalDate date);

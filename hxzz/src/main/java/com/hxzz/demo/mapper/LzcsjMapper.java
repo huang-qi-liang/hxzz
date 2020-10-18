@@ -7,6 +7,7 @@ import com.hxzz.demo.entity.Lzcsj;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hxzz.demo.entity.PersonD;
 import com.hxzz.demo.entity.Lzcsj;
+import com.hxzz.demo.entity.Safe;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -28,6 +29,7 @@ public interface LzcsjMapper extends BaseMapper<Lzcsj> {
    List<Lzcsj> info(LocalDate date1,LocalDate date2);
    List<Lzcsj> infoClient(LocalDate date1,LocalDate date2);
    Lzcsj infoSum(LocalDate date1,LocalDate date2);
+   List<Lzcsj> amount(LocalDate date1, LocalDate date2);
 
    /* Integer waitingToBeLoadedSum(LocalDate date);
     Integer loopToCrossTheLineSum(LocalDate date);

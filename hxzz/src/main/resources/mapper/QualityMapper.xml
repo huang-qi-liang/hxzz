@@ -16,7 +16,7 @@ roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(l
 
 select sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as
 lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as
-roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest) as DR,date from Quality   where date=( select MAX(date) as date from Qualit)  group by date
+roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest) as DR,date from Quality   where date=( select MAX(date) as date from Quality)  group by date
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Quality">
          select * from Quality where date>=#{date1} and date &lt;= #{date2} order by name,id DESC

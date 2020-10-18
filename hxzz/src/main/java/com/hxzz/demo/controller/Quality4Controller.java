@@ -4,6 +4,7 @@ package com.hxzz.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Quality4;
+import com.hxzz.demo.result.Quality4Package;
 import com.hxzz.demo.service.Quality4Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -37,29 +38,17 @@ import static java.lang.Integer.parseInt;
 @RequestMapping("/Quality4")
 public class Quality4Controller {
     @Autowired
-    Quality4Service quality4Service;
-    @RequestMapping("/show")
-    public Result show(){
-        List list=new ArrayList<>();
-        return Result.succ(list);
-    }
+    Quality4Package quality4Package;
+
     @RequestMapping("/showClient")
     public Result showClient(){
-        List list=new ArrayList<>();
-        return Result.succ(list);
+     JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+        jsonObject=quality4Package.showPackage();
+        return Result.succ(jsonObject);
     }
-    @RequestMapping("/info")
-    public Result info(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
-            required = false) String time2){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
-        List list= new ArrayList();
 
-        return Result.succ(list);
 
-    }
     @RequestMapping("/infoClient")
     public Result infoClient(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
             required = false) String time2){
@@ -67,34 +56,10 @@ public class Quality4Controller {
         LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
 
         LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
-        List list= new ArrayList();
+        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+        jsonObject=quality4Package.infoPackage(date1,date2);
+        return Result.succ(jsonObject);
 
-        return Result.succ(list);
+    }
 
-    }
-    @RequestMapping("/delete")
-    public Result delete(@RequestBody List<JSONObject> list){
-
-        int size=list.size();
-        for(int i=0;i<size;i++){
-            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-            jsonObject=list.get(i);
-            String Id=jsonObject.getString("id");
-            Integer id=parseInt(Id,10);
-            quality4Service.del(id);
-        }
-        return Result.succ("success");
-    }
-    @RequestMapping("/add")
-    public Result add(@RequestBody Quality4 quality4){
-        quality4Service.add(quality4.getTarget(),quality4.getActual(),quality4.getResponsibility(),
-                quality4.getInterceptionProblem(),quality4.getQuantity(),quality4.getDate());
-        return Result.succ("success");
-    }
-    @RequestMapping("/change")
-    public Result change(@RequestBody Quality4 quality4){
-        quality4Service.change(quality4.getId(),quality4.getTarget(),quality4.getActual(),quality4.getResponsibility(),
-                quality4.getInterceptionProblem(),quality4.getQuantity(),quality4.getDate());
-        return Result.succ("success");
-    }
 }

@@ -23,6 +23,8 @@ public interface PersonnelManagementService extends IService<PersonnelManagement
 
     List<PersonnelManagement> info(LocalDate date1,LocalDate date2);
     List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2);
+    PersonnelManagement showSum();
+    PersonnelManagement infoSum(LocalDate date1,LocalDate date2);
     void addIN(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
              Integer shouldArrive,Integer actualArrive,LocalDate date);
     void delIN(Integer id);

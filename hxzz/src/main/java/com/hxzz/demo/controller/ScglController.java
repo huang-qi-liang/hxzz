@@ -62,6 +62,7 @@ public class ScglController {
         list.add(jsonObject);
         return Result.succ(list);
     }
+
     @RequestMapping("/info")
     public Result info(@RequestBody Info info){
 
@@ -88,6 +89,24 @@ public class ScglController {
         list.add(jsonObject);
 
 
+
+        return Result.succ(list);
+
+    }
+    @RequestMapping("/showAll")
+    public Result showAll(){
+        List list=new ArrayList<>();
+    list=scglPackage.showAllPackage();
+        return Result.succ(list);
+    }
+    @RequestMapping("/infoAll")
+    public Result infoAll(@RequestBody Date date){
+        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
+
+        LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
+        List list=new ArrayList();
+        list=scglPackage.infoAllPackage(date1,date2);
 
         return Result.succ(list);
 

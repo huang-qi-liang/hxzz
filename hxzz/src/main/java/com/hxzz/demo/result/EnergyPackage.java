@@ -66,4 +66,29 @@ public class EnergyPackage {
         jsonObject.put("date",energyService.infoClient(date1,date2).getDate());
         return jsonObject;
     }
+    public String showResult(){
+        String corlor;
+        //Water实际为三者总和
+        if(energyService.showSum().getWater()>energyService.showSum().getStandardsWater())
+        {
+            corlor="red";
+        }
+        else {
+            corlor="green";
+        }
+        return corlor;
+    }
+    public String infoResult(LocalDate date1,LocalDate date2){
+        String corlor;
+        //Water实际为三者总和
+        if(energyService.infoSum(date1,date2).getWater()>energyService.infoSum(date1,date2).getStandardsWater())
+        {
+            corlor="red";
+        }
+        else {
+            corlor="green";
+        }
+        return corlor;
+
+    }
 }

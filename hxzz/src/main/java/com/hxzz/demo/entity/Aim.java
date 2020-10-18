@@ -24,7 +24,7 @@ public class Aim implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-
+private int security;
     private Integer lzcsj;
 
     private Float quality;
