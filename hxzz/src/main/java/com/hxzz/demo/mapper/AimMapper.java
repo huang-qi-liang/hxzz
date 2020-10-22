@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -21,9 +21,12 @@ public interface AimMapper extends BaseMapper<Aim> {
 
     Aim show();
 
-   List<Aim> info(LocalDate date1,LocalDate date2);
-    void add(Integer security,Integer lzcsj,Float quality,Float equipment,LocalDate date);
+    List<Aim> info(LocalDate date1, LocalDate date2);
+
+    void add(Integer security, Integer lzcsj, Float quality, Float equipment, LocalDate date);
+
     void del(Long id);
-    void change( Long id,Integer security,Integer lzcsj,Float quality,Float equipment,LocalDate date);
+
+    void change(Long id, Integer security, Integer lzcsj, Float quality, Float equipment, LocalDate date);
 
 }

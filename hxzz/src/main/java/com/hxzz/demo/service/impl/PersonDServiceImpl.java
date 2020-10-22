@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author hql
@@ -28,26 +28,50 @@ public class PersonDServiceImpl extends ServiceImpl<PersonDMapper, PersonD> impl
     PersonDMapper personDMapper;
 
     @Override
-    public List<PersonD> show(){return personDMapper.show();}
-    public List<PersonDShow> showClient(){return personDMapper.showClient();}
-    public PersonDShow Sum(){return personDMapper.Sum();}
-    public List<PersonD> getData(LocalDate date1,LocalDate date2){return personDMapper.getData(date1,date2);}
-    public List<PersonDShow> getClient(LocalDate date1,LocalDate date2){return personDMapper.getClient(date1,date2);}
-    public PersonDShow sumClient(LocalDate date1,LocalDate date2){return personDMapper.sumClient(date1,date2);}
-    public void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-              Integer bereavementLeave,LocalDate date){
-        personDMapper.add(region,  personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-             bereavementLeave,date);}
-    public void del(Integer id){personDMapper.del(id);}
-    public void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                Integer bereavementLeave,LocalDate date){
-        personDMapper.change( id,region, personalLeave,  sickLeave,  annualLeave,  nursingLeave,
-                 bereavementLeave,date);
+    public List<PersonD> show() {
+        return personDMapper.show();
     }
-    public PageInfo<PersonD> findAll(Integer pageNum,Integer pageSize,LocalDate date1,LocalDate date2){
-        PageHelper.startPage(pageNum,pageSize);
-        List<PersonD> list=personDMapper.getData(date1,date2);
-        PageInfo<PersonD> pageInfo=new PageInfo<PersonD>(list);
+
+    public List<PersonDShow> showClient() {
+        return personDMapper.showClient();
+    }
+
+    public PersonDShow Sum() {
+        return personDMapper.Sum();
+    }
+
+    public List<PersonD> getData(LocalDate date1, LocalDate date2) {
+        return personDMapper.getData(date1, date2);
+    }
+
+    public List<PersonDShow> getClient(LocalDate date1, LocalDate date2) {
+        return personDMapper.getClient(date1, date2);
+    }
+
+    public PersonDShow sumClient(LocalDate date1, LocalDate date2) {
+        return personDMapper.sumClient(date1, date2);
+    }
+
+    public void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+                    Integer bereavementLeave, LocalDate date) {
+        personDMapper.add(region, personalLeave, sickLeave, annualLeave, nursingLeave,
+                bereavementLeave, date);
+    }
+
+    public void del(Integer id) {
+        personDMapper.del(id);
+    }
+
+    public void change(Integer id, String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+                       Integer bereavementLeave, LocalDate date) {
+        personDMapper.change(id, region, personalLeave, sickLeave, annualLeave, nursingLeave,
+                bereavementLeave, date);
+    }
+
+    public PageInfo<PersonD> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<PersonD> list = personDMapper.getData(date1, date2);
+        PageInfo<PersonD> pageInfo = new PageInfo<PersonD>(list);
         return pageInfo;
     }
 

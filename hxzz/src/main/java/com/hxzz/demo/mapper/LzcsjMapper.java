@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -23,24 +23,32 @@ import java.util.List;
  */
 @Component
 public interface LzcsjMapper extends BaseMapper<Lzcsj> {
-   List<Lzcsj> show();
-   List<Lzcsj> showClient();
-   Lzcsj showSum();
-   List<Lzcsj> info(LocalDate date1,LocalDate date2);
-   List<Lzcsj> infoClient(LocalDate date1,LocalDate date2);
-   Lzcsj infoSum(LocalDate date1,LocalDate date2);
-   List<Lzcsj> amount(LocalDate date1, LocalDate date2);
+    List<Lzcsj> show();
 
-   /* Integer waitingToBeLoadedSum(LocalDate date);
-    Integer loopToCrossTheLineSum(LocalDate date);
-    Integer bhCirculationSum(LocalDate date);
-    Integer actualCirculationSum(LocalDate date);
-    Integer totalSum(LocalDate date);
+    List<Lzcsj> showClient();
 
-    */
-void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-         Integer actualCirculation,LocalDate date);
-void del(Integer id);
-void change(Integer id,String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-            Integer actualCirculation,LocalDate date);
+    Lzcsj showSum();
+
+    List<Lzcsj> info(LocalDate date1, LocalDate date2);
+
+    List<Lzcsj> infoClient(LocalDate date1, LocalDate date2);
+
+    Lzcsj infoSum(LocalDate date1, LocalDate date2);
+
+    List<Lzcsj> amount(LocalDate date1, LocalDate date2);
+
+    /* Integer waitingToBeLoadedSum(LocalDate date);
+     Integer loopToCrossTheLineSum(LocalDate date);
+     Integer bhCirculationSum(LocalDate date);
+     Integer actualCirculationSum(LocalDate date);
+     Integer totalSum(LocalDate date);
+
+     */
+    void add(String name, Integer waitingToBeLoaded, Integer loopToCrossTheLine, Integer bhCirculation,
+             Integer actualCirculation, LocalDate date);
+
+    void del(Integer id);
+
+    void change(Integer id, String name, Integer waitingToBeLoaded, Integer loopToCrossTheLine, Integer bhCirculation,
+                Integer actualCirculation, LocalDate date);
 }

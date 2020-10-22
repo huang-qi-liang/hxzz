@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -19,16 +19,23 @@ import java.util.List;
 @Component
 public interface EnergyMapper extends BaseMapper<Energy> {
     List<Energy> show();
-   Energy showClient();
-Energy showSum();
-Energy infoSum(LocalDate date1,LocalDate date2);
-    List<Energy> info(LocalDate date1,LocalDate date2);
-    Energy infoClient(LocalDate date1,LocalDate date2);
 
-    void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,
-              Float standardsGas,Float gas,LocalDate date);
-void del(Integer id);
-void change( Integer id,String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,
-             Float standardsGas,Float gas,LocalDate date);
+    Energy showClient();
+
+    Energy showSum();
+
+    Energy infoSum(LocalDate date1, LocalDate date2);
+
+    List<Energy> info(LocalDate date1, LocalDate date2);
+
+    Energy infoClient(LocalDate date1, LocalDate date2);
+
+    void add(String name, Float standardsWater, Float water, Float standardsElectricity, Float electricity,
+             Float standardsGas, Float gas, LocalDate date);
+
+    void del(Integer id);
+
+    void change(Integer id, String name, Float standardsWater, Float water, Float standardsElectricity, Float electricity,
+                Float standardsGas, Float gas, LocalDate date);
 
 }

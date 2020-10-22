@@ -25,31 +25,31 @@ public class LzcsjPackage {
     @Autowired
     LzcsjPackage lzcsjPackage;
 
-    public JSONObject showPackage(){
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        jsonObject.put("name","合计");
-        jsonObject.put("waitingToBeLoaded ",lzcsjService.showSum().getWaitingToBeLoaded());
-        jsonObject.put("loopToCrossTheLine",lzcsjService.showSum().getLoopToCrossTheLine());
-        jsonObject.put("bhCirculation",lzcsjService.showSum().getBhCirculation());
-        jsonObject.put("actualCirculation",lzcsjService.showSum().getActualCirculation());
-        jsonObject.put("total",lzcsjService.showSum().getTotal());
-        jsonObject.put("date",lzcsjService.showSum().getDate());
+    public JSONObject showPackage() {
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        jsonObject.put("name", "合计");
+        jsonObject.put("waitingToBeLoaded ", lzcsjService.showSum().getWaitingToBeLoaded());
+        jsonObject.put("loopToCrossTheLine", lzcsjService.showSum().getLoopToCrossTheLine());
+        jsonObject.put("bhCirculation", lzcsjService.showSum().getBhCirculation());
+        jsonObject.put("actualCirculation", lzcsjService.showSum().getActualCirculation());
+        jsonObject.put("total", lzcsjService.showSum().getTotal());
+        jsonObject.put("date", lzcsjService.showSum().getDate());
 
-        return  jsonObject;
+        return jsonObject;
 
     }
 
 
-    public  JSONObject ClientPackage(LocalDate date1, LocalDate date2){
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        jsonObject.put("name","合计");
-        jsonObject.put("waitingToBeLoaded",lzcsjService.infoSum(date1,date2).getWaitingToBeLoaded());
-        jsonObject.put("loopToCrossTheLine",lzcsjService.infoSum(date1,date2).getLoopToCrossTheLine());
-        jsonObject.put("bhCirculation",lzcsjService.infoSum(date1,date2).getBhCirculation());
-        jsonObject.put("actualCirculation",lzcsjService.infoSum(date1,date2).getActualCirculation());
+    public JSONObject ClientPackage(LocalDate date1, LocalDate date2) {
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        jsonObject.put("name", "合计");
+        jsonObject.put("waitingToBeLoaded", lzcsjService.infoSum(date1, date2).getWaitingToBeLoaded());
+        jsonObject.put("loopToCrossTheLine", lzcsjService.infoSum(date1, date2).getLoopToCrossTheLine());
+        jsonObject.put("bhCirculation", lzcsjService.infoSum(date1, date2).getBhCirculation());
+        jsonObject.put("actualCirculation", lzcsjService.infoSum(date1, date2).getActualCirculation());
 
-        jsonObject.put("total",lzcsjService.infoSum(date1,date2).getTotal());
-        jsonObject.put("date",lzcsjService.infoSum(date1,date2).getDate());
+        jsonObject.put("total", lzcsjService.infoSum(date1, date2).getTotal());
+        jsonObject.put("date", lzcsjService.infoSum(date1, date2).getDate());
         return jsonObject;
     }
 }

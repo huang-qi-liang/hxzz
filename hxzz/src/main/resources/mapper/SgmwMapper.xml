@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.SgmwMapper">
-<select id="showaim" resultType="com.hxzz.demo.entity.Sgmw">
-    select * from SGMW where (id=(select MAX(id) from  SGMW where name='目标'))
+    <select id="showaim" resultType="com.hxzz.demo.entity.Sgmw">
+        select * from SGMW where (id=(select MAX(id) from SGMW where name='目标'))
 
-</select>
-<select id="showactual" resultType="com.hxzz.demo.entity.Sgmw">
-    select * from SGMW where (id=(select MAX(id) from SGMW where name='实际'))
-</select>
+    </select>
+    <select id="showactual" resultType="com.hxzz.demo.entity.Sgmw">
+        select * from SGMW where (id=(select MAX(id) from SGMW where name='实际'))
+    </select>
 
-<select id="getAimData" resultType="com.hxzz.demo.entity.Sgmw">
-    select *  from SGMW  where (date &gt;=#{date1} and date  &lt;= #{date2})
-    and (name="目标")
-</select>
+    <select id="getAimData" resultType="com.hxzz.demo.entity.Sgmw">
+        select * from SGMW where (date &gt;=#{date1} and date &lt;= #{date2})
+        and (name="目标")
+    </select>
     <select id="getActualData" resultType="com.hxzz.demo.entity.Sgmw">
-    select *  from SGMW  where (date &gt;=#{date1} and date  &lt;= #{date2})
-    and (name="实际")
-</select>
-<insert id="add" >
-    insert into SGMW( name, safe, production, lzc,quality, personnel, energyConsumption, equipment,date)
-    values(#{name},#{safe},#{production},#{lzc},#{quality},#{personnel},#{energyConsumption},#{equipment},#{date})
-</insert>
-<delete id="del">
-    delete  from SGMW where id=#{id}
-</delete>
-    <update id="change" >
-    update SGMW set
-    name=#{name},safe=#{safe},production=#{production},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment},date=#{date} where id=#{id}
-</update>
+        select * from SGMW where (date &gt;=#{date1} and date &lt;= #{date2})
+        and (name="实际")
+    </select>
+    <insert id="add">
+        insert into SGMW( name, safe, production, lzc,quality, personnel, energyConsumption, equipment,date)
+        values(#{name},#{safe},#{production},#{lzc},#{quality},#{personnel},#{energyConsumption},#{equipment},#{date})
+    </insert>
+    <delete id="del">
+        delete from SGMW where id=#{id}
+    </delete>
+    <update id="change">
+        update SGMW set
+        name=#{name},safe=#{safe},production=#{production},lzc=#{lzc},quality=#{quality},personnel=#{personnel},energyConsumption=#{energyConsumption},equipment=#{equipment},date=#{date}
+        where id=#{id}
+    </update>
 </mapper>

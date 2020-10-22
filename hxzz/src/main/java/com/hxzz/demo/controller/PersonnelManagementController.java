@@ -27,7 +27,7 @@ import static java.lang.Integer.parseInt;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author hql
@@ -44,45 +44,48 @@ import static java.lang.Integer.parseInt;
 public class PersonnelManagementController {
     @Autowired
     PersonnelManagementService personnelManagementService;
+
     @RequestMapping("/show")
-    public Result show(){
-        List list=new ArrayList<>();
-        list=personnelManagementService.show();
+    public Result show() {
+        List list = new ArrayList<>();
+        list = personnelManagementService.show();
         return Result.succ(list);
     }
-    @RequestMapping("/showClient")
-    public Result showClient(){
-        List list=new ArrayList<>();
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
 
-        list=personnelManagementService.showClient();
+    @RequestMapping("/showClient")
+    public Result showClient() {
+        List list = new ArrayList<>();
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+
+        list = personnelManagementService.showClient();
         list.add(jsonObject);
         return Result.succ(list);
     }
+
     @RequestMapping("/info")
-    public Result info(@RequestBody Info info){
+    public Result info(@RequestBody Info info) {
 
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(info.getTime1(),dateTimeFormatter);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(info.getTime1(), dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
+        LocalDate date2 = LocalDate.parse(info.getTime2(), dateTimeFormatter);
 
-        PageInfo<PersonnelManagement> pageInfo=personnelManagementService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
+        PageInfo<PersonnelManagement> pageInfo = personnelManagementService.findAll(info.getPageNum(), info.getPageSize(), date1, date2);
 
         return Result.succ(pageInfo);
 
     }
+
     @RequestMapping("/infoClient")
-    public Result infoClient(@RequestBody Date date){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
+    public Result infoClient(@RequestBody Date date) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(date.getTime1(), dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
-        List list=new ArrayList();
+        LocalDate date2 = LocalDate.parse(date.getTime2(), dateTimeFormatter);
+        List list = new ArrayList();
 
-        list=personnelManagementService.infoClient(date1,date2);
+        list = personnelManagementService.infoClient(date1, date2);
         list.add(list);
-
 
 
         return Result.succ(list);
@@ -90,36 +93,36 @@ public class PersonnelManagementController {
     }
 
     @RequestMapping("/delete")
-    public Result delete(@RequestBody List<JSONObject> list){
+    public Result delete(@RequestBody List<JSONObject> list) {
 
-        int size=list.size();
-        for(int i=0;i<size;i++){
-            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-            jsonObject=list.get(i);
-            String Id=jsonObject.getString("id");
-            Integer id=parseInt(Id,10);
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            String Id = jsonObject.getString("id");
+            Integer id = parseInt(Id, 10);
             personnelManagementService.delIN(id);
         }
         return Result.succ("success");
     }
+
     @RequestMapping("/add")
-    public Result add(@RequestBody PersonnelManagement personnelManagement){
-        personnelManagementService.addIN(personnelManagement.getName(),personnelManagement.getEstablishment(),
-                personnelManagement.getActualNumber(),personnelManagement.getAvailableNumber(),
-                personnelManagement.getAttendanceRate(),personnelManagement.getShouldArrive(),
-                personnelManagement.getActualArrive(),personnelManagement.getDate());
+    public Result add(@RequestBody PersonnelManagement personnelManagement) {
+        personnelManagementService.addIN(personnelManagement.getName(), personnelManagement.getEstablishment(),
+                personnelManagement.getActualNumber(), personnelManagement.getAvailableNumber(),
+                personnelManagement.getAttendanceRate(), personnelManagement.getShouldArrive(),
+                personnelManagement.getActualArrive(), personnelManagement.getDate());
         return Result.succ("success");
     }
+
     @RequestMapping("/change")
-    public Result change(@RequestBody PersonnelManagement personnelManagement){
-        personnelManagementService.changeIN(personnelManagement.getId(),personnelManagement.getName(),personnelManagement.getEstablishment(),
-                personnelManagement.getActualNumber(),personnelManagement.getAvailableNumber(),
-                personnelManagement.getAttendanceRate(),personnelManagement.getShouldArrive(),
-                personnelManagement.getActualArrive(),personnelManagement.getDate());
+    public Result change(@RequestBody PersonnelManagement personnelManagement) {
+        personnelManagementService.changeIN(personnelManagement.getId(), personnelManagement.getName(), personnelManagement.getEstablishment(),
+                personnelManagement.getActualNumber(), personnelManagement.getAvailableNumber(),
+                personnelManagement.getAttendanceRate(), personnelManagement.getShouldArrive(),
+                personnelManagement.getActualArrive(), personnelManagement.getDate());
         return Result.succ("success");
     }
-
-
 
 
 }

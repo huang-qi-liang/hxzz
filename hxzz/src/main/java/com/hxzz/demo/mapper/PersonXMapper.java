@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -21,18 +21,25 @@ import java.util.List;
  */
 @Component
 public interface PersonXMapper extends BaseMapper<PersonX> {
-    List <PersonX> show();
-    List <PersonXShow> showClient();
-    PersonXShow Sum();
-    List<PersonX> getData(LocalDate date1,LocalDate date2);
-    List<PersonXShow> getClient(LocalDate date1,LocalDate date2);
-    PersonXShow sumClient(LocalDate date1,LocalDate date2);
+    List<PersonX> show();
 
-    void add( String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-              Integer bereavementLeave,LocalDate date);
+    List<PersonXShow> showClient();
+
+    PersonXShow Sum();
+
+    List<PersonX> getData(LocalDate date1, LocalDate date2);
+
+    List<PersonXShow> getClient(LocalDate date1, LocalDate date2);
+
+    PersonXShow sumClient(LocalDate date1, LocalDate date2);
+
+    void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
+             Integer bereavementLeave, LocalDate date);
+
     void del(Integer id);
-    void change(Integer id,String region,Integer personalLeave, Integer sickLeave, Integer annualLeave,
+
+    void change(Integer id, String region, Integer personalLeave, Integer sickLeave, Integer annualLeave,
                 Integer nursingLeave,
-                Integer bereavementLeave,LocalDate date);
+                Integer bereavementLeave, LocalDate date);
 
 }

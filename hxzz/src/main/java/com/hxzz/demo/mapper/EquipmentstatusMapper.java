@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -20,13 +20,18 @@ import java.util.List;
 @Component
 public interface EquipmentstatusMapper extends BaseMapper<Equipmentstatus> {
     List<Equipmentstatus> show();
+
     List<Equipmentstatus> showClient();
 
     List<Equipmentstatus> info(LocalDate date1, LocalDate date2);
-    List<Equipmentstatus> infoClient(LocalDate date1,LocalDate date2);
+
+    List<Equipmentstatus> infoClient(LocalDate date1, LocalDate date2);
+
     Equipmentstatus showSum();
+
     //计算一段时间的设备故障率
-    Equipmentstatus infoSum(LocalDate date1,LocalDate date2);
+    Equipmentstatus infoSum(LocalDate date1, LocalDate date2);
+
     /* Integer waitingToBeLoadedSum(LocalDate date);
      Integer loopToCrossTheLineSum(LocalDate date);
      Integer bhCirculationSum(LocalDate date);
@@ -34,14 +39,19 @@ public interface EquipmentstatusMapper extends BaseMapper<Equipmentstatus> {
      Integer totalSum(LocalDate date);
 
      */
-    List<Equipment> each(String date,String name);
-    Equipment eachYear(String date,String name);
+    List<Equipment> each(String date, String name);
+
+    Equipment eachYear(String date, String name);
+
     List<Equipment> total(String date);
+
     Equipment totalYear(String date);
 
 
-    void add(String name,Float failureTime,Float officeTime,LocalDate date);
+    void add(String name, Float failureTime, Float officeTime, LocalDate date);
+
     void del(Integer id);
-    void change(Integer id,String name,Float failureTime,Float officeTime,LocalDate date);
+
+    void change(Integer id, String name, Float failureTime, Float officeTime, LocalDate date);
 
 }

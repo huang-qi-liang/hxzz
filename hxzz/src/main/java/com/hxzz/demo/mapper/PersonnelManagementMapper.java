@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -20,20 +20,26 @@ import java.util.List;
 @Component
 public interface PersonnelManagementMapper extends BaseMapper<PersonnelManagement> {
     List<PersonnelManagement> show();
+
     List<PersonnelManagement> showClient();
 
-    List<PersonnelManagement> info(LocalDate date1,LocalDate date2);
-    List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2);
+    List<PersonnelManagement> info(LocalDate date1, LocalDate date2);
+
+    List<PersonnelManagement> infoClient(LocalDate date1, LocalDate date2);
+
     //最新数据集合
     PersonnelManagement showSum();
-    PersonnelManagement infoSum(LocalDate date1,LocalDate date2);
 
-    void add(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
-             Integer shouldArrive,Integer actualArrive,LocalDate date);
+    PersonnelManagement infoSum(LocalDate date1, LocalDate date2);
+
+    void add(String name, Integer establishment, Integer actualNumber, Integer availableNumber, Float attendanceRate,
+             Integer shouldArrive, Integer actualArrive, LocalDate date);
+
     void del(Integer id);
-    void change(Integer id,String name,Integer establishment,Integer actualNumber,Integer availableNumber,
+
+    void change(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
                 Float attendanceRate,
-                Integer shouldArrive,Integer actualArrive,LocalDate date);
+                Integer shouldArrive, Integer actualArrive, LocalDate date);
 
 
 }

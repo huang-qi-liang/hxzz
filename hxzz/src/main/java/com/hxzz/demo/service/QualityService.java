@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -18,20 +18,27 @@ import java.util.List;
  */
 public interface QualityService extends IService<Quality> {
     List<Quality> show();
+
     List<Quality> showClient();
+
     Quality showSum();
-    List<Quality> info(LocalDate date1,LocalDate date2);
-    List<Quality> infoClient(LocalDate date1,LocalDate date2);
-    Quality infoSum(LocalDate date1,LocalDate date2);
+
+    List<Quality> info(LocalDate date1, LocalDate date2);
+
+    List<Quality> infoClient(LocalDate date1, LocalDate date2);
+
+    Quality infoSum(LocalDate date1, LocalDate date2);
+
     List<Quality> month();
 
     void del(Integer id);
-    void add(String name,Float offLine,Float acoffLine,Float dLine,Float acdLine,Float lingYu,Float aclingYu,
-             Float careLine,Float accareLine,Float roadTest,Float acroadTest,
+
+    void add(String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
+             Float careLine, Float accareLine, Float roadTest, Float acroadTest,
              LocalDate date);
 
-    void change(Integer id,String name,Float offLine,Float acoffLine,Float dLine,Float acdLine,Float lingYu,Float aclingYu,
-                Float careLine,Float accareLine,Float roadTest,Float acroadTest,
+    void change(Integer id, String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
+                Float careLine, Float accareLine, Float roadTest, Float acroadTest,
                 LocalDate date);
 
     PageInfo<Quality> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);

@@ -23,7 +23,7 @@ import static java.lang.Integer.parseInt;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author hql
@@ -41,23 +41,22 @@ public class Quality4Controller {
     Quality4Package quality4Package;
 
     @RequestMapping("/showClient")
-    public Result showClient(){
-     JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        jsonObject=quality4Package.showPackage();
+    public Result showClient() {
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        jsonObject = quality4Package.showPackage();
         return Result.succ(jsonObject);
     }
 
 
-
     @RequestMapping("/infoClient")
-    public Result infoClient(@RequestParam(value="time1",required =false) String time1, @RequestParam(value="time2",
-            required = false) String time2){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(time1,dateTimeFormatter);
+    public Result infoClient(@RequestParam(value = "time1", required = false) String time1, @RequestParam(value = "time2",
+            required = false) String time2) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(time1, dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(time2,dateTimeFormatter);
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        jsonObject=quality4Package.infoPackage(date1,date2);
+        LocalDate date2 = LocalDate.parse(time2, dateTimeFormatter);
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        jsonObject = quality4Package.infoPackage(date1, date2);
         return Result.succ(jsonObject);
 
     }

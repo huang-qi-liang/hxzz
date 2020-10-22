@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -19,16 +19,25 @@ import java.util.List;
  */
 public interface ScglService extends IService<Scgl> {
     List<Scgl> show();
+
     List<ScglShow> showClient();
+
     ScglShow showSum();
+
     List<Scgl> info(LocalDate date1, LocalDate date2);
-    List<ScglShow> infoClient(LocalDate date1,LocalDate date2);
-    ScglShow infoSum(LocalDate date1,LocalDate date2);
-    void add(String name,Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
-             Float beat,LocalDate date);
+
+    List<ScglShow> infoClient(LocalDate date1, LocalDate date2);
+
+    ScglShow infoSum(LocalDate date1, LocalDate date2);
+
+    void add(String name, Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
+             Float beat, LocalDate date);
+
     void del(Integer id);
-    void change(Integer id,String name,Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
-                Float beat,LocalDate date);
+
+    void change(Integer id, String name, Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
+                Float beat, LocalDate date);
+
     PageInfo<Scgl> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

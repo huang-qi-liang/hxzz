@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 关注公众号：MarkerHub
@@ -19,11 +19,12 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-@Autowired
-private UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public User loginIN(String username, String password) {
-        return userMapper.getInfo(username,password);
+        return userMapper.getInfo(username, password);
     }
   /* @Override
 

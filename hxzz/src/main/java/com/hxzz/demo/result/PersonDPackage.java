@@ -21,28 +21,30 @@ public class PersonDPackage {
     PersonDService personDService;
     @Autowired
     PersonDPackage personDPackage;
-    public  JSONObject showClientPackage(){
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        jsonObject.put("region","合计");
-        jsonObject.put("personalLeave",personDService.Sum().getPersonalLeave());
-        jsonObject.put("sickLeave",personDService.Sum().getSickLeave());
-        jsonObject.put("annualLeave",personDService.Sum().getAnnualLeave());
-        jsonObject.put( "nursingLeave",personDService.Sum().getNursingLeave());
-        jsonObject.put("bereavementLeave",personDService.Sum().getBereavementLeave());
-        jsonObject.put("total",personDService.Sum().getTotal());
-        jsonObject.put("date",personDService.Sum().getDate());
+
+    public JSONObject showClientPackage() {
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        jsonObject.put("region", "合计");
+        jsonObject.put("personalLeave", personDService.Sum().getPersonalLeave());
+        jsonObject.put("sickLeave", personDService.Sum().getSickLeave());
+        jsonObject.put("annualLeave", personDService.Sum().getAnnualLeave());
+        jsonObject.put("nursingLeave", personDService.Sum().getNursingLeave());
+        jsonObject.put("bereavementLeave", personDService.Sum().getBereavementLeave());
+        jsonObject.put("total", personDService.Sum().getTotal());
+        jsonObject.put("date", personDService.Sum().getDate());
         return jsonObject;
     }
-    public  JSONObject ClientPackage(LocalDate date1,LocalDate date2){
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        jsonObject.put("region","合计");
-        jsonObject.put("personalLeave",personDService.sumClient(date1,date2).getPersonalLeave());
-        jsonObject.put("sickLeave",personDService.sumClient(date1,date2).getSickLeave());
-        jsonObject.put("annualLeave",personDService.sumClient(date1,date2).getAnnualLeave());
-        jsonObject.put( "nursingLeave",personDService.sumClient(date1,date2).getNursingLeave());
-        jsonObject.put("bereavementLeave",personDService.sumClient(date1,date2).getBereavementLeave());
-        jsonObject.put("total",personDService.sumClient(date1,date2).getTotal());
-        jsonObject.put("date",personDService.sumClient(date1,date2).getDate());
+
+    public JSONObject ClientPackage(LocalDate date1, LocalDate date2) {
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        jsonObject.put("region", "合计");
+        jsonObject.put("personalLeave", personDService.sumClient(date1, date2).getPersonalLeave());
+        jsonObject.put("sickLeave", personDService.sumClient(date1, date2).getSickLeave());
+        jsonObject.put("annualLeave", personDService.sumClient(date1, date2).getAnnualLeave());
+        jsonObject.put("nursingLeave", personDService.sumClient(date1, date2).getNursingLeave());
+        jsonObject.put("bereavementLeave", personDService.sumClient(date1, date2).getBereavementLeave());
+        jsonObject.put("total", personDService.sumClient(date1, date2).getTotal());
+        jsonObject.put("date", personDService.sumClient(date1, date2).getDate());
         return jsonObject;
     }
    /* public List PersonDList(LocalDate date1, LocalDate date2) {

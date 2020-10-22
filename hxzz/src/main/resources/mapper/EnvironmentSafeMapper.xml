@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.EnvironmentSafeMapper">
     <select id="show" resultType="com.hxzz.demo.entity.EnvironmentSafe">
-        select * from EnvironmentSafe where date=	( select MAX(date) as date from EnvironmentSafe) order by id DESC
+        select * from EnvironmentSafe where date= ( select MAX(date) as date from EnvironmentSafe) order by id DESC
     </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.EnvironmentSafe">
         select sum(grey)as grey,sum(red) as red,sum(black) as black,date from EnvironmentSafe where
-            CONVERT(varchar(7),date, 120 ) = #{date} group by date
+        CONVERT(varchar(7),date, 120 ) = #{date} group by date
     </select>
     <select id="showSum" resultType="com.hxzz.demo.entity.EnvironmentSafe">
-        select sum(grey)+sum(red)+sum(black) as red from EnvironmentSafe where date=	( select MAX(date) as date from
-            EnvironmentSafe)
+        select sum(grey)+sum(red)+sum(black) as red from EnvironmentSafe where date= ( select MAX(date) as date from
+        EnvironmentSafe)
     </select>
     <select id="infoSum" resultType="com.hxzz.demo.entity.EnvironmentSafe">
         select sum(grey)+sum(red)+sum(black) as red from EnvironmentSafe where date>=#{date1} and date &lt;= #{date2}
@@ -24,15 +24,15 @@
     </select>
 
     <insert id="add">
-        insert into EnvironmentSafe(  grey,   red, black, date) values
-            (#{grey},#{red},#{black},#{date})
+        insert into EnvironmentSafe( grey, red, black, date) values
+        (#{grey},#{red},#{black},#{date})
     </insert>
     <delete id="del">
-        delete from EnvironmentSafe where  id=#{id}
+        delete from EnvironmentSafe where id=#{id}
     </delete>
     <update id="change">
         update EnvironmentSafe set
-                        grey=#{grey},red=#{red},black=#{black},date=#{date}
+        grey=#{grey},red=#{red},black=#{black},date=#{date}
         where id=#{id}
     </update>
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -18,13 +18,20 @@ import java.util.List;
 @Component
 public interface EnvironmentSafeMapper extends BaseMapper<EnvironmentSafe> {
     List<EnvironmentSafe> showClient(String date);
+
     List<EnvironmentSafe> show();
+
     List<EnvironmentSafe> info(LocalDate date1, LocalDate date2);
+
     EnvironmentSafe showSum();
-    EnvironmentSafe infoSum(LocalDate date1,LocalDate date2);
-    List<EnvironmentSafe> amount(LocalDate date1,LocalDate date2);
+
+    EnvironmentSafe infoSum(LocalDate date1, LocalDate date2);
+
+    List<EnvironmentSafe> amount(LocalDate date1, LocalDate date2);
 
     void del(Integer id);
-    void add(Integer grey,Integer red,Integer black,LocalDate date);
+
+    void add(Integer grey, Integer red, Integer black, LocalDate date);
+
     void change(Integer id, Integer grey, Integer red, Integer black, LocalDate date);
 }

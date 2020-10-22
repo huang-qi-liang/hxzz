@@ -28,7 +28,7 @@ import static java.lang.Integer.parseInt;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author hql
@@ -48,68 +48,73 @@ public class SafeController {
     SafePackage safePackage;
 
     @RequestMapping("/show")
-    public Result show(){
-        List list=new ArrayList<>();
-        list=safeService.show();
+    public Result show() {
+        List list = new ArrayList<>();
+        list = safeService.show();
         return Result.succ(list);
     }
+
     @RequestMapping("/showClient")
-    public Result showClient(){
-        LocalDate localDate=LocalDate.now();
+    public Result showClient() {
+        LocalDate localDate = LocalDate.now();
         System.out.println(localDate);
-        String stringTime=localDate.toString().substring(0,7);
-        List list=new ArrayList<>();
+        String stringTime = localDate.toString().substring(0, 7);
+        List list = new ArrayList<>();
 
-        int size=safeService.showClient(stringTime).size();
-        list=safePackage.showPackage(safeService.showClient(stringTime),size);
+        int size = safeService.showClient(stringTime).size();
+        list = safePackage.showPackage(safeService.showClient(stringTime), size);
         return Result.succ(list);
 
     }
+
     @RequestMapping("/info")
-    public Result info(@RequestBody Info info){
+    public Result info(@RequestBody Info info) {
 
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(info.getTime1(),dateTimeFormatter);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(info.getTime1(), dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
+        LocalDate date2 = LocalDate.parse(info.getTime2(), dateTimeFormatter);
 
-        PageInfo<Safe> pageInfo=safeService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
+        PageInfo<Safe> pageInfo = safeService.findAll(info.getPageNum(), info.getPageSize(), date1, date2);
 
         return Result.succ(pageInfo);
 
     }
 
     @RequestMapping("/infoClient")
-    public Result infoClient(@RequestBody Time time){
-        List list=new ArrayList<>();
+    public Result infoClient(@RequestBody Time time) {
+        List list = new ArrayList<>();
 
 
-        int size=safeService.showClient(time.getTime()).size();
-        list=safePackage.showPackage(safeService.showClient(time.getTime()),size);
+        int size = safeService.showClient(time.getTime()).size();
+        list = safePackage.showPackage(safeService.showClient(time.getTime()), size);
         return Result.succ(list);
 
     }
-    @RequestMapping("/delete")
-    public Result delete(@RequestBody List<JSONObject> list){
 
-        int size=list.size();
-        for(int i=0;i<size;i++){
-            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-            jsonObject=list.get(i);
-            String Id=jsonObject.getString("id");
-            Integer id=parseInt(Id,10);
+    @RequestMapping("/delete")
+    public Result delete(@RequestBody List<JSONObject> list) {
+
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            String Id = jsonObject.getString("id");
+            Integer id = parseInt(Id, 10);
             safeService.del(id);
         }
         return Result.succ("success");
     }
+
     @RequestMapping("/add")
-    public Result add(@RequestBody Safe safe){
-        safeService.add(safe.getGrey(),safe.getBlue(),safe.getYellow(),safe.getRed(),safe.getDate());
+    public Result add(@RequestBody Safe safe) {
+        safeService.add(safe.getGrey(), safe.getBlue(), safe.getYellow(), safe.getRed(), safe.getDate());
         return Result.succ("success");
     }
+
     @RequestMapping("/change")
-    public Result change(@RequestBody Safe safe){
-       safeService.change(safe.getId(),safe.getGrey(),safe.getBlue(),safe.getYellow(),safe.getRed(),safe.getDate());
+    public Result change(@RequestBody Safe safe) {
+        safeService.change(safe.getId(), safe.getGrey(), safe.getBlue(), safe.getYellow(), safe.getRed(), safe.getDate());
         return Result.succ("success");
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -18,9 +18,13 @@ import java.util.List;
  */
 public interface Quality4Service extends IService<Quality4> {
     Quality4 show();
+
     List<Quality4> getData(LocalDate date1, LocalDate date2);
-    void add(Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity,LocalDate date);
+
+    void add(Float target, Float actual, Float responsibility, Float InterceptionProblem, Float quantity, LocalDate date);
+
     void del(Integer id);
-    void change(Integer id,Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity,LocalDate date);
+
+    void change(Integer id, Float target, Float actual, Float responsibility, Float InterceptionProblem, Float quantity, LocalDate date);
 
 }

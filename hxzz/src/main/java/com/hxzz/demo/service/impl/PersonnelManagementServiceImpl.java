@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author hql
@@ -25,33 +25,56 @@ import java.util.List;
  */
 @Service
 public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagementMapper, PersonnelManagement> implements PersonnelManagementService {
-@Autowired
-PersonnelManagementMapper personnelManagementMapper;
-    public List<PersonnelManagement> show(){return personnelManagementMapper.show();}
-    public List<PersonnelManagement> showClient(){return personnelManagementMapper.showClient();}
+    @Autowired
+    PersonnelManagementMapper personnelManagementMapper;
 
-    public List<PersonnelManagement> info(LocalDate date1,LocalDate date2){return personnelManagementMapper.info(date1,date2);}
-    public List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2){return personnelManagementMapper.infoClient(date1,date2);}
-    public PersonnelManagement showSum(){return personnelManagementMapper.showSum();}
-    public PersonnelManagement infoSum(LocalDate date1,LocalDate date2){return personnelManagementMapper.infoSum(date1, date2);}
-  public   void addIN(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
-               Integer shouldArrive,Integer actualArrive,LocalDate date){
-      personnelManagementMapper.add(name, establishment, actualNumber, availableNumber, attendanceRate,
-              shouldArrive,actualArrive,date);
-  }
-   public void delIN(Integer id){
-    personnelManagementMapper.del(id);
-   };
-  public   void changeIN(Integer id,String name,Integer establishment,Integer actualNumber,Integer availableNumber,
-                  Float attendanceRate,
-                  Integer shouldArrive,Integer actualArrive,LocalDate date){
-      personnelManagementMapper.change(id,name, establishment, actualNumber, availableNumber, attendanceRate,
-              shouldArrive,actualArrive,date);
-  }
-    public PageInfo<PersonnelManagement> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
-        PageHelper.startPage(pageNum,pageSize);
-        List<PersonnelManagement> list=personnelManagementMapper.info(date1,date2);
-        PageInfo<PersonnelManagement> pageInfo=new PageInfo<PersonnelManagement>(list);
+    public List<PersonnelManagement> show() {
+        return personnelManagementMapper.show();
+    }
+
+    public List<PersonnelManagement> showClient() {
+        return personnelManagementMapper.showClient();
+    }
+
+    public List<PersonnelManagement> info(LocalDate date1, LocalDate date2) {
+        return personnelManagementMapper.info(date1, date2);
+    }
+
+    public List<PersonnelManagement> infoClient(LocalDate date1, LocalDate date2) {
+        return personnelManagementMapper.infoClient(date1, date2);
+    }
+
+    public PersonnelManagement showSum() {
+        return personnelManagementMapper.showSum();
+    }
+
+    public PersonnelManagement infoSum(LocalDate date1, LocalDate date2) {
+        return personnelManagementMapper.infoSum(date1, date2);
+    }
+
+    public void addIN(String name, Integer establishment, Integer actualNumber, Integer availableNumber, Float attendanceRate,
+                      Integer shouldArrive, Integer actualArrive, LocalDate date) {
+        personnelManagementMapper.add(name, establishment, actualNumber, availableNumber, attendanceRate,
+                shouldArrive, actualArrive, date);
+    }
+
+    public void delIN(Integer id) {
+        personnelManagementMapper.del(id);
+    }
+
+    ;
+
+    public void changeIN(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
+                         Float attendanceRate,
+                         Integer shouldArrive, Integer actualArrive, LocalDate date) {
+        personnelManagementMapper.change(id, name, establishment, actualNumber, availableNumber, attendanceRate,
+                shouldArrive, actualArrive, date);
+    }
+
+    public PageInfo<PersonnelManagement> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<PersonnelManagement> list = personnelManagementMapper.info(date1, date2);
+        PageInfo<PersonnelManagement> pageInfo = new PageInfo<PersonnelManagement>(list);
         return pageInfo;
     }
 }

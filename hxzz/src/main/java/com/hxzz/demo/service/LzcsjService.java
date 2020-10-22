@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -20,17 +20,27 @@ import java.util.List;
  */
 public interface LzcsjService extends IService<Lzcsj> {
     List<Lzcsj> show();
+
     List<Lzcsj> showClient();
+
     Lzcsj showSum();
-    List<Lzcsj> info(LocalDate date1,LocalDate date2);
-    List<Lzcsj> infoClient(LocalDate date1,LocalDate date2);
-    Lzcsj infoSum(LocalDate date1,LocalDate date2);
+
+    List<Lzcsj> info(LocalDate date1, LocalDate date2);
+
+    List<Lzcsj> infoClient(LocalDate date1, LocalDate date2);
+
+    Lzcsj infoSum(LocalDate date1, LocalDate date2);
+
     List<Lzcsj> amount(LocalDate date1, LocalDate date2);
-    void add(String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-             Integer actualCirculation,LocalDate date);
+
+    void add(String name, Integer waitingToBeLoaded, Integer loopToCrossTheLine, Integer bhCirculation,
+             Integer actualCirculation, LocalDate date);
+
     void del(Integer id);
-    void change(Integer id,String name,Integer waitingToBeLoaded,Integer loopToCrossTheLine,Integer bhCirculation,
-                Integer actualCirculation,LocalDate date);
+
+    void change(Integer id, String name, Integer waitingToBeLoaded, Integer loopToCrossTheLine, Integer bhCirculation,
+                Integer actualCirculation, LocalDate date);
+
     PageInfo<Lzcsj> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

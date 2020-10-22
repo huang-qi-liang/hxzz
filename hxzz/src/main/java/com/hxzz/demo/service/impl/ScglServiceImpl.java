@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author hql
@@ -25,26 +25,55 @@ import java.util.List;
  */
 @Service
 public class ScglServiceImpl extends ServiceImpl<ScglMapper, Scgl> implements ScglService {
-    @Autowired ScglMapper scglMapper;
+    @Autowired
+    ScglMapper scglMapper;
+
     @Override
-    public List<Scgl> show(){return scglMapper.show();}
-    public List<ScglShow> showClient(){return  scglMapper.showClient();}
-    public ScglShow showSum(){return  scglMapper.showSum();}
-    public List<Scgl> info(LocalDate date1, LocalDate date2){return  scglMapper.info(date1,date2);}
-    public List<ScglShow> infoClient(LocalDate date1,LocalDate date2){return scglMapper.infoClient(date1,date2);}
-    public ScglShow infoSum(LocalDate date1,LocalDate date2){return  scglMapper.infoSum(date1,date2);}
-  public   void add(String name,Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
-             Float beat,LocalDate date){scglMapper.add(name, targetCapacity, actualCapacity, targetEfficiency,
-          workingHours, beat,date);}
-  public   void del(Integer id){scglMapper.del(id);}
-  public   void change(Integer id,String name,Integer targetCapacity, Float actualCapacity, Float targetEfficiency,
-                 Float workingHours,
-                Float beat,LocalDate date){scglMapper.change(id, name, targetCapacity, actualCapacity,
-          targetEfficiency, workingHours, beat,date);}
-    public PageInfo<Scgl> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Scgl> list=scglMapper.info(date1,date2);
-        PageInfo<Scgl> pageInfo=new PageInfo<Scgl>(list);
+    public List<Scgl> show() {
+        return scglMapper.show();
+    }
+
+    public List<ScglShow> showClient() {
+        return scglMapper.showClient();
+    }
+
+    public ScglShow showSum() {
+        return scglMapper.showSum();
+    }
+
+    public List<Scgl> info(LocalDate date1, LocalDate date2) {
+        return scglMapper.info(date1, date2);
+    }
+
+    public List<ScglShow> infoClient(LocalDate date1, LocalDate date2) {
+        return scglMapper.infoClient(date1, date2);
+    }
+
+    public ScglShow infoSum(LocalDate date1, LocalDate date2) {
+        return scglMapper.infoSum(date1, date2);
+    }
+
+    public void add(String name, Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
+                    Float beat, LocalDate date) {
+        scglMapper.add(name, targetCapacity, actualCapacity, targetEfficiency,
+                workingHours, beat, date);
+    }
+
+    public void del(Integer id) {
+        scglMapper.del(id);
+    }
+
+    public void change(Integer id, String name, Integer targetCapacity, Float actualCapacity, Float targetEfficiency,
+                       Float workingHours,
+                       Float beat, LocalDate date) {
+        scglMapper.change(id, name, targetCapacity, actualCapacity,
+                targetEfficiency, workingHours, beat, date);
+    }
+
+    public PageInfo<Scgl> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Scgl> list = scglMapper.info(date1, date2);
+        PageInfo<Scgl> pageInfo = new PageInfo<Scgl>(list);
         return pageInfo;
     }
 

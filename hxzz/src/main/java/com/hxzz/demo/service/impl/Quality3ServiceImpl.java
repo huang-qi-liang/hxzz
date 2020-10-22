@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author hql
@@ -25,19 +25,40 @@ import java.util.List;
 public class Quality3ServiceImpl extends ServiceImpl<Quality3Mapper, Quality3> implements Quality3Service {
     @Autowired
     Quality3Mapper quality3Mapper;
-    public List<Quality3> show(){return quality3Mapper.show();}
-    public List<Quality3> showClient(){return quality3Mapper.showClient();}
 
-    public List<Quality3> info(LocalDate date1,LocalDate date2){return quality3Mapper.info(date1,date2);}
-   public List<Quality3> infoClient(LocalDate date1,LocalDate date2){return quality3Mapper.infoClient(date1,date2);}
-  public   void add(String name,Integer DC,Integer DD,Integer XB,Integer XC,LocalDate date){quality3Mapper.add(name,
-          DC, DD, XB, XC,date);}
-   public void del(Integer id){quality3Mapper.del(id);}
-   public void change(Integer id,String name,Integer DC,Integer DD,Integer XB,Integer XC,LocalDate date){quality3Mapper.change(id, name, DC, DD, XB, XC,date);}
-    public PageInfo<Quality3> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Quality3> list=quality3Mapper.info(date1,date2);
-        PageInfo<Quality3> pageInfo=new PageInfo<Quality3>(list);
+    public List<Quality3> show() {
+        return quality3Mapper.show();
+    }
+
+    public List<Quality3> showClient() {
+        return quality3Mapper.showClient();
+    }
+
+    public List<Quality3> info(LocalDate date1, LocalDate date2) {
+        return quality3Mapper.info(date1, date2);
+    }
+
+    public List<Quality3> infoClient(LocalDate date1, LocalDate date2) {
+        return quality3Mapper.infoClient(date1, date2);
+    }
+
+    public void add(String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date) {
+        quality3Mapper.add(name,
+                DC, DD, XB, XC, date);
+    }
+
+    public void del(Integer id) {
+        quality3Mapper.del(id);
+    }
+
+    public void change(Integer id, String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date) {
+        quality3Mapper.change(id, name, DC, DD, XB, XC, date);
+    }
+
+    public PageInfo<Quality3> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Quality3> list = quality3Mapper.info(date1, date2);
+        PageInfo<Quality3> pageInfo = new PageInfo<Quality3>(list);
         return pageInfo;
     }
 

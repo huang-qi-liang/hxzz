@@ -16,30 +16,34 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @ServerEndpoint("/websocket/{code}")
 public class WebSocket {
     private Session session;
-    private  static CopyOnWriteArraySet<WebSocket> webSockets=new CopyOnWriteArraySet<>();
-    private static Map<String,Session> sessionPool= new HashMap<String, Session>();
-    @OnOpen
-    public void onOpen(Session session, @PathParam(value="code")String code){
-        this.session=session;
-        webSockets.add(this);
-        sessionPool.put(code,session);
+    private static CopyOnWriteArraySet<WebSocket> webSockets = new CopyOnWriteArraySet<>();
+    private static Map<String, Session> sessionPool = new HashMap<String, Session>();
 
-        System.out.println("【websocket消息】有新的连接，总数为:"+webSockets.size());
+    @OnOpen
+    public void onOpen(Session session, @PathParam(value = "code") String code) {
+        this.session = session;
+        webSockets.add(this);
+        sessionPool.put(code, session);
+
+        System.out.println("【websocket消息】有新的连接，总数为:" + webSockets.size());
 
     }
+
     @OnClose
     public void onClose() {
         webSockets.remove(this);
 
-        System.out.println("【websocket消息】连接断开，总数为:"+webSockets.size());
+        System.out.println("【websocket消息】连接断开，总数为:" + webSockets.size());
     }
+
     @OnMessage
     public void onMessage(String message) {
-        System.out.println("【websocket消息】收到客户端消息:"+message);
+        System.out.println("【websocket消息】收到客户端消息:" + message);
     }
+
     public void sendAllMessage(String message) {
-        for(WebSocket webSocket : webSockets) {
-            System.out.println("【websocket消息】广播消息:"+message);
+        for (WebSocket webSocket : webSockets) {
+            System.out.println("【websocket消息】广播消息:" + message);
             try {
                 webSocket.session.getAsyncRemote().sendText(message);
             } catch (Exception e) {

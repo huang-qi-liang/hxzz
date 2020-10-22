@@ -2,39 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.PersonnelManagementMapper">
     <select id="show" resultType="com.hxzz.demo.entity.PersonnelManagement">
-select * from PersonnelManagement  where date=( select MAX(date) as date from PersonnelManagement) order
-         by name,id DESC
-   </select>
+        select * from PersonnelManagement where date=( select MAX(date) as date from PersonnelManagement) order
+        by name,id DESC
+    </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.PersonnelManagement">
-select name,sum(establishment) as establishment,sum(actualNumber) as actualNumber,sum(availableNumber) as
-availableNumber,sum(attendanceRate) as attendanceRate,sum(shouldArrive) as shouldArrive,sum(actualArrive) as
-actualArrive,date from PersonnelManagement   where date=( select MAX(date) as date from PersonnelManagement)  group by
-date,name
+        select name,sum(establishment) as establishment,sum(actualNumber) as actualNumber,sum(availableNumber) as
+        availableNumber,sum(attendanceRate) as attendanceRate,sum(shouldArrive) as shouldArrive,sum(actualArrive) as
+        actualArrive,date from PersonnelManagement where date=( select MAX(date) as date from PersonnelManagement) group
+        by
+        date,name
     </select>
     <select id="showSum" resultType="com.hxzz.demo.entity.PersonnelManagement">
-select sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement  where date=(
-				  select MAX(date) as date from PersonnelManagement)
+        select sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement where date=(
+        select MAX(date) as date from PersonnelManagement)
     </select>
     <select id="infoSum" resultType="com.hxzz.demo.entity.PersonnelManagement">
-      select sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement  where date>=#{date1} and date &lt;= #{date2}
+        select sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement where
+        date>=#{date1} and date &lt;= #{date2}
     </select>
 
     <select id="info" resultType="com.hxzz.demo.entity.PersonnelManagement">
-         select * from PersonnelManagement where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+        select * from PersonnelManagement where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.PersonnelManagement">
-        select name,sum(establishment) as establishment,sum(actualNumber) as actualNumber,sum(availableNumber) as availableNumber,sum(attendanceRate) as attendanceRate,sum(shouldArrive) as shouldArrive,sum(actualArrive) as actualArrive from PersonnelManagement    where (date&gt;=#{date1} and date&lt;= #{date2})  group by name
+        select name,sum(establishment) as establishment,sum(actualNumber) as actualNumber,sum(availableNumber) as
+        availableNumber,sum(attendanceRate) as attendanceRate,sum(shouldArrive) as shouldArrive,sum(actualArrive) as
+        actualArrive from PersonnelManagement where (date&gt;=#{date1} and date&lt;= #{date2}) group by name
     </select>
-<insert id="add">
-insert into PersonnelManagement( name, establishment, actualNumber, availableNumber, attendanceRate,
-              shouldArrive,actualArrive,date) values(#{name},#{establishment},#{actualNumber},#{ availableNumber},#{ attendanceRate},#{shouldArrive},#{actualArrive},#{date})
-</insert>
-<update id="change" >
-    update PersonnelManagement
-    set
-    name=#{name},establishment=#{establishment},actualNumber=#{actualNumber},availableNumber=#{ availableNumber},attendanceRate=#{ attendanceRate},shouldArrive=#{shouldArrive},actualArrive=#{actualArrive},date=#{date}  where id=#{id}
-</update>
-<delete id="del"  >
-    delete from PersonnelManagement where id=#{id}
-</delete>
+    <insert id="add">
+        insert into PersonnelManagement( name, establishment, actualNumber, availableNumber, attendanceRate,
+        shouldArrive,actualArrive,date)
+        values(#{name},#{establishment},#{actualNumber},#{ availableNumber},#{ attendanceRate},#{shouldArrive},#{actualArrive},#{date})
+    </insert>
+    <update id="change">
+        update PersonnelManagement
+        set
+        name=#{name},establishment=#{establishment},actualNumber=#{actualNumber},availableNumber=#{ availableNumber},attendanceRate=#{ attendanceRate},shouldArrive=#{shouldArrive},actualArrive=#{actualArrive},date=#{date}
+        where id=#{id}
+    </update>
+    <delete id="del">
+        delete from PersonnelManagement where id=#{id}
+    </delete>
 </mapper>

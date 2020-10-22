@@ -9,6 +9,7 @@ public class Result implements Serializable {
     private int code;
     private String msg;
     private Object data;
+
     public static Result succ(Object data) {
         Result m = new Result();
         m.setCode(200);
@@ -16,6 +17,7 @@ public class Result implements Serializable {
         m.setMsg("操作成功");
         return m;
     }
+
     public static Result succ(String mess, Object data) {
         Result m = new Result();
         m.setCode(200);
@@ -23,13 +25,15 @@ public class Result implements Serializable {
         m.setMsg(mess);
         return m;
     }
-    public static Result succ(int code,String mess, Object data) {
+
+    public static Result succ(int code, String mess, Object data) {
         Result m = new Result();
         m.setCode(code);
         m.setData(data);
         m.setMsg(mess);
         return m;
     }
+
     public static Result fail(String mess) {
         Result m = new Result();
         m.setCode(400);
@@ -37,6 +41,7 @@ public class Result implements Serializable {
         m.setMsg(mess);
         return m;
     }
+
     public static Result fail(String mess, Object data) {
         Result m = new Result();
         m.setCode(400);
@@ -44,7 +49,8 @@ public class Result implements Serializable {
         m.setMsg(mess);
         return m;
     }
-    public static Result fail(int code,String mess, Object data) {
+
+    public static Result fail(int code, String mess, Object data) {
         Result m = new Result();
         m.setCode(code);
         m.setData(data);

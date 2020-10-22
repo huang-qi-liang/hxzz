@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 关注公众号：MarkerHub
@@ -30,9 +30,7 @@ public class User implements Serializable {
 
     private String username;
 
-      private String password;
-
-
+    private String password;
 
 
 }

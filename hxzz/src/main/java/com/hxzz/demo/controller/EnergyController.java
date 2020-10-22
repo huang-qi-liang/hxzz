@@ -27,7 +27,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author hql
@@ -47,52 +47,54 @@ public class EnergyController {
     EnergyPackage energyPackage;
 
     @RequestMapping("/show")
-    public Result show(){
-        List list=new ArrayList<>();
-        list=energyService.show();
+    public Result show() {
+        List list = new ArrayList<>();
+        list = energyService.show();
         return Result.succ(list);
     }
-    @RequestMapping("/showClient")
-    public Result showClient(){
-        List list=new ArrayList<>();
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
 
-        jsonObject=energyPackage.EnergyPackage();
+    @RequestMapping("/showClient")
+    public Result showClient() {
+        List list = new ArrayList<>();
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+
+        jsonObject = energyPackage.EnergyPackage();
         return Result.succ(jsonObject);
     }
+
     @RequestMapping("/info")
-    public Result info(@RequestBody Info info){
+    public Result info(@RequestBody Info info) {
 
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(info.getTime1(),dateTimeFormatter);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(info.getTime1(), dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(info.getTime2(),dateTimeFormatter);
+        LocalDate date2 = LocalDate.parse(info.getTime2(), dateTimeFormatter);
 
-        PageInfo<Energy> pageInfo=energyService.findAll(info.getPageNum(),info.getPageSize(),date1,date2);
+        PageInfo<Energy> pageInfo = energyService.findAll(info.getPageNum(), info.getPageSize(), date1, date2);
 
         return Result.succ(pageInfo);
 
     }
+
     @RequestMapping("/infoClient")
-    public Result infoClient(@RequestBody Date date){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
+    public Result infoClient(@RequestBody Date date) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(date.getTime1(), dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
+        LocalDate date2 = LocalDate.parse(date.getTime2(), dateTimeFormatter);
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
 
-        jsonObject=energyPackage.infoPackage(date1,date2);
-
-
+        jsonObject = energyPackage.infoPackage(date1, date2);
 
 
         return Result.succ(jsonObject);
 
     }
+
     @RequestMapping("/add")
-    public Result add(@RequestBody Energy energy){
-        energyService.add(energy.getName(),energy.getStandardsWater(),energy.getWater(),
-                energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas(),
+    public Result add(@RequestBody Energy energy) {
+        energyService.add(energy.getName(), energy.getStandardsWater(), energy.getWater(),
+                energy.getStandardsElectricity(), energy.getElectricity(), energy.getStandardsGas(), energy.getGas(),
                 energy.getDate());
         /*
         JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
@@ -109,21 +111,23 @@ public class EnergyController {
         return Result.succ("success");
 
     }
-    @RequestMapping("/delete")
-    public Result delete(@RequestBody List<JSONObject> list){
 
-        int size=list.size();
-        for(int i=0;i<size;i++){
-            JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-            jsonObject=list.get(i);
-            String Id=jsonObject.getString("id");
-            Integer id=parseInt(Id,10);
+    @RequestMapping("/delete")
+    public Result delete(@RequestBody List<JSONObject> list) {
+
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            String Id = jsonObject.getString("id");
+            Integer id = parseInt(Id, 10);
             energyService.del(id);
         }
         return Result.succ("success");
     }
-   @RequestMapping("/change")
-    public Result change(@RequestBody Energy energy){
+
+    @RequestMapping("/change")
+    public Result change(@RequestBody Energy energy) {
         /*
        JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
        jsondata=jsonObject.getJSONObject("data");
@@ -137,29 +141,29 @@ public class EnergyController {
         return "success";
 
          */
-        energyService.change(energy.getId(),energy.getName(),energy.getStandardsWater(),energy.getWater(),
-                energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas(),
+        energyService.change(energy.getId(), energy.getName(), energy.getStandardsWater(), energy.getWater(),
+                energy.getStandardsElectricity(), energy.getElectricity(), energy.getStandardsGas(), energy.getGas(),
                 energy.getDate());
         return Result.succ("success");
 
-   }
+    }
 
-@RequestMapping("/save")
-    public Result save(@RequestBody Energy energy){
+    @RequestMapping("/save")
+    public Result save(@RequestBody Energy energy) {
         log.println(energy);
-        if(energy.getId()==null){
-            energyService.add(energy.getName(),energy.getStandardsWater(),energy.getWater(),
-                    energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas()
-                    ,energy.getDate());
+        if (energy.getId() == null) {
+            energyService.add(energy.getName(), energy.getStandardsWater(), energy.getWater(),
+                    energy.getStandardsElectricity(), energy.getElectricity(), energy.getStandardsGas(), energy.getGas()
+                    , energy.getDate());
 
+        } else {
+            energyService.change(energy.getId(), energy.getName(), energy.getStandardsWater(), energy.getWater(),
+                    energy.getStandardsElectricity(), energy.getElectricity(), energy.getStandardsGas(), energy.getGas()
+                    , energy.getDate());
+            return Result.succ("success");
         }
-        else{
-            energyService.change(energy.getId(),energy.getName(),energy.getStandardsWater(),energy.getWater(),
-                    energy.getStandardsElectricity(),energy.getElectricity(),energy.getStandardsGas(),energy.getGas()
-                    ,energy.getDate());
-    return Result.succ("success");}
         return Result.succ("success");
 
-}
+    }
 
 }

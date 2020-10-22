@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -19,18 +19,26 @@ import java.util.List;
  */
 public interface PersonnelManagementService extends IService<PersonnelManagement> {
     List<PersonnelManagement> show();
+
     List<PersonnelManagement> showClient();
 
-    List<PersonnelManagement> info(LocalDate date1,LocalDate date2);
-    List<PersonnelManagement> infoClient(LocalDate date1,LocalDate date2);
+    List<PersonnelManagement> info(LocalDate date1, LocalDate date2);
+
+    List<PersonnelManagement> infoClient(LocalDate date1, LocalDate date2);
+
     PersonnelManagement showSum();
-    PersonnelManagement infoSum(LocalDate date1,LocalDate date2);
-    void addIN(String name,Integer establishment,Integer actualNumber,Integer availableNumber,Float attendanceRate,
-             Integer shouldArrive,Integer actualArrive,LocalDate date);
+
+    PersonnelManagement infoSum(LocalDate date1, LocalDate date2);
+
+    void addIN(String name, Integer establishment, Integer actualNumber, Integer availableNumber, Float attendanceRate,
+               Integer shouldArrive, Integer actualArrive, LocalDate date);
+
     void delIN(Integer id);
-    void changeIN(Integer id,String name,Integer establishment,Integer actualNumber,Integer availableNumber,
-                Float attendanceRate,
-                Integer shouldArrive,Integer actualArrive,LocalDate date);
+
+    void changeIN(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
+                  Float attendanceRate,
+                  Integer shouldArrive, Integer actualArrive, LocalDate date);
+
     PageInfo<PersonnelManagement> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

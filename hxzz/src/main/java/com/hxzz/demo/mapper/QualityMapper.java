@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -23,19 +23,27 @@ import java.util.List;
 @Component
 public interface QualityMapper extends BaseMapper<Quality> {
     List<Quality> show();
-    List<Quality> showClient();
-    Quality showSum();
-    List<Quality> info(LocalDate date1,LocalDate date2);
-    List<Quality> infoClient(LocalDate date1,LocalDate date2);
-    Quality infoSum(LocalDate date1,LocalDate date2);
-    List<Quality> month();
-    void del(Integer id);
-void add(String name,Float offLine,Float acoffLine,Float dLine,Float acdLine,Float lingYu,Float aclingYu,
-         Float careLine,Float accareLine,Float roadTest,Float acroadTest,
-         LocalDate date);
 
-void change(Integer id,String name,Float offLine,Float acoffLine,Float dLine,Float acdLine,Float lingYu,Float aclingYu,
-            Float careLine,Float accareLine,Float roadTest,Float acroadTest,
-            LocalDate date);
+    List<Quality> showClient();
+
+    Quality showSum();
+
+    List<Quality> info(LocalDate date1, LocalDate date2);
+
+    List<Quality> infoClient(LocalDate date1, LocalDate date2);
+
+    Quality infoSum(LocalDate date1, LocalDate date2);
+
+    List<Quality> month();
+
+    void del(Integer id);
+
+    void add(String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
+             Float careLine, Float accareLine, Float roadTest, Float acroadTest,
+             LocalDate date);
+
+    void change(Integer id, String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
+                Float careLine, Float accareLine, Float roadTest, Float acroadTest,
+                LocalDate date);
 
 }

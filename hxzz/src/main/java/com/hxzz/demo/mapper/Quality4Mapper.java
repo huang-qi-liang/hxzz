@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author hql
@@ -17,11 +17,15 @@ import java.util.List;
  */
 @Component
 public interface Quality4Mapper extends BaseMapper<Quality4> {
-Quality4 show();
-List<Quality4> getData(LocalDate date1,LocalDate date2);
-void add(Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity,LocalDate date);
-void del(Integer id);
-void change(Integer id,Float target,Float actual,Float responsibility,Float InterceptionProblem,Float quantity,LocalDate date);
+    Quality4 show();
+
+    List<Quality4> getData(LocalDate date1, LocalDate date2);
+
+    void add(Float target, Float actual, Float responsibility, Float InterceptionProblem, Float quantity, LocalDate date);
+
+    void del(Integer id);
+
+    void change(Integer id, Float target, Float actual, Float responsibility, Float InterceptionProblem, Float quantity, LocalDate date);
 
 
 }

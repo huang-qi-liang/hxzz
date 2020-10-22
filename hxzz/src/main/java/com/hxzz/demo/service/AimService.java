@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -20,8 +20,12 @@ public interface AimService extends IService<Aim> {
     Aim show();
 
     List<Aim> info(LocalDate date1, LocalDate date2);
-    void add(Integer security,Integer lzcsj,Float quality,Float equipment,LocalDate date);
+
+    void add(Integer security, Integer lzcsj, Float quality, Float equipment, LocalDate date);
+
     void del(Long id);
-    void change( Long id,Integer security,Integer lzcsj,Float quality,Float equipment,LocalDate date);
+
+    void change(Long id, Integer security, Integer lzcsj, Float quality, Float equipment, LocalDate date);
+
     PageInfo<Aim> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -17,15 +17,23 @@ import java.util.List;
  */
 public interface EnvironmentSafeService extends IService<EnvironmentSafe> {
     List<EnvironmentSafe> showClient(String date);
+
     List<EnvironmentSafe> show();
+
     List<EnvironmentSafe> info(LocalDate date1, LocalDate date2);
+
     EnvironmentSafe showSum();
-    EnvironmentSafe infoSum(LocalDate date1,LocalDate date2);
-    List<EnvironmentSafe> amount(LocalDate date1,LocalDate date2);
+
+    EnvironmentSafe infoSum(LocalDate date1, LocalDate date2);
+
+    List<EnvironmentSafe> amount(LocalDate date1, LocalDate date2);
 
     void del(Integer id);
-    void add(Integer grey,Integer red,Integer black,LocalDate date);
-    void change(Integer id,Integer grey,Integer red,Integer black,LocalDate date);
+
+    void add(Integer grey, Integer red, Integer black, LocalDate date);
+
+    void change(Integer id, Integer grey, Integer red, Integer black, LocalDate date);
+
     PageInfo<EnvironmentSafe> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

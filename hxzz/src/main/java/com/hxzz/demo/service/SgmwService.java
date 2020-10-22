@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -17,12 +17,18 @@ import java.util.List;
  */
 public interface SgmwService extends IService<Sgmw> {
     Sgmw showaimIN();
+
     Sgmw showactualIN();
-    void addIN(String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,Float energyConsumption,Float equipment,LocalDate date);
+
+    void addIN(String name, Integer safe, Integer production, Integer lzc, Float quality, Integer personnel, Float energyConsumption, Float equipment, LocalDate date);
+
     List<Sgmw> getAimDataIN(LocalDate date1, LocalDate date2);
+
     List<Sgmw> getActualDataIN(LocalDate date1, LocalDate date2);
+
     void delIN(Integer id);
-    void changeIN(Integer id,String name,Integer safe,Integer production,Integer lzc,Float quality,Integer personnel,
-                  Float energyConsumption,Float equipment,LocalDate date);
+
+    void changeIN(Integer id, String name, Integer safe, Integer production, Integer lzc, Float quality, Integer personnel,
+                  Float energyConsumption, Float equipment, LocalDate date);
 
 }

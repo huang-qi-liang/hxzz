@@ -10,7 +10,7 @@ spring:
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
 server:
-  port: 8081
+  port: 8003
 hxzz:
   jwt:
     secret: f4e2e5034348f86b67cde581c0f9eb5

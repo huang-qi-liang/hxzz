@@ -16,13 +16,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.hxzz.demo.bean.Date;
 
 import static java.lang.Integer.parseInt;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author hql
@@ -42,30 +43,29 @@ public class SgmwController {
     SgmwPackage sgmwPackage;
 
     @RequestMapping("/showClient")
-    public Result showClient(){
-        LocalDate localDate=LocalDate.now();
+    public Result showClient() {
+        LocalDate localDate = LocalDate.now();
         System.out.println(localDate);
-        String stringTime=localDate.toString().substring(0,7);
-        List list=new ArrayList<>();
+        String stringTime = localDate.toString().substring(0, 7);
+        List list = new ArrayList<>();
 
 
-        list=sgmwPackage.showPackage();
+        list = sgmwPackage.showPackage();
         return Result.succ(list);
 
     }
 
 
     @RequestMapping("/infoClient")
-    public Result infoClient(@RequestBody Date date){
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date1=LocalDate.parse(date.getTime1(),dateTimeFormatter);
+    public Result infoClient(@RequestBody Date date) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(date.getTime1(), dateTimeFormatter);
 
-        LocalDate date2=LocalDate.parse(date.getTime2(),dateTimeFormatter);
-        List list=new ArrayList<>();
+        LocalDate date2 = LocalDate.parse(date.getTime2(), dateTimeFormatter);
+        List list = new ArrayList<>();
 
 
-
-        list=sgmwPackage.infoPackage(date1,date2);
+        list = sgmwPackage.infoPackage(date1, date2);
         return Result.succ(list);
 
     }

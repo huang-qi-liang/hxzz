@@ -30,57 +30,58 @@ public class SgmwPackage {
     LzcsjService lzcsjService;
     @Autowired
     EquipmentstatusService equipmentstatusService;
-    public List  showPackage(){
-        List list=new ArrayList();
-        JSONObject jsonObject1=new JSONObject(new LinkedHashMap<>());
-        jsonObject1.put("namw","目标");
-        jsonObject1.put("safe",aimService.show().getSecurity());
-        jsonObject1.put("production",scglService.showSum().getTargetCapacity());
-        jsonObject1.put("lzc",aimService.show().getLzcsj());
-        jsonObject1.put("quality",aimService.show().getQuality());
-        jsonObject1.put("personnel",personnelManagementService.showSum().getShouldArrive());
-        jsonObject1.put("energyConsumption","green");
-        jsonObject1.put("equipment",aimService.show().getEquipment());
+
+    public List showPackage() {
+        List list = new ArrayList();
+        JSONObject jsonObject1 = new JSONObject(new LinkedHashMap<>());
+        jsonObject1.put("namw", "目标");
+        jsonObject1.put("safe", aimService.show().getSecurity());
+        jsonObject1.put("production", scglService.showSum().getTargetCapacity());
+        jsonObject1.put("lzc", aimService.show().getLzcsj());
+        jsonObject1.put("quality", aimService.show().getQuality());
+        jsonObject1.put("personnel", personnelManagementService.showSum().getShouldArrive());
+        jsonObject1.put("energyConsumption", "green");
+        jsonObject1.put("equipment", aimService.show().getEquipment());
         list.add(jsonObject1);
-        JSONObject jsonObject2=new JSONObject(new LinkedHashMap<>());
-        jsonObject2.put("namw","实际");
-        jsonObject2.put("safe",safeService.showSum().getRed());
-        jsonObject2.put("production",scglService.showSum().getActualCapacity());
-        jsonObject2.put("lzc",lzcsjService.showSum().getTotal());
-        jsonObject2.put("quality",qualityService.showSum().getDR());
-        jsonObject2.put("personnel",personnelManagementService.showSum().getActualArrive());
-        jsonObject2.put("energyConsumption",energyPackage.showResult());
-        jsonObject2.put("equipment",equipmentstatusService.showSum().getRate());
-list.add(jsonObject2);
-               return list;
+        JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
+        jsonObject2.put("namw", "实际");
+        jsonObject2.put("safe", safeService.showSum().getRed());
+        jsonObject2.put("production", scglService.showSum().getActualCapacity());
+        jsonObject2.put("lzc", lzcsjService.showSum().getTotal());
+        jsonObject2.put("quality", qualityService.showSum().getDR());
+        jsonObject2.put("personnel", personnelManagementService.showSum().getActualArrive());
+        jsonObject2.put("energyConsumption", energyPackage.showResult());
+        jsonObject2.put("equipment", equipmentstatusService.showSum().getRate());
+        list.add(jsonObject2);
+        return list;
     }
 
-public  List infoPackage(LocalDate date1,LocalDate date2){
+    public List infoPackage(LocalDate date1, LocalDate date2) {
 
-        List list=new ArrayList();
+        List list = new ArrayList();
 
 
-    JSONObject jsonObject1=new JSONObject(new LinkedHashMap<>());
-    jsonObject1.put("namw","目标");
-    jsonObject1.put("safe",safeService.amount(date1,date2).size()*aimService.show().getSecurity());
-    jsonObject1.put("production",scglService.infoSum(date1,date2).getTargetCapacity());
-    jsonObject1.put("lzc",aimService.show().getLzcsj()*lzcsjService.amount(date1, date2).size());
-    jsonObject1.put("quality",aimService.show().getQuality());
-    jsonObject1.put("personnel",personnelManagementService.infoSum(date1, date2).getShouldArrive());
-    jsonObject1.put("energyConsumption","green");
-    jsonObject1.put("equipment",aimService.show().getEquipment());
-    list.add(jsonObject1);
-    JSONObject jsonObject2=new JSONObject(new LinkedHashMap<>());
-    jsonObject2.put("namw","实际");
-    jsonObject2.put("safe",safeService.infoSum(date1,date2).getRed());
-    jsonObject2.put("production",scglService.infoSum(date1, date2).getActualCapacity());
-    jsonObject2.put("lzc",lzcsjService.infoSum(date1, date2).getTotal());
-    jsonObject2.put("quality",qualityService.infoSum(date1, date2).getDR());
-    jsonObject2.put("personnel",personnelManagementService.infoSum(date1, date2).getActualArrive());
-    jsonObject2.put("energyConsumption",energyPackage.infoPackage(date1, date2));
-    jsonObject2.put("equipment",equipmentstatusService.infoSum(date1, date2).getRate());
-    list.add(jsonObject2);
-    return list;
-}
+        JSONObject jsonObject1 = new JSONObject(new LinkedHashMap<>());
+        jsonObject1.put("namw", "目标");
+        jsonObject1.put("safe", safeService.amount(date1, date2).size() * aimService.show().getSecurity());
+        jsonObject1.put("production", scglService.infoSum(date1, date2).getTargetCapacity());
+        jsonObject1.put("lzc", aimService.show().getLzcsj() * lzcsjService.amount(date1, date2).size());
+        jsonObject1.put("quality", aimService.show().getQuality());
+        jsonObject1.put("personnel", personnelManagementService.infoSum(date1, date2).getShouldArrive());
+        jsonObject1.put("energyConsumption", "green");
+        jsonObject1.put("equipment", aimService.show().getEquipment());
+        list.add(jsonObject1);
+        JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
+        jsonObject2.put("namw", "实际");
+        jsonObject2.put("safe", safeService.infoSum(date1, date2).getRed());
+        jsonObject2.put("production", scglService.infoSum(date1, date2).getActualCapacity());
+        jsonObject2.put("lzc", lzcsjService.infoSum(date1, date2).getTotal());
+        jsonObject2.put("quality", qualityService.infoSum(date1, date2).getDR());
+        jsonObject2.put("personnel", personnelManagementService.infoSum(date1, date2).getActualArrive());
+        jsonObject2.put("energyConsumption", energyPackage.infoPackage(date1, date2));
+        jsonObject2.put("equipment", equipmentstatusService.infoSum(date1, date2).getRate());
+        list.add(jsonObject2);
+        return list;
+    }
 
 }

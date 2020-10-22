@@ -18,6 +18,7 @@ public class AccountRealm extends AuthorizingRealm {
     JwtUtils jwtUtils;
     @Autowired
     UserService userService;
+
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof JwtToken;
@@ -35,15 +36,15 @@ public class AccountRealm extends AuthorizingRealm {
         //log.info("jwt----------------->{}", jwt);
         String userId = jwtUtils.getClaimByToken((String) jwt.getPrincipal()).getSubject();
         User user = userService.getById(Long.parseLong(userId));
-        if(user == null) {
+        if (user == null) {
             throw new UnknownAccountException("账户不存在！");
         }
-      //  if(user.getStatus() == -1) {
-      //      throw new LockedAccountException("账户已被锁定！");
-      //  }
+        //  if(user.getStatus() == -1) {
+        //      throw new LockedAccountException("账户已被锁定！");
+        //  }
         AccountProfile profile = new AccountProfile();
         BeanUtil.copyProperties(user, profile);
-       // log.info("profile----------------->{}", profile.toString());
+        // log.info("profile----------------->{}", profile.toString());
         return new SimpleAuthenticationInfo(profile, jwt.getCredentials(), getName());
     }
 }

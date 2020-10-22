@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author hql
@@ -24,34 +24,55 @@ import java.util.List;
  */
 @Service
 public class EnergyServiceImpl extends ServiceImpl<EnergyMapper, Energy> implements EnergyService {
-@Autowired
+    @Autowired
     EnergyMapper energyMapper;
-@Override
-public List<Energy> show(){return energyMapper.show();}
-    public Energy showClient(){return energyMapper.showClient();}
-    public Energy showSum(){return  energyMapper.showSum();}
-   public Energy infoSum(LocalDate date1,LocalDate date2){return energyMapper.infoSum(date1,date2);}
 
-    public List<Energy> info(LocalDate date1,LocalDate date2){return energyMapper.info(date1,date2);}
-    public Energy infoClient(LocalDate date1,LocalDate date2){return energyMapper.infoClient(date1,date2);}
-    public void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,
-               Float standardsGas,Float gas,LocalDate date){
-    energyMapper.add( name,  standardsWater, water, standardsElectricity, electricity,
-             standardsGas, gas, date);
+    @Override
+    public List<Energy> show() {
+        return energyMapper.show();
     }
-    public void del(Integer id){
-    energyMapper.del(id);
+
+    public Energy showClient() {
+        return energyMapper.showClient();
     }
-    public void change( Integer id,String name, Float standardsWater,Float water,Float standardsElectricity,
-                   Float electricity,
-                 Float standardsGas,Float gas,LocalDate date){
-    energyMapper.change(id,name,  standardsWater, water, standardsElectricity, electricity,
-            standardsGas, gas,date);
+
+    public Energy showSum() {
+        return energyMapper.showSum();
     }
-    public PageInfo<Energy> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Energy> list=energyMapper.info(date1,date2);
-        PageInfo<Energy> pageInfo=new PageInfo<Energy>(list);
+
+    public Energy infoSum(LocalDate date1, LocalDate date2) {
+        return energyMapper.infoSum(date1, date2);
+    }
+
+    public List<Energy> info(LocalDate date1, LocalDate date2) {
+        return energyMapper.info(date1, date2);
+    }
+
+    public Energy infoClient(LocalDate date1, LocalDate date2) {
+        return energyMapper.infoClient(date1, date2);
+    }
+
+    public void add(String name, Float standardsWater, Float water, Float standardsElectricity, Float electricity,
+                    Float standardsGas, Float gas, LocalDate date) {
+        energyMapper.add(name, standardsWater, water, standardsElectricity, electricity,
+                standardsGas, gas, date);
+    }
+
+    public void del(Integer id) {
+        energyMapper.del(id);
+    }
+
+    public void change(Integer id, String name, Float standardsWater, Float water, Float standardsElectricity,
+                       Float electricity,
+                       Float standardsGas, Float gas, LocalDate date) {
+        energyMapper.change(id, name, standardsWater, water, standardsElectricity, electricity,
+                standardsGas, gas, date);
+    }
+
+    public PageInfo<Energy> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Energy> list = energyMapper.info(date1, date2);
+        PageInfo<Energy> pageInfo = new PageInfo<Energy>(list);
         return pageInfo;
     }
 }

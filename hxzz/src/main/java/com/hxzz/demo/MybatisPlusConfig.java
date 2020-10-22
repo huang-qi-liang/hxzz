@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-    @EnableTransactionManagement
-    @MapperScan("com.hxzz.demo.mapper")
-    public class MybatisPlusConfig {
-        @Bean
-        public PaginationInterceptor paginationInterceptor() {
-            PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-            return paginationInterceptor;
-        }
+@EnableTransactionManagement
+@MapperScan("com.hxzz.demo.mapper")
+public class MybatisPlusConfig {
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        return paginationInterceptor;
     }
+}
 

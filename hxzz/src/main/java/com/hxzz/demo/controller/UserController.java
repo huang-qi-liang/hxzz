@@ -24,11 +24,8 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
- *
- *
- *
  */
 @Async
 @Component
@@ -41,22 +38,22 @@ public class UserController {
     @Autowired
     UserService userService;
     @Autowired
-     WebSocket webSocket;
+    WebSocket webSocket;
 
     @PostMapping("/login")
 
     @ApiOperation(value = "用户登录")
- public String login(@RequestBody User user1){
-System.out.println(getType(user1.getUsername()));
-        Map<String,Object> map=new HashMap<>();
-        User user=userService.loginIN(user1.getUsername(),user1.getPassword());
+    public String login(@RequestBody User user1) {
+        System.out.println(getType(user1.getUsername()));
+        Map<String, Object> map = new HashMap<>();
+        User user = userService.loginIN(user1.getUsername(), user1.getPassword());
         log.println(user1);
         //int user1num=Integer.parseInt(user1.getPassword());
-       // log.println(user1num);
-        map.put("user",user);
-if(user!=null)
-{System.out.println("login success");
-    return  "200";
+        // log.println(user1num);
+        map.put("user", user);
+        if (user != null) {
+            System.out.println("login success");
+            return "200";
     /*Random r=new Random();
 
     try {
@@ -72,12 +69,10 @@ if(user!=null)
      */
 
 
-
-}
-else
-{System.out.println("have data");
-    return  "404";
-}
+        } else {
+            System.out.println("have data");
+            return "404";
+        }
 
 
     }

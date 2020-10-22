@@ -6,7 +6,7 @@ import lombok.Data;
 public class Equipment {
     private String name;
     private Float indicators;
-    private  Float rate;
-    private  Float yearRate;
-    private  Integer month;
+    private Float rate;
+    private Float yearRate;
+    private Integer month;
 }

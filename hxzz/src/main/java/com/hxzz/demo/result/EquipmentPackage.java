@@ -13,16 +13,18 @@ import java.util.List;
 public class EquipmentPackage {
     @Autowired
     EquipmentstatusService equipmentstatusService;
-    public List lineTotal(String date){
-        List list=new ArrayList();
-       list.add(equipmentstatusService.totalYear(date));
-       list.addAll(equipmentstatusService.total(date));
+
+    public List lineTotal(String date) {
+        List list = new ArrayList();
+        list.add(equipmentstatusService.totalYear(date));
+        list.addAll(equipmentstatusService.total(date));
         return list;
     }
-    public List line(String date,String name){
-        List list=new ArrayList();
-        list.add(equipmentstatusService.eachYear(date,name));
-        list.addAll(equipmentstatusService.each(date,name));
+
+    public List line(String date, String name) {
+        List list = new ArrayList();
+        list.add(equipmentstatusService.eachYear(date, name));
+        list.addAll(equipmentstatusService.each(date, name));
         return list;
     }
 

@@ -14,79 +14,73 @@ import java.util.LinkedHashMap;
 public class EnergyPackage {
     @Autowired
     EnergyService energyService;
-    public JSONObject EnergyPackage(){
-        int water,electricity,gas;
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        if(energyService.showClient().getWater()>energyService.showClient().getStandardsWater()){
 
-            water=0;
-        }
-        else
-            water=1;
-        if(energyService.showClient().getElectricity()>energyService.showClient().getStandardsElectricity()){
-            electricity=0;
-        }
-        else
-            electricity=1;
-        if(energyService.showClient().getGas()>energyService.showClient().getStandardsGas()){
-           gas=0;
-        }
-        else
-            gas=1;
+    public JSONObject EnergyPackage() {
+        int water, electricity, gas;
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        if (energyService.showClient().getWater() > energyService.showClient().getStandardsWater()) {
 
-        jsonObject.put("water",water);
-        jsonObject.put("eletricity",electricity);
-        jsonObject.put("gas",gas);
-        jsonObject.put("date",energyService.showClient().getDate());
+            water = 0;
+        } else
+            water = 1;
+        if (energyService.showClient().getElectricity() > energyService.showClient().getStandardsElectricity()) {
+            electricity = 0;
+        } else
+            electricity = 1;
+        if (energyService.showClient().getGas() > energyService.showClient().getStandardsGas()) {
+            gas = 0;
+        } else
+            gas = 1;
+
+        jsonObject.put("water", water);
+        jsonObject.put("eletricity", electricity);
+        jsonObject.put("gas", gas);
+        jsonObject.put("date", energyService.showClient().getDate());
         return jsonObject;
     }
-    public JSONObject infoPackage(LocalDate date1,LocalDate date2){
-        int water,electricity,gas;
-        JSONObject jsonObject=new JSONObject(new LinkedHashMap<>());
-        if(energyService.infoClient(date1,date2).getWater()>energyService.infoClient(date1,date2).getStandardsWater()){
 
-            water=0;
-        }
-        else
-            water=1;
-        if(energyService.infoClient(date1,date2).getElectricity()>energyService.infoClient(date1,date2).getStandardsElectricity()){
-            electricity=0;
-        }
-        else
-            electricity=1;
-        if(energyService.infoClient(date1,date2).getGas()>energyService.infoClient(date1,date2).getStandardsGas()){
-            gas=0;
-        }
-        else
-            gas=1;
+    public JSONObject infoPackage(LocalDate date1, LocalDate date2) {
+        int water, electricity, gas;
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        if (energyService.infoClient(date1, date2).getWater() > energyService.infoClient(date1, date2).getStandardsWater()) {
 
-        jsonObject.put("water",water);
-        jsonObject.put("eletricity",electricity);
-        jsonObject.put("gas",gas);
-        jsonObject.put("date",energyService.infoClient(date1,date2).getDate());
+            water = 0;
+        } else
+            water = 1;
+        if (energyService.infoClient(date1, date2).getElectricity() > energyService.infoClient(date1, date2).getStandardsElectricity()) {
+            electricity = 0;
+        } else
+            electricity = 1;
+        if (energyService.infoClient(date1, date2).getGas() > energyService.infoClient(date1, date2).getStandardsGas()) {
+            gas = 0;
+        } else
+            gas = 1;
+
+        jsonObject.put("water", water);
+        jsonObject.put("eletricity", electricity);
+        jsonObject.put("gas", gas);
+        jsonObject.put("date", energyService.infoClient(date1, date2).getDate());
         return jsonObject;
     }
-    public String showResult(){
+
+    public String showResult() {
         String corlor;
         //Water实际为三者总和
-        if(energyService.showSum().getWater()>energyService.showSum().getStandardsWater())
-        {
-            corlor="red";
-        }
-        else {
-            corlor="green";
+        if (energyService.showSum().getWater() > energyService.showSum().getStandardsWater()) {
+            corlor = "red";
+        } else {
+            corlor = "green";
         }
         return corlor;
     }
-    public String infoResult(LocalDate date1,LocalDate date2){
+
+    public String infoResult(LocalDate date1, LocalDate date2) {
         String corlor;
         //Water实际为三者总和
-        if(energyService.infoSum(date1,date2).getWater()>energyService.infoSum(date1,date2).getStandardsWater())
-        {
-            corlor="red";
-        }
-        else {
-            corlor="green";
+        if (energyService.infoSum(date1, date2).getWater() > energyService.infoSum(date1, date2).getStandardsWater()) {
+            corlor = "red";
+        } else {
+            corlor = "green";
         }
         return corlor;
 

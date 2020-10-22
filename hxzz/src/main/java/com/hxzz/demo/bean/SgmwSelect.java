@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class SgmwSelect {
-    private  String name;
+    private String name;
     private Integer safe;
 
     private Integer production;

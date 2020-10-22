@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author hql
@@ -18,16 +18,24 @@ import java.util.List;
  */
 public interface EnergyService extends IService<Energy> {
     List<Energy> show();
+
     Energy showClient();
 
-    List<Energy> info(LocalDate date1,LocalDate date2);
-    Energy infoClient(LocalDate date1,LocalDate date2);
+    List<Energy> info(LocalDate date1, LocalDate date2);
+
+    Energy infoClient(LocalDate date1, LocalDate date2);
+
     Energy showSum();
-    Energy infoSum(LocalDate date1,LocalDate date2);
-    void add( String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,Float standardsGas,Float gas,LocalDate date);
+
+    Energy infoSum(LocalDate date1, LocalDate date2);
+
+    void add(String name, Float standardsWater, Float water, Float standardsElectricity, Float electricity, Float standardsGas, Float gas, LocalDate date);
+
     void del(Integer id);
-    void change( Integer id,String name, Float standardsWater,Float water,Float standardsElectricity,Float electricity,
-                 Float standardsGas,Float gas,LocalDate date);
+
+    void change(Integer id, String name, Float standardsWater, Float water, Float standardsElectricity, Float electricity,
+                Float standardsGas, Float gas, LocalDate date);
+
     PageInfo<Energy> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }
