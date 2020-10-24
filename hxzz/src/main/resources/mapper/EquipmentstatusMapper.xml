@@ -6,12 +6,12 @@
         by name,id DESC
     </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
-        select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as
+        select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
         rate,date from Equipmentstatus where date=( select MAX(date)
         as date from Equipmentstatus) group by date,name
     </select>
     <select id="showSum" resultType="com.hxzz.demo.entity.Equipmentstatus">
-        select sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as
+        select sum(failureTime) as failureTime,sum(officeTime) as officeTime,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
         rate,date from Equipmentstatus where date=( select MAX(date)
         as date from Equipmentstatus) group by date
     </select>
@@ -20,15 +20,16 @@
         select * from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
-        select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,sum(failureTime)/sum(officeTime) as
+        select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
         rate from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} group by name
     </select>
     <select id="infoSum" resultType="com.hxzz.demo.entity.Equipmentstatus">
-        select sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as rate from Equipmentstatus where
+        select convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        rate from Equipmentstatus where
         date>=#{date1} and date &lt;= #{date2}
     </select>
     <select id="each" resultType="com.hxzz.demo.bean.Equipment">
-        select Equipmentstatus.name as name,sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as
+        select Equipmentstatus.name as name,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
         rate,month(Equipmentstatus.date) as month from Equipmentstatus,Aim WHERE
         YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date} and Equipmentstatus.name=#{name}
         GROUP BY
@@ -36,23 +37,26 @@
     </select>
     <select id="eachYear" resultType="com.hxzz.demo.bean.Equipment">
         select Equipmentstatus.name as name,Aim.equipment as
-        indicators,sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as yearRate from Equipmentstatus,Aim
+        indicators,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        yearRate from Equipmentstatus,Aim
         WHERE
         YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date} and Equipmentstatus.name =#{name}
         GROUP BY
         Aim.equipment ,Equipmentstatus.name
     </select>
     <select id="total" resultType="com.hxzz.demo.bean.Equipment">
-        select sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as rate,month(Equipmentstatus.date) as
+        select convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        rate,month(Equipmentstatus.date) as
         month from Equipmentstatus,Aim WHERE
         YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date}
         GROUP BY
         MONTH ( Equipmentstatus.date ),Aim.equipment
     </select>
     <select id="totalYear" resultType="com.hxzz.demo.bean.Equipment">
-        select Aim.equipment as indicators,sum(Equipmentstatus.failureTime)/sum(Equipmentstatus.officeTime) as yearRate
+        select Aim.equipment as indicators,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        yearRate
         from Equipmentstatus,Aim WHERE
-        YEAR ( Equipmentstatus.date ) = '2020' and YEAR(Aim.date)='2020'
+        YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date}
         GROUP BY
         Aim.equipment
     </select>

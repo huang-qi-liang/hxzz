@@ -38,10 +38,10 @@ public class SgmwPackage {
         jsonObject1.put("safe", aimService.show().getSecurity());
         jsonObject1.put("production", scglService.showSum().getTargetCapacity());
         jsonObject1.put("lzc", aimService.show().getLzcsj());
-        jsonObject1.put("quality", aimService.show().getQuality());
+        jsonObject1.put("quality", aimService.showClient().getQuality());
         jsonObject1.put("personnel", personnelManagementService.showSum().getShouldArrive());
         jsonObject1.put("energyConsumption", "green");
-        jsonObject1.put("equipment", aimService.show().getEquipment());
+        jsonObject1.put("equipment", aimService.showClient().getEquipment());
         list.add(jsonObject1);
         JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
         jsonObject2.put("namw", "实际");
@@ -66,10 +66,10 @@ public class SgmwPackage {
         jsonObject1.put("safe", safeService.amount(date1, date2).size() * aimService.show().getSecurity());
         jsonObject1.put("production", scglService.infoSum(date1, date2).getTargetCapacity());
         jsonObject1.put("lzc", aimService.show().getLzcsj() * lzcsjService.amount(date1, date2).size());
-        jsonObject1.put("quality", aimService.show().getQuality());
+        jsonObject1.put("quality", aimService.showClient().getQuality());
         jsonObject1.put("personnel", personnelManagementService.infoSum(date1, date2).getShouldArrive());
         jsonObject1.put("energyConsumption", "green");
-        jsonObject1.put("equipment", aimService.show().getEquipment());
+        jsonObject1.put("equipment", aimService.showClient().getEquipment());
         list.add(jsonObject1);
         JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
         jsonObject2.put("namw", "实际");
@@ -78,7 +78,7 @@ public class SgmwPackage {
         jsonObject2.put("lzc", lzcsjService.infoSum(date1, date2).getTotal());
         jsonObject2.put("quality", qualityService.infoSum(date1, date2).getDR());
         jsonObject2.put("personnel", personnelManagementService.infoSum(date1, date2).getActualArrive());
-        jsonObject2.put("energyConsumption", energyPackage.infoPackage(date1, date2));
+        jsonObject2.put("energyConsumption", energyPackage.infoResult(date1, date2));
         jsonObject2.put("equipment", equipmentstatusService.infoSum(date1, date2).getRate());
         list.add(jsonObject2);
         return list;

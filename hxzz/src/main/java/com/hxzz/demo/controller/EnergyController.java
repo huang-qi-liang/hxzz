@@ -90,28 +90,22 @@ public class EnergyController {
         return Result.succ(jsonObject);
 
     }
-
     @RequestMapping("/add")
-    public Result add(@RequestBody Energy energy) {
-        energyService.add(energy.getName(), energy.getStandardsWater(), energy.getWater(),
-                energy.getStandardsElectricity(), energy.getElectricity(), energy.getStandardsGas(), energy.getGas(),
-                energy.getDate());
-        /*
-        JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
-        jsondata=jsonObject.getJSONObject("data");
-        JSONArray jsonArray=new JSONArray();
-        jsonArray=jsondata.getJSONArray("message");
-        JSONObject jsonObjectEnergy=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
-        energyService.add(jsonObjectEnergy.getString("name"),jsonObjectEnergy.getFloat("standardsWater"),
-                jsonObjectEnergy.getFloat("water"),jsonObjectEnergy.getFloat("standardsElectricity"),
-                jsonObjectEnergy.getFloat("electricity"),jsonObjectEnergy.getFloat("standardsGas"),
-                jsonObjectEnergy.getFloat("gas"));
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
 
-         */
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            energyService.add(jsonObject.getString("name"),jsonObject.getFloat("standardsWater"),jsonObject.getFloat(
+                    "water"),jsonObject.getFloat("standardsElectricity"),jsonObject.getFloat("electricity"),
+                    jsonObject.getFloat("standardsGas"),jsonObject.getFloat("gas"),date);
+        }
+
         return Result.succ("success");
-
     }
-
     @RequestMapping("/delete")
     public Result delete(@RequestBody List<JSONObject> list) {
 
@@ -127,23 +121,21 @@ public class EnergyController {
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Energy energy) {
-        /*
-       JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
-       jsondata=jsonObject.getJSONObject("data");
-       JSONArray jsonArray=new JSONArray();
-       jsonArray=jsondata.getJSONArray("message");
-       JSONObject jsonObjectEnergy=(JSONObject) JSONObject.toJSON(jsonArray.get(0));
-        energyService.change(jsonObjectEnergy.getInteger("id"),jsonObjectEnergy.getString("name"),jsonObjectEnergy.getFloat("standardsWater"),
-                jsonObjectEnergy.getFloat("water"),jsonObjectEnergy.getFloat("standardsElectricity"),
-                jsonObjectEnergy.getFloat("electricity"),jsonObjectEnergy.getFloat("standardsGas"),
-                jsonObjectEnergy.getFloat("gas"));
-        return "success";
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
 
-         */
-        energyService.change(energy.getId(), energy.getName(), energy.getStandardsWater(), energy.getWater(),
-                energy.getStandardsElectricity(), energy.getElectricity(), energy.getStandardsGas(), energy.getGas(),
-                energy.getDate());
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            energyService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getFloat(
+                    "standardsWater"),
+                    jsonObject.getFloat(
+                    "water"),jsonObject.getFloat("standardsElectricity"),jsonObject.getFloat("electricity"),
+                    jsonObject.getFloat("standardsGas"),jsonObject.getFloat("gas"),date);
+        }
+
         return Result.succ("success");
 
     }

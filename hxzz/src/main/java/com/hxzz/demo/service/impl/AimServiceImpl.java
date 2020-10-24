@@ -35,6 +35,13 @@ public class AimServiceImpl extends ServiceImpl<AimMapper, Aim> implements AimSe
         return aimMapper.info(date1, date2);
     }
 
+    public Aim showClient(){
+        return aimMapper.showClient();
+    }
+
+    public List<Aim> infoClient(LocalDate date1, LocalDate date2){
+        return aimMapper.infoClient(date1, date2);
+    }
     public void add(Integer security, Integer lzcsj, Float quality, Float equipment, LocalDate date) {
         aimMapper.add(security, lzcsj, quality, equipment, date);
     }

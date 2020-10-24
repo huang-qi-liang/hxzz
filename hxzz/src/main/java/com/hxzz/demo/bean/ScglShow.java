@@ -17,7 +17,7 @@ public class ScglShow {
 
 
     private Float targetEfficiency;
-    private Integer counts;
+
 
     private Float actualEfficiency;
 

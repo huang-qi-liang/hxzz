@@ -53,7 +53,7 @@ public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagem
     }
 
     public void addIN(String name, Integer establishment, Integer actualNumber, Integer availableNumber, Float attendanceRate,
-                      Integer shouldArrive, Integer actualArrive, LocalDate date) {
+                      Integer shouldArrive, Float actualArrive, LocalDate date) {
         personnelManagementMapper.add(name, establishment, actualNumber, availableNumber, attendanceRate,
                 shouldArrive, actualArrive, date);
     }
@@ -66,7 +66,7 @@ public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagem
 
     public void changeIN(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
                          Float attendanceRate,
-                         Integer shouldArrive, Integer actualArrive, LocalDate date) {
+                         Integer shouldArrive, Float actualArrive, LocalDate date) {
         personnelManagementMapper.change(id, name, establishment, actualNumber, availableNumber, attendanceRate,
                 shouldArrive, actualArrive, date);
     }

@@ -50,7 +50,7 @@ public class PersonnelManagement implements Serializable {
     private Integer shouldArrive;
 
     @TableField("actualArrive")
-    private Integer actualArrive;
+    private Float actualArrive;
 
     private LocalDate date;
 

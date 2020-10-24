@@ -20,6 +20,9 @@ public interface AimService extends IService<Aim> {
     Aim show();
 
     List<Aim> info(LocalDate date1, LocalDate date2);
+    Aim showClient();
+
+    List<Aim> infoClient(LocalDate date1, LocalDate date2);
 
     void add(Integer security, Integer lzcsj, Float quality, Float equipment, LocalDate date);
 

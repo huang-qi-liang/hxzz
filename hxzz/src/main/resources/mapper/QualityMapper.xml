@@ -7,17 +7,19 @@
 
     </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Quality">
-        select name,sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as
-        lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as
-        roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)
+        select name,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*100) as offLine,convert(decimal(10,1) ,sum(acdLine)/sum(dLine)*100) as dLine,
+  convert(decimal(10,1) ,sum(aclingYu)/sum(lingYu)*100) as
+        lingYu,convert(decimal(10,1) ,sum(accareLine)/sum(careLine)*100) as careLine,convert(decimal(10,1) ,sum(acroadTest)/sum(roadTest)*100) as
+        roadTest,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
         as DR,date from Quality where date=( select MAX(date) as date from Quality) group by date,name
 
     </select>
     <select id="showSum" resultType="com.hxzz.demo.entity.Quality">
 
-        select sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as
-        lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as
-        roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)
+        select convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*100) as offLine,convert(decimal(10,1) ,sum(acdLine)/sum(dLine)*100) as dLine,
+  convert(decimal(10,1) ,sum(aclingYu)/sum(lingYu)*100) as
+        lingYu,convert(decimal(10,1) ,sum(accareLine)/sum(careLine)*100) as careLine,convert(decimal(10,1) ,sum(acroadTest)/sum(roadTest)*100) as
+        roadTest,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
         as DR,date from Quality where date=( select MAX(date) as date from Quality) group by date
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Quality">
@@ -25,15 +27,17 @@
 
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Quality">
-        select name,sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as
-        lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as
-        roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)
+        select name,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*100) as offLine,convert(decimal(10,1) ,sum(acdLine)/sum(dLine)*100) as dLine,
+  convert(decimal(10,1) ,sum(aclingYu)/sum(lingYu)*100) as
+        lingYu,convert(decimal(10,1) ,sum(accareLine)/sum(careLine)*100) as careLine,convert(decimal(10,1) ,sum(acroadTest)/sum(roadTest)*100) as
+        roadTest,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
         as DR from Quality where (date&gt;=#{date1} and date&lt;= #{date2}) group by name
     </select>
     <select id="infoSum" resultType="com.hxzz.demo.entity.Quality">
-        select sum(acoffLine)/sum(offLine) as offLine,sum(acdLine)/sum(dLine) as dLine,sum(aclingYu)/sum(lingYu) as
-        lingYu,sum(accareLine)/sum(careLine) as careLine,sum(acroadTest)/sum(roadTest) as
-        roadTest,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)
+        select convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*100) as offLine,convert(decimal(10,1) ,sum(acdLine)/sum(dLine)*100) as dLine,
+  convert(decimal(10,1) ,sum(aclingYu)/sum(lingYu)*100) as
+        lingYu,convert(decimal(10,1) ,sum(accareLine)/sum(careLine)*100) as careLine,convert(decimal(10,1) ,sum(acroadTest)/sum(roadTest)*100) as
+        roadTest,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
         as DR from Quality where (date&gt;=#{date1} and date&lt;= #{date2})
 
     </select>

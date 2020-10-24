@@ -25,7 +25,7 @@ public class ScglPackage {
         jsonObject.put("targetCapacity", scglService.showSum().getTargetCapacity());
         jsonObject.put("actualCapacity", scglService.showSum().getActualCapacity());
         jsonObject.put("targetEfficiency", scglService.showSum().getTargetEfficiency());
-        jsonObject.put("counts", scglService.showSum().getCounts());
+
         jsonObject.put("actualEfficiency", scglService.showSum().getActualEfficiency());
         jsonObject.put("workingHours", scglService.showSum().getWorkingHours());
         jsonObject.put("theoreticalCapacity", scglService.showSum().getTheoreticalCapacity());
@@ -43,7 +43,7 @@ public class ScglPackage {
         jsonObject.put("targetCapacity", scglService.infoSum(date1, date2).getTargetCapacity());
         jsonObject.put("actualCapacity", scglService.infoSum(date1, date2).getActualCapacity());
         jsonObject.put("targetEfficiency", scglService.infoSum(date1, date2).getTargetEfficiency());
-        jsonObject.put("counts", scglService.infoSum(date1, date2).getCounts());
+
         jsonObject.put("actualEfficiency", scglService.infoSum(date1, date2).getActualEfficiency());
         jsonObject.put("workingHours", scglService.infoSum(date1, date2).getWorkingHours());
         jsonObject.put("theoreticalCapacity", scglService.infoSum(date1, date2).getTheoreticalCapacity());

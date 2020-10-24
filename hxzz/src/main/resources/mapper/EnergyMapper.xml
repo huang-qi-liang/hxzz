@@ -22,7 +22,7 @@
         select name,sum(standardsWater)+sum(standardsElectricity)+sum(standardsGas) as
         standardsWater,sum(water)+sum(electricity)+sum(gas) as water,sum(standardsElectricity) as
         standardsElectricity,sum(electricity) as electricity,sum(electricity) as electricity,sum(standardsGas) as
-        standardsGas,sum(gas) as gas from Energy where date>=#{date1} and date &lt;= #{date2}
+        standardsGas,sum(gas) as gas from Energy where date>=#{date1} and date &lt;= #{date2} group by name
     </select>
 
     <select id="info" resultType="com.hxzz.demo.entity.Energy">
@@ -36,7 +36,8 @@
     </select>
     <insert id="add">
         insert into Energy( name, standardsWater, water, standardsElectricity, electricity, standardsGas, gas,date)
-        values (#{name},#{water},#{standardsElectricity},#{electricity},#{standardsGas},#{gas},#{date})
+        values
+        (#{name},#{standardsWater},#{water},#{standardsElectricity},#{electricity},#{standardsGas},#{gas},#{date})
     </insert>
     <delete id="del">
         delete from Energy where id=#{id}

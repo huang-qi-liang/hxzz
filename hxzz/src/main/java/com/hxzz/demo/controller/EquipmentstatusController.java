@@ -150,16 +150,33 @@ public class EquipmentstatusController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Equipmentstatus equipmentstatus) {
-        equipmentstatusService.add(equipmentstatus.getName(), equipmentstatus.getFailureTime(),
-                equipmentstatus.getOfficeTime(), equipmentstatus.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            equipmentstatusService.add(jsonObject.getString("name"),jsonObject.getFloat("failureTime"),
+                    jsonObject.getFloat("officeTime"),date);
+        }
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Equipmentstatus equipmentstatus) {
-        equipmentstatusService.change(equipmentstatus.getId(), equipmentstatus.getName(), equipmentstatus.getFailureTime(),
-                equipmentstatus.getOfficeTime(), equipmentstatus.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            equipmentstatusService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getFloat(
+                    "failureTime"),
+                    jsonObject.getFloat("officeTime"),date);
+        }
         return Result.succ("success");
     }
 

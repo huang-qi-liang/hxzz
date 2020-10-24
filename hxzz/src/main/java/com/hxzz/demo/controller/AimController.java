@@ -78,14 +78,36 @@ public class AimController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Aim aim) {
-        aimService.add(aim.getSecurity(), aim.getLzcsj(), aim.getQuality(), aim.getEquipment(), aim.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+          aimService.add(jsonObject.getInteger("security"),jsonObject.getInteger("lzcsj"),jsonObject.getFloat(
+                  "quality"),jsonObject.getFloat("equipment"),date);
+        }
+
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Aim aim) {
-        aimService.change(aim.getId(), aim.getSecurity(), aim.getLzcsj(), aim.getQuality(), aim.getEquipment(), aim.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            aimService.change(jsonObject.getLong("id"),jsonObject.getInteger("security"),jsonObject.getInteger(
+                    "lzcsj"),
+                    jsonObject.getFloat(
+                    "quality"),jsonObject.getFloat("equipment"),date);
+        }
+
         return Result.succ("success");
     }
 

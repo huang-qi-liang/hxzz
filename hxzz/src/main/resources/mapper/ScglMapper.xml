@@ -7,8 +7,9 @@
 
     </select>
     <select id="showClient" resultType="com.hxzz.demo.bean.ScglShow">
-        select name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency) as
-        targetEfficiency,count (*) as counts,sum(actualEfficiency) as actualEfficiency,sum(workingHours) as
+       select name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as
+       actualCapacity,sum(targetEfficiency)/count(*) as
+        targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat,date from Scgl where date=(
         select
         MAX(date) as date from Scgl) group by date,name
@@ -16,8 +17,8 @@
     </select>
     <select id="showSum" resultType="com.hxzz.demo.bean.ScglShow">
 
-        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency) as
-        targetEfficiency,count (*) as counts,sum(actualEfficiency) as actualEfficiency,sum(workingHours) as
+        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency)/count(*) as
+        targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat,date from Scgl where date=(
         select
         MAX(date) as date from Scgl) group by date
@@ -28,14 +29,14 @@
 
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.bean.ScglShow">
-        select name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency) as
-        targetEfficiency,count (*) as counts,sum(actualEfficiency) as actualEfficiency,sum(workingHours) as
+        select  name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency)/count(*) as
+        targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat from Scgl where (date&gt;=#{date1}
         and date&lt;= #{date2}) group by name
     </select>
     <select id="infoSum" resultType="com.hxzz.demo.bean.ScglShow">
-        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency) as
-        targetEfficiency,count (*) as counts,sum(actualEfficiency) as actualEfficiency,sum(workingHours) as
+        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency)/count(*) as
+        targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat from Scgl where (date&gt;=#{date1}
         and date&lt;= #{date2})
 

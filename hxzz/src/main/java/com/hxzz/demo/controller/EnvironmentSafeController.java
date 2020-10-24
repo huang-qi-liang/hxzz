@@ -108,16 +108,34 @@ public class EnvironmentSafeController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody EnvironmentSafe environmentSafe) {
-        environmentSafeService.add(environmentSafe.getGrey(), environmentSafe.getRed(), environmentSafe.getBlack(),
-                environmentSafe.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            environmentSafeService.add(jsonObject.getInteger("grey"),jsonObject.getInteger("red"),
+                    jsonObject.getInteger("black"),date);
+        }
+
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody EnvironmentSafe environmentSafe) {
-        environmentSafeService.change(environmentSafe.getId(), environmentSafe.getGrey(), environmentSafe.getRed(),
-                environmentSafe.getBlack(), environmentSafe.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            environmentSafeService.change(jsonObject.getInteger("id"),jsonObject.getInteger("grey"),
+                    jsonObject.getInteger("red"),
+                    jsonObject.getInteger("black"),date);
+        }
         return Result.succ("success");
     }
 
