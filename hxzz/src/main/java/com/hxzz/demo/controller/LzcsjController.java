@@ -101,9 +101,18 @@ public class LzcsjController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Lzcsj lzcsj) {
-        lzcsjService.add(lzcsj.getName(), lzcsj.getWaitingToBeLoaded(), lzcsj.getLoopToCrossTheLine(),
-                lzcsj.getBhCirculation(), lzcsj.getActualCirculation(), lzcsj.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            lzcsjService.add(jsonObject.getString("name"),jsonObject.getInteger("waitingToBeLoaded"),
+                    jsonObject.getInteger("loopToCrossTheLine"),jsonObject.getInteger("bhCirculation"),
+                    jsonObject.getInteger("actualCirculation"),date);
+        }
         /*
     JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
     jsondata=jsonObject.getJSONObject("data");
@@ -140,29 +149,19 @@ public class LzcsjController {
     }
 
     @RequestMapping("change")
-    public Result change(@RequestBody Lzcsj lzcsj) {
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
 
-        lzcsjService.change(lzcsj.getId(), lzcsj.getName(), lzcsj.getWaitingToBeLoaded(), lzcsj.getLoopToCrossTheLine(),
-                lzcsj.getBhCirculation(), lzcsj.getActualCirculation(), lzcsj.getDate());
-        /*
-        JSONObject jsondata=new JSONObject(new LinkedHashMap<>());
-        jsondata=jsonObject.getJSONObject("data");
-        JSONArray jsonArray=new JSONArray();
-        jsonArray=jsondata.getJSONArray("message");
-        int size=jsonArray.size();
-        int i;
-        ArrayList<JSONObject> arrayList=new ArrayList<>();
-        for(i=0;i<size;i++){
-            arrayList.add((JSONObject) JSONObject.toJSON(jsonArray.get(i)));
-            lzcsjService.change(arrayList.get(i).getInteger("id"),arrayList.get(i).getString("name"),
-                    arrayList.get(i).getInteger(
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            lzcsjService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getInteger(
                     "waitingToBeLoaded"),
-                    arrayList.get(i).getInteger("loopToCrossTheLine"),arrayList.get(i).getInteger("bhCirculation"),
-                    arrayList.get(i).getInteger("actualCirculation"));
+                    jsonObject.getInteger("loopToCrossTheLine"),jsonObject.getInteger("bhCirculation"),
+                    jsonObject.getInteger("actualCirculation"),date);
         }
-        return "success";/
-
-         */
         return Result.succ("success");
     }
 

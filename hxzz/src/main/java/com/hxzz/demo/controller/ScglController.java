@@ -131,16 +131,36 @@ public class ScglController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Scgl scgl) {
-        scglService.add(scgl.getName(), scgl.getTargetCapacity(), scgl.getActualCapacity(), scgl.getTargetEfficiency(),
-                scgl.getWorkingHours(), scgl.getBeat(), scgl.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            scglService.add(jsonObject.getString("name"),jsonObject.getInteger("targetCapacity"),jsonObject.getFloat(
+                    "actualCapacity"),jsonObject.getFloat("targetEfficiency"),jsonObject.getFloat("workingHours"),
+                    jsonObject.getFloat("beat"),date);
+        }
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Scgl scgl) {
-        scglService.change(scgl.getId(), scgl.getName(), scgl.getTargetCapacity(), scgl.getActualCapacity(),
-                scgl.getTargetEfficiency(), scgl.getWorkingHours(), scgl.getBeat(), scgl.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            scglService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getInteger(
+                    "targetCapacity"),
+                    jsonObject.getFloat(
+                    "actualCapacity"),jsonObject.getFloat("targetEfficiency"),jsonObject.getFloat("workingHours"),
+                    jsonObject.getFloat("beat"),date);
+        }
         return Result.succ("success");
     }
 }

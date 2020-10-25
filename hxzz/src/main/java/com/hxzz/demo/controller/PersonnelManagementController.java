@@ -101,26 +101,42 @@ public class PersonnelManagementController {
             jsonObject = list.get(i);
             String Id = jsonObject.getString("id");
             Integer id = parseInt(Id, 10);
-            personnelManagementService.delIN(id);
+            personnelManagementService.del(id);
         }
         return Result.succ("success");
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody PersonnelManagement personnelManagement) {
-        personnelManagementService.addIN(personnelManagement.getName(), personnelManagement.getEstablishment(),
-                personnelManagement.getActualNumber(), personnelManagement.getAvailableNumber(),
-                personnelManagement.getAttendanceRate(), personnelManagement.getShouldArrive(),
-                personnelManagement.getActualArrive(), personnelManagement.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            personnelManagementService.add(jsonObject.getString("name"),jsonObject.getInteger("establishment"),
+                    jsonObject.getInteger("actualNumber"),jsonObject.getInteger("availableNumber"),
+                    jsonObject.getInteger("shouldArrive"),jsonObject.getFloat("actualArrive"),date);
+        }
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody PersonnelManagement personnelManagement) {
-        personnelManagementService.changeIN(personnelManagement.getId(), personnelManagement.getName(), personnelManagement.getEstablishment(),
-                personnelManagement.getActualNumber(), personnelManagement.getAvailableNumber(),
-                personnelManagement.getAttendanceRate(), personnelManagement.getShouldArrive(),
-                personnelManagement.getActualArrive(), personnelManagement.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            personnelManagementService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),
+                    jsonObject.getInteger(
+                    "establishment"),
+                    jsonObject.getInteger("actualNumber"),jsonObject.getInteger("availableNumber"),
+                    jsonObject.getInteger("shouldArrive"),jsonObject.getFloat("actualArrive"),date);
+        }
         return Result.succ("success");
     }
 

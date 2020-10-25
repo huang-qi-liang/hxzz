@@ -111,19 +111,38 @@ public class QualityController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Quality quality) {
-        qualityService.add(quality.getName(), quality.getOffLine(), quality.getOffLine(), quality.getDLine(),
-                quality.getDLine(), quality.getLingYu(), quality.getAclingYu(), quality.getCareLine(),
-                quality.getCareLine(), quality.getRoadTest(), quality.getRoadTest(), quality.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
 
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            qualityService.add(jsonObject.getString("name"),jsonObject.getFloat("offLine"),jsonObject.getFloat(
+                    "acoffLine"),jsonObject.getFloat("dLine"),jsonObject.getFloat("acdLine"),jsonObject.getFloat(
+                            "lingYu"),jsonObject.getFloat("aclingYu"),jsonObject.getFloat("careLine"),
+                    jsonObject.getFloat("accareLine"),jsonObject.getFloat("roadTest"),jsonObject.getFloat("acroadTest"),date);
+        }
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Quality quality) {
-        qualityService.change(quality.getId(), quality.getName(), quality.getOffLine(), quality.getOffLine(), quality.getDLine(),
-                quality.getDLine(), quality.getLingYu(), quality.getAclingYu(), quality.getCareLine(),
-                quality.getCareLine(), quality.getRoadTest(), quality.getRoadTest(), quality.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            qualityService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getFloat(
+                    "offLine"),
+                    jsonObject.getFloat(
+                    "acoffLine"),jsonObject.getFloat("dLine"),jsonObject.getFloat("acdLine"),jsonObject.getFloat(
+                    "lingYu"),jsonObject.getFloat("aclingYu"),jsonObject.getFloat("careLine"),
+                    jsonObject.getFloat("accareLine"),jsonObject.getFloat("roadTest"),jsonObject.getFloat("acroadTest"),date);
+        }
         return Result.succ("success");
     }
 }

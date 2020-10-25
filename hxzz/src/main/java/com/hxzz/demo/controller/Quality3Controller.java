@@ -107,16 +107,34 @@ public class Quality3Controller {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Quality3 quality3) {
-        quality3Service.add(quality3.getName(), quality3.getDC(), quality3.getDD(), quality3.getXB(), quality3.getXC(),
-                quality3.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            quality3Service.add(jsonObject.getString("name"),jsonObject.getInteger("DC"),jsonObject.getInteger("DD"),
+                    jsonObject.getInteger("XB"),jsonObject.getInteger("XC"),date);
+        }
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Quality3 quality3) {
-        quality3Service.change(quality3.getId(), quality3.getName(), quality3.getDC(), quality3.getDD(), quality3.getXB(),
-                quality3.getXC(), quality3.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            quality3Service.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getInteger("DC"),
+                    jsonObject.getInteger(
+                    "DD"),
+                    jsonObject.getInteger("XB"),jsonObject.getInteger("XC"),date);
+        }
         return Result.succ("success");
     }
 }

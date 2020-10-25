@@ -52,22 +52,22 @@ public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagem
         return personnelManagementMapper.infoSum(date1, date2);
     }
 
-    public void addIN(String name, Integer establishment, Integer actualNumber, Integer availableNumber, Float attendanceRate,
+    public void add(String name, Integer establishment, Integer actualNumber, Integer availableNumber,
                       Integer shouldArrive, Float actualArrive, LocalDate date) {
-        personnelManagementMapper.add(name, establishment, actualNumber, availableNumber, attendanceRate,
+        personnelManagementMapper.add(name, establishment, actualNumber, availableNumber,
                 shouldArrive, actualArrive, date);
     }
 
-    public void delIN(Integer id) {
+    public void del(Integer id) {
         personnelManagementMapper.del(id);
     }
 
     ;
 
-    public void changeIN(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
-                         Float attendanceRate,
+    public void change(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
+
                          Integer shouldArrive, Float actualArrive, LocalDate date) {
-        personnelManagementMapper.change(id, name, establishment, actualNumber, availableNumber, attendanceRate,
+        personnelManagementMapper.change(id, name, establishment, actualNumber, availableNumber,
                 shouldArrive, actualArrive, date);
     }
 

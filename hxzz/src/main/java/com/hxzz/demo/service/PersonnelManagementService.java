@@ -30,13 +30,13 @@ public interface PersonnelManagementService extends IService<PersonnelManagement
 
     PersonnelManagement infoSum(LocalDate date1, LocalDate date2);
 
-    void addIN(String name, Integer establishment, Integer actualNumber, Integer availableNumber, Float attendanceRate,
+    void add(String name, Integer establishment, Integer actualNumber, Integer availableNumber,
                Integer shouldArrive, Float actualArrive, LocalDate date);
 
-    void delIN(Integer id);
+    void del(Integer id);
 
-    void changeIN(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
-                  Float attendanceRate,
+    void change(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
+
                   Integer shouldArrive, Float actualArrive, LocalDate date);
 
     PageInfo<PersonnelManagement> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);

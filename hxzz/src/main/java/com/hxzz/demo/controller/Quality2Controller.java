@@ -109,16 +109,36 @@ public class Quality2Controller {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Quality2 quality2) {
-        quality2Service.add(quality2.getProductionLine(), quality2.getBreakpoint(), quality2.getPaa(), quality2.getPtr()
-                , quality2.getCraft(), quality2.getTools(), quality2.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            quality2Service.add(jsonObject.getString("productionLine"),jsonObject.getInteger("breakpoint"),
+                    jsonObject.getInteger("paa"),jsonObject.getInteger("ptr"),jsonObject.getInteger("craft"),
+                    jsonObject.getInteger("tools"),date);
+        }
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Quality2 quality2) {
-        quality2Service.change(quality2.getId(), quality2.getProductionLine(), quality2.getBreakpoint(), quality2.getPaa(), quality2.getPtr()
-                , quality2.getCraft(), quality2.getTools(), quality2.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            quality2Service.change(jsonObject.getInteger("id"),jsonObject.getString("productionLine"),
+                    jsonObject.getInteger(
+                    "breakpoint"),
+                    jsonObject.getInteger("paa"),jsonObject.getInteger("ptr"),jsonObject.getInteger("craft"),
+                    jsonObject.getInteger("tools"),date);
+        }
         return Result.succ("success");
     }
 }

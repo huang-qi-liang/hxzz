@@ -107,14 +107,33 @@ public class SafeController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody Safe safe) {
-        safeService.add(safe.getGrey(), safe.getBlue(), safe.getYellow(), safe.getRed(), safe.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            safeService.add(jsonObject.getInteger("grey"),jsonObject.getInteger("blue"),jsonObject.getInteger("yellow"),jsonObject.getInteger("red"),date);
+        }
         return Result.succ("success");
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody Safe safe) {
-        safeService.change(safe.getId(), safe.getGrey(), safe.getBlue(), safe.getYellow(), safe.getRed(), safe.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            safeService.change(jsonObject.getInteger("id"),jsonObject.getInteger("grey"),jsonObject.getInteger("blue"),
+                    jsonObject.getInteger(
+                    "yellow")
+                    ,jsonObject.getInteger("red"),date);
+        }
         return Result.succ("success");
     }
 

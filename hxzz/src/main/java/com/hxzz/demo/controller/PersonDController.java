@@ -130,17 +130,36 @@ public class PersonDController {
     }
 
     @RequestMapping("/add")
-    public Result add(@RequestBody PersonD personD) {
-        personDService.add(personD.getRegion(), personD.getPersonalLeave(), personD.getSickLeave(),
-                personD.getAnnualLeave(), personD.getNursingLeave(), personD.getBereavementLeave(), personD.getDate());
+    public Result add(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            personDService.add(jsonObject.getString("region"),jsonObject.getInteger("personalLeave"),
+                    jsonObject.getInteger("sickLeave"),jsonObject.getInteger("annualLeave"),jsonObject.getInteger(
+                            "nursingLeave"),jsonObject.getInteger("bereavementLeave"),date);
+        }
         return Result.succ("success");
 
     }
 
     @RequestMapping("/change")
-    public Result change(@RequestBody PersonD personD) {
-        personDService.change(personD.getId(), personD.getRegion(), personD.getPersonalLeave(), personD.getSickLeave(),
-                personD.getAnnualLeave(), personD.getNursingLeave(), personD.getBereavementLeave(), personD.getDate());
+    public Result change(@RequestBody List<JSONObject> list) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+
+            JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+            jsonObject = list.get(i);
+            DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            personDService.change(jsonObject.getInteger("id"),jsonObject.getString("region"),jsonObject.getInteger(
+                    "personalLeave"),
+                    jsonObject.getInteger("sickLeave"),jsonObject.getInteger("annualLeave"),jsonObject.getInteger(
+                            "nursingLeave"),jsonObject.getInteger("bereavementLeave"),date);
+        }
         return Result.succ("success");
     }
 
