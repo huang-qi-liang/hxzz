@@ -2,6 +2,7 @@ package com.hxzz.demo.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
 import com.hxzz.demo.bean.Info;
@@ -24,6 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * <p>
@@ -62,6 +64,7 @@ public class Quality3Controller {
     }
 
     @RequestMapping("/info")
+
     public Result info(@RequestBody Info info) {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.ScglMapper">
     <select id="show" resultType="com.hxzz.demo.entity.Scgl">
-        select * from Scgl where date=( select MAX(date) as date from Scgl) order
+       	select id,name,targetCapacity,actualCapacity,convert(decimal(18,1),actualCapacity/targetCapacity*100) as
+        targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as actualEfficiency,workingHours,theoreticalCapacity,beat,date from Scgl where date=( select MAX(date) as date from Scgl) order
         by name,id DESC
 
     </select>
     <select id="showClient" resultType="com.hxzz.demo.bean.ScglShow">
-       select name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as
-       actualCapacity,sum(targetEfficiency)/count(*) as
+     select name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as
+       actualCapacity,convert(decimal(18,1),sum(actualCapacity)/sum(targetCapacity)*100) as
         targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat,date from Scgl where date=(
         select
@@ -17,7 +18,8 @@
     </select>
     <select id="showSum" resultType="com.hxzz.demo.bean.ScglShow">
 
-        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency)/count(*) as
+        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as
+       actualCapacity,convert(decimal(18,1),sum(actualCapacity)/sum(targetCapacity)*100) as
         targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat,date from Scgl where date=(
         select
@@ -25,31 +27,34 @@
 
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Scgl">
-        select * from Scgl where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+      	select id,name,targetCapacity,actualCapacity,convert(decimal(18,1),actualCapacity/targetCapacity*100) as
+        targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as actualEfficiency,workingHours,theoreticalCapacity,beat,date from Scgl where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
 
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.bean.ScglShow">
-        select  name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency)/count(*) as
+        select name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as
+       actualCapacity,convert(decimal(18,1),sum(actualCapacity)/sum(targetCapacity)*100) as
         targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat from Scgl where (date&gt;=#{date1}
         and date&lt;= #{date2}) group by name
     </select>
     <select id="infoSum" resultType="com.hxzz.demo.bean.ScglShow">
-        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as actualCapacity,sum(targetEfficiency)/count(*) as
+        select sum(targetCapacity) as targetCapacity,sum(actualCapacity) as
+       actualCapacity,convert(decimal(18,1),sum(actualCapacity)/sum(targetCapacity)*100) as
         targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
-        workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat from Scgl where (date&gt;=#{date1}
+        workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat  from Scgl where (date&gt;=#{date1}
         and date&lt;= #{date2})
 
     </select>
     <insert id="add">
-        insert into Scgl( name,targetCapacity, actualCapacity, targetEfficiency, workingHours, beat,date)
-        values(#{name},#{targetCapacity},#{actualCapacity},#{targetEfficiency},#{workingHours},#{beat},#{date})
+        insert into Scgl( name,targetCapacity, actualCapacity, workingHours, beat,date)
+        values(#{name},#{targetCapacity},#{actualCapacity},#{workingHours},#{beat},#{date})
     </insert>
     <delete id="del">
         delete from Scgl where id=#{id}
     </delete>
     <update id="change">
         update Scgl set name=#{name},targetCapacity=#{ targetCapacity}, actualCapacity=#{actualCapacity},
-        targetEfficiency=#{targetEfficiency}, workingHours=#{ workingHours}, beat=#{beat},date=#{date} where id=#{id}
+         workingHours=#{ workingHours}, beat=#{beat},date=#{date} where id=#{id}
     </update>
 </mapper>

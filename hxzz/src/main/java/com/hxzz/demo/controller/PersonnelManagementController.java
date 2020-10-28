@@ -125,6 +125,7 @@ public class PersonnelManagementController {
     @RequestMapping("/change")
     public Result change(@RequestBody List<JSONObject> list) {
         int size = list.size();
+
         for (int i = 0; i < size; i++) {
 
             JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());

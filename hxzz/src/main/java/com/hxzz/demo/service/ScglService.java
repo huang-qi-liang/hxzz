@@ -30,12 +30,12 @@ public interface ScglService extends IService<Scgl> {
 
     ScglShow infoSum(LocalDate date1, LocalDate date2);
 
-    void add(String name, Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
+    void add(String name, Integer targetCapacity, Float actualCapacity, Float workingHours,
              Float beat, LocalDate date);
 
     void del(Integer id);
 
-    void change(Integer id, String name, Integer targetCapacity, Float actualCapacity, Float targetEfficiency, Float workingHours,
+    void change(Integer id, String name, Integer targetCapacity, Float actualCapacity,  Float workingHours,
                 Float beat, LocalDate date);
 
     PageInfo<Scgl> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);

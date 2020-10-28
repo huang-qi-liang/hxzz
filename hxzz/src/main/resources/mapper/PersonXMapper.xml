@@ -7,13 +7,13 @@
     </select>
     <select id="showClient" resultType="com.hxzz.demo.bean.PersonXShow">
         select region, sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as
-        annualLeave, sum(nursingLeave) nursingLeave,
+        annualLeave, sum(nursingLeave) as nursingLeave,
         sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX where date=(
         select MAX(date) as date from PersonX) group by date,region
     </select>
     <select id="Sum" resultType="com.hxzz.demo.bean.PersonXShow">
         select sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave,
-        sum(nursingLeave) nursingLeave,
+        sum(nursingLeave) as  nursingLeave,
         sum(bereavementLeave) as bereavementLeave,sum(total) as total,date from PersonX where date=(
         select MAX(date) as date from PersonX) group by date
     </select>
@@ -22,14 +22,14 @@
     </select>
     <select id="getClient" resultType="com.hxzz.demo.bean.PersonXShow">
         select region, sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as
-        annualLeave, sum(nursingLeave) nursingLeave,
+        annualLeave, sum(nursingLeave) as nursingLeave,
         sum(bereavementLeave) as bereavementLeave,sum(total) as total from PersonX where date>=#{date1} and
         date&lt;=#{date2} group by region
 
     </select>
     <select id="sumClient" resultType="com.hxzz.demo.bean.PersonXShow">
         select sum(personalLeave) as personalLeave, sum(sickLeave) as sickLeave, sum(annualLeave) as annualLeave,
-        sum(nursingLeave) nursingLeave,
+        sum(nursingLeave) as nursingLeave,
         sum(bereavementLeave) as bereavementLeave,sum(total) as total from PersonX where date>=#{date1} and
         date&lt;=#{date2}
     </select>

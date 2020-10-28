@@ -132,6 +132,7 @@ public class ScglController {
 
     @RequestMapping("/add")
     public Result add(@RequestBody List<JSONObject> list) {
+
         int size = list.size();
         for (int i = 0; i < size; i++) {
 
@@ -140,7 +141,7 @@ public class ScglController {
             DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             scglService.add(jsonObject.getString("name"),jsonObject.getInteger("targetCapacity"),jsonObject.getFloat(
-                    "actualCapacity"),jsonObject.getFloat("targetEfficiency"),jsonObject.getFloat("workingHours"),
+                    "actualCapacity"),jsonObject.getFloat("workingHours"),
                     jsonObject.getFloat("beat"),date);
         }
         return Result.succ("success");
@@ -158,7 +159,7 @@ public class ScglController {
             scglService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getInteger(
                     "targetCapacity"),
                     jsonObject.getFloat(
-                    "actualCapacity"),jsonObject.getFloat("targetEfficiency"),jsonObject.getFloat("workingHours"),
+                    "actualCapacity"),jsonObject.getFloat("workingHours"),
                     jsonObject.getFloat("beat"),date);
         }
         return Result.succ("success");

@@ -113,6 +113,22 @@ webSocket.sendOneMessage("user",string);
     }
 
  */
+/*
+@RequestMapping("/test")
+    @Scheduled(fixedDelay =1000)
+    public String refresh(){
+    Random r=new Random();
+
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    String s=String.valueOf(r.nextInt(1000));
+    log.println(s);
+    return s;
+}
+*/
 
 
 }

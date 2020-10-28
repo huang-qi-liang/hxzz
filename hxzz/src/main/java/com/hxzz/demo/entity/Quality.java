@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -38,7 +39,7 @@ public class Quality implements Serializable {
 
     private Float offLine;
     private Float acoffLine;
-
+@JsonProperty("dLine")
     private Float dLine;
     private Float acdLine;
 
@@ -54,7 +55,7 @@ public class Quality implements Serializable {
     private Float roadTest;
     private Float acroadTest;
 
-
+    @JsonProperty("DR")
     private Float DR;
 
     private LocalDate date;

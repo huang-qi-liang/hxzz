@@ -77,7 +77,7 @@ public class LzcsjController {
         LocalDate date2 = LocalDate.parse(info.getTime2(), dateTimeFormatter);
 
         PageInfo<Lzcsj> pageInfo = lzcsjService.findAll(info.getPageNum(), info.getPageSize(), date1, date2);
-        log.println("lzcsjinfo");
+
         return Result.succ(pageInfo);
 
     }

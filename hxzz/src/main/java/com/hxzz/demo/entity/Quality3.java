@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -34,16 +35,16 @@ public class Quality3 implements Serializable {
     private Integer id;
 
     private String name;
-
+@JsonProperty("DC")
     @TableField("DC")
     private Integer DC;
-
+    @JsonProperty("DD")
     @TableField("DD")
     private Integer DD;
-
+    @JsonProperty("XB")
     @TableField("XB")
     private Integer XB;
-
+    @JsonProperty("XC")
     @TableField("XC")
     private Integer XC;
 
