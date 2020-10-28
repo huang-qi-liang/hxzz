@@ -37,10 +37,10 @@ public class QualityPackage {
         jsonObject.put("name", "合计");
         jsonObject.put("offLine", qualityService.infoSum(date1, date2).getOffLine());
         jsonObject.put("dLine", qualityService.infoSum(date1, date2).getDLine());
-        jsonObject.put("ptr", qualityService.infoSum(date1, date2).getLingYu());
-        jsonObject.put("craft", qualityService.infoSum(date1, date2).getCareLine());
-        jsonObject.put("tools", qualityService.infoSum(date1, date2).getRoadTest());
-        jsonObject.put("total", qualityService.infoSum(date1, date2).getDR());
+        jsonObject.put("LingYu", qualityService.infoSum(date1, date2).getLingYu());
+        jsonObject.put("careLine", qualityService.infoSum(date1, date2).getCareLine());
+        jsonObject.put("roadTest", qualityService.infoSum(date1, date2).getRoadTest());
+        jsonObject.put("DR", qualityService.infoSum(date1, date2).getDR());
         jsonObject.put("date", qualityService.infoSum(date1, date2).getDate());
         return jsonObject;
     }
