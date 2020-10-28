@@ -21,7 +21,7 @@ public class QualityPackage {
         jsonObject.put("name", "合计");
         jsonObject.put("offLine", qualityService.showSum().getOffLine());
         jsonObject.put("dLine", qualityService.showSum().getDLine());
-        jsonObject.put("LingYu", qualityService.showSum().getLingYu());
+        jsonObject.put("lingYu", qualityService.showSum().getLingYu());
         jsonObject.put("careLine", qualityService.showSum().getCareLine());
         jsonObject.put("roadTest", qualityService.showSum().getRoadTest());
         jsonObject.put("DR", qualityService.showSum().getDR());
@@ -37,7 +37,7 @@ public class QualityPackage {
         jsonObject.put("name", "合计");
         jsonObject.put("offLine", qualityService.infoSum(date1, date2).getOffLine());
         jsonObject.put("dLine", qualityService.infoSum(date1, date2).getDLine());
-        jsonObject.put("LingYu", qualityService.infoSum(date1, date2).getLingYu());
+        jsonObject.put("lingYu", qualityService.infoSum(date1, date2).getLingYu());
         jsonObject.put("careLine", qualityService.infoSum(date1, date2).getCareLine());
         jsonObject.put("roadTest", qualityService.infoSum(date1, date2).getRoadTest());
         jsonObject.put("DR", qualityService.infoSum(date1, date2).getDR());
