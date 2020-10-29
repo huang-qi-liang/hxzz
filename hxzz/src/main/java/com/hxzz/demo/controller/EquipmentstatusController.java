@@ -81,7 +81,7 @@ public class EquipmentstatusController {
         List list = new ArrayList();
 
         list = equipmentstatusService.infoClient(date1, date2);
-        list.add(list);
+
 
 
         return Result.succ(list);

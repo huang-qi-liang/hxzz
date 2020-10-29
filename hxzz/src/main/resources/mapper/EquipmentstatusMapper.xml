@@ -3,7 +3,7 @@
 <mapper namespace="com.hxzz.demo.mapper.EquipmentstatusMapper">
     <select id="show" resultType="com.hxzz.demo.entity.Equipmentstatus">
         select id,name, failureTime,  officeTime,convert(decimal(18,2),failureTime/officeTime*100) as
-        rate from Equipmentstatus where date=( select MAX(date) as date from Equipmentstatus) order
+        rate,date from Equipmentstatus where date=( select MAX(date) as date from Equipmentstatus) order
         by name,id DESC
     </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
@@ -19,7 +19,7 @@
 
     <select id="info" resultType="com.hxzz.demo.entity.Equipmentstatus">
         select id,name, failureTime, officeTime,convert(decimal(18,2),failureTime/officeTime*100) as
-        rate from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+        rate,date from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
         select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
