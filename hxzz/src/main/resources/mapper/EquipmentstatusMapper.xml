@@ -26,8 +26,8 @@
         rate from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} group by name
     </select>
     <select id="infoSum" resultType="com.hxzz.demo.entity.Equipmentstatus">
-        select convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
-        rate from Equipmentstatus where
+        select sum(failureTime) as failureTime,sum(officeTime) as officeTime,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        rate from Equipmentstatus  where
         date>=#{date1} and date &lt;= #{date2}
     </select>
     <select id="each" resultType="com.hxzz.demo.bean.Equipment">

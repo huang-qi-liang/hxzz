@@ -52,7 +52,7 @@ public class EquipmentstatusController {
     public Result showClient() {
         List list = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
-
+jsonObject=equipmentPackage.showPackage();
         list = equipmentstatusService.showClient();
         list.add(jsonObject);
         return Result.succ(list);
@@ -79,9 +79,10 @@ public class EquipmentstatusController {
 
         LocalDate date2 = LocalDate.parse(date.getTime2(), dateTimeFormatter);
         List list = new ArrayList();
-
+        JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
+        jsonObject=equipmentPackage.ClientPackage(date1,date2);
         list = equipmentstatusService.infoClient(date1, date2);
-
+list.add(jsonObject);
 
 
         return Result.succ(list);
@@ -102,7 +103,7 @@ public class EquipmentstatusController {
     public Result lineA(@RequestBody EquipmentDate date) {
 
         List list = new ArrayList();
-        list = equipmentPackage.line(date.getTime(), "A线");
+        list = equipmentPackage.line(date.getTime(), "西部A线");
 
         return Result.succ(list);
 
@@ -112,7 +113,7 @@ public class EquipmentstatusController {
     public Result lineB(@RequestBody EquipmentDate date) {
 
         List list = new ArrayList();
-        list = equipmentPackage.line(date.getTime(), "B线");
+        list = equipmentPackage.line(date.getTime(), "西部B线");
         return Result.succ(list);
 
     }
@@ -121,7 +122,7 @@ public class EquipmentstatusController {
     public Result lineC(@RequestBody EquipmentDate date) {
 
         List list = new ArrayList();
-        list = equipmentPackage.line(date.getTime(), "C线");
+        list = equipmentPackage.line(date.getTime(), "东部C线");
         return Result.succ(list);
 
     }
@@ -130,7 +131,7 @@ public class EquipmentstatusController {
     public Result lineD(@RequestBody EquipmentDate date) {
 
         List list = new ArrayList();
-        list = equipmentPackage.line(date.getTime(), "D线");
+        list = equipmentPackage.line(date.getTime(), "东部D线");
         return Result.succ(list);
 
     }
