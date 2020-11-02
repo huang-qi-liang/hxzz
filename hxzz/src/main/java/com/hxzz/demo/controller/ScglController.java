@@ -142,7 +142,7 @@ public class ScglController {
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             scglService.add(jsonObject.getString("name"),jsonObject.getInteger("targetCapacity"),jsonObject.getFloat(
                     "actualCapacity"),jsonObject.getFloat("workingHours"),
-                    jsonObject.getFloat("beat"),date);
+                    jsonObject.getFloat("beat"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }
@@ -160,7 +160,7 @@ public class ScglController {
                     "targetCapacity"),
                     jsonObject.getFloat(
                     "actualCapacity"),jsonObject.getFloat("workingHours"),
-                    jsonObject.getFloat("beat"),date);
+                    jsonObject.getFloat("beat"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }

@@ -43,6 +43,7 @@ public class Equipmentstatus implements Serializable {
     private Float officeTime;
 
     private Float rate;
+    private String shift;
 
     private LocalDate date;
 

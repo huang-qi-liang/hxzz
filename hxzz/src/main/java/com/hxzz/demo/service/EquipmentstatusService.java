@@ -45,11 +45,11 @@ public interface EquipmentstatusService extends IService<Equipmentstatus> {
 
     Equipment totalYear(Integer date);
 
-    void add(String name, Float failureTime, Float officeTime, LocalDate date);
+    void add(String name, Float failureTime, Float officeTime,String shift, LocalDate date);
 
     void del(Integer id);
 
-    void change(Integer id, String name, Float failureTime, Float officeTime, LocalDate date);
+    void change(Integer id, String name, Float failureTime, Float officeTime,String shift, LocalDate date);
 
     PageInfo<Equipmentstatus> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 }

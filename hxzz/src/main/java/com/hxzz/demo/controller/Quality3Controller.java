@@ -119,7 +119,7 @@ public class Quality3Controller {
             DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             quality3Service.add(jsonObject.getString("name"),jsonObject.getInteger("DC"),jsonObject.getInteger("DD"),
-                    jsonObject.getInteger("XB"),jsonObject.getInteger("XC"),date);
+                    jsonObject.getInteger("XB"),jsonObject.getInteger("XC"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }
@@ -136,7 +136,7 @@ public class Quality3Controller {
             quality3Service.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getInteger("DC"),
                     jsonObject.getInteger(
                     "DD"),
-                    jsonObject.getInteger("XB"),jsonObject.getInteger("XC"),date);
+                    jsonObject.getInteger("XB"),jsonObject.getInteger("XC"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }

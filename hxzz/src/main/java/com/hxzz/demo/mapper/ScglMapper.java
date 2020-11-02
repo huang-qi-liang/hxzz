@@ -32,10 +32,10 @@ public interface ScglMapper extends BaseMapper<Scgl> {
     ScglShow infoSum(LocalDate date1, LocalDate date2);
 
     void add(String name, Integer targetCapacity, Float actualCapacity,  Float workingHours,
-             Float beat, LocalDate date);
+             Float beat,String shoft, LocalDate date);
 
     void del(Integer id);
 
     void change(Integer id, String name, Integer targetCapacity, Float actualCapacity,  Float workingHours,
-                Float beat, LocalDate date);
+                Float beat, String shift,LocalDate date);
 }

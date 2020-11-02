@@ -51,8 +51,9 @@ public class Quality2ServiceImpl extends ServiceImpl<Quality2Mapper, Quality2> i
         return quality2Mapper.infoSum(date1, date2);
     }
 
-    public void add(String productionLine, Integer breakpoint, Integer paa, Integer ptr, Integer craft, Integer tools, LocalDate date) {
-        quality2Mapper.add(productionLine, breakpoint, paa, ptr, craft, tools, date);
+    public void add(String productionLine, Integer breakpoint, Integer paa, Integer ptr, Integer craft, Integer tools
+            ,String shift, LocalDate date) {
+        quality2Mapper.add(productionLine, breakpoint, paa, ptr, craft, tools,shift, date);
     }
 
     public void del(Integer id) {
@@ -60,9 +61,9 @@ public class Quality2ServiceImpl extends ServiceImpl<Quality2Mapper, Quality2> i
     }
 
     public void change(Integer id, String productionLine, Integer breakpoint, Integer paa, Integer ptr, Integer craft,
-                       Integer tools, LocalDate date) {
+                       Integer tools,String shift, LocalDate date) {
         quality2Mapper.change(id, productionLine, breakpoint, paa, ptr, craft, tools
-                , date);
+                ,shift, date);
 
     }
 

@@ -119,7 +119,7 @@ public class Quality2Controller {
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             quality2Service.add(jsonObject.getString("productionLine"),jsonObject.getInteger("breakpoint"),
                     jsonObject.getInteger("paa"),jsonObject.getInteger("ptr"),jsonObject.getInteger("craft"),
-                    jsonObject.getInteger("tools"),date);
+                    jsonObject.getInteger("tools"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }
@@ -137,7 +137,7 @@ public class Quality2Controller {
                     jsonObject.getInteger(
                     "breakpoint"),
                     jsonObject.getInteger("paa"),jsonObject.getInteger("ptr"),jsonObject.getInteger("craft"),
-                    jsonObject.getInteger("tools"),date);
+                    jsonObject.getInteger("tools"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }

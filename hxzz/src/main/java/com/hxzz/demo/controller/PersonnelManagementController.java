@@ -117,7 +117,8 @@ public class PersonnelManagementController {
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             personnelManagementService.add(jsonObject.getString("name"),jsonObject.getInteger("establishment"),
                     jsonObject.getInteger("actualNumber"),jsonObject.getInteger("availableNumber"),
-                    jsonObject.getInteger("shouldArrive"),jsonObject.getFloat("actualArrive"),date);
+                    jsonObject.getInteger("shouldArrive"),jsonObject.getFloat("actualArrive"),jsonObject.getString(
+                            "shift"),date);
         }
         return Result.succ("success");
     }
@@ -136,7 +137,8 @@ public class PersonnelManagementController {
                     jsonObject.getInteger(
                     "establishment"),
                     jsonObject.getInteger("actualNumber"),jsonObject.getInteger("availableNumber"),
-                    jsonObject.getInteger("shouldArrive"),jsonObject.getFloat("actualArrive"),date);
+                    jsonObject.getInteger("shouldArrive"),jsonObject.getFloat("actualArrive"),jsonObject.getString(
+                            "shift"),date);
         }
         return Result.succ("success");
     }

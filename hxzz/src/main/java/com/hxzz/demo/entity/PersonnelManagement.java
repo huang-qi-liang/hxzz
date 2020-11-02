@@ -51,6 +51,7 @@ public class PersonnelManagement implements Serializable {
 
     @TableField("actualArrive")
     private Float actualArrive;
+   private String shift;
 
     private LocalDate date;
 

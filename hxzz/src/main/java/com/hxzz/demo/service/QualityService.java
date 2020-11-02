@@ -34,11 +34,11 @@ public interface QualityService extends IService<Quality> {
     void del(Integer id);
 
     void add(String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
-             Float careLine, Float accareLine, Float roadTest, Float acroadTest,
+             Float careLine, Float accareLine, Float roadTest, Float acroadTest,String shift,
              LocalDate date);
 
     void change(Integer id, String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
-                Float careLine, Float accareLine, Float roadTest, Float acroadTest,
+                Float careLine, Float accareLine, Float roadTest, Float acroadTest,String shift,
                 LocalDate date);
 
     PageInfo<Quality> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);

@@ -141,7 +141,8 @@ public class PersonDController {
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             personDService.add(jsonObject.getString("region"),jsonObject.getInteger("personalLeave"),
                     jsonObject.getInteger("sickLeave"),jsonObject.getInteger("annualLeave"),jsonObject.getInteger(
-                            "nursingLeave"),jsonObject.getInteger("bereavementLeave"),date);
+                            "nursingLeave"),jsonObject.getInteger("bereavementLeave"),jsonObject.getString("shift"),
+                    date);
         }
         return Result.succ("success");
 
@@ -159,7 +160,8 @@ public class PersonDController {
             personDService.change(jsonObject.getInteger("id"),jsonObject.getString("region"),jsonObject.getInteger(
                     "personalLeave"),
                     jsonObject.getInteger("sickLeave"),jsonObject.getInteger("annualLeave"),jsonObject.getInteger(
-                            "nursingLeave"),jsonObject.getInteger("bereavementLeave"),date);
+                            "nursingLeave"),jsonObject.getInteger("bereavementLeave"),jsonObject.getString("shift"),
+                    date);
         }
         return Result.succ("success");
     }

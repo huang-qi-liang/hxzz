@@ -160,7 +160,7 @@ list.add(jsonObject);
             DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             equipmentstatusService.add(jsonObject.getString("name"),jsonObject.getFloat("failureTime"),
-                    jsonObject.getFloat("officeTime"),date);
+                    jsonObject.getFloat("officeTime"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }
@@ -176,7 +176,7 @@ list.add(jsonObject);
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
             equipmentstatusService.change(jsonObject.getInteger("id"),jsonObject.getString("name"),jsonObject.getFloat(
                     "failureTime"),
-                    jsonObject.getFloat("officeTime"),date);
+                    jsonObject.getFloat("officeTime"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }

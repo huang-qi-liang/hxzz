@@ -47,6 +47,7 @@ public class Quality2 implements Serializable {
     private Integer tools;
 
     private Integer total;
+    private String shift;
 
     private LocalDate date;
 

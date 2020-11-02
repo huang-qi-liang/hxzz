@@ -33,11 +33,11 @@ public interface PersonDMapper extends BaseMapper<PersonD> {
     PersonDShow sumClient(LocalDate date1, LocalDate date2);
 
     void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-             Integer bereavementLeave, LocalDate date);
+             Integer bereavementLeave, String shift,LocalDate date);
 
     void del(Integer id);
 
     void change(Integer id, String region, Integer personalLeave, Integer sickLeave, Integer annualLeave,
                 Integer nursingLeave,
-                Integer bereavementLeave, LocalDate date);
+                Integer bereavementLeave, String shift,LocalDate date);
 }

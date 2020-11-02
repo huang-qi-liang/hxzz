@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.ScglMapper">
     <select id="show" resultType="com.hxzz.demo.entity.Scgl">
-       	select id,name,targetCapacity,actualCapacity,convert(decimal(18,1),actualCapacity/targetCapacity*100) as
-        targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as actualEfficiency,workingHours,theoreticalCapacity,beat,date from Scgl where date=( select MAX(date) as date from Scgl) order
+       select id,name,targetCapacity,actualCapacity,convert(decimal(18,1),actualCapacity/targetCapacity*100) as
+        targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as actualEfficiency,workingHours,theoreticalCapacity,beat,shift,date from Scgl where date=( select MAX(date) as date from Scgl) order
         by name,id DESC
 
     </select>
@@ -28,7 +28,7 @@
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Scgl">
       	select id,name,targetCapacity,actualCapacity,convert(decimal(18,1),actualCapacity/targetCapacity*100) as
-        targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as actualEfficiency,workingHours,theoreticalCapacity,beat,date from Scgl where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+        targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as actualEfficiency,workingHours,theoreticalCapacity,beat,shift,date from Scgl where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
 
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.bean.ScglShow">
@@ -47,14 +47,14 @@
 
     </select>
     <insert id="add">
-        insert into Scgl( name,targetCapacity, actualCapacity, workingHours, beat,date)
-        values(#{name},#{targetCapacity},#{actualCapacity},#{workingHours},#{beat},#{date})
+        insert into Scgl( name,targetCapacity, actualCapacity, workingHours, beat,shift,date)
+        values(#{name},#{targetCapacity},#{actualCapacity},#{workingHours},#{beat},#{shift},#{date})
     </insert>
     <delete id="del">
         delete from Scgl where id=#{id}
     </delete>
     <update id="change">
         update Scgl set name=#{name},targetCapacity=#{ targetCapacity}, actualCapacity=#{actualCapacity},
-         workingHours=#{ workingHours}, beat=#{beat},date=#{date} where id=#{id}
+         workingHours=#{ workingHours}, beat=#{beat},shift=#{shift},date=#{date} where id=#{id}
     </update>
 </mapper>

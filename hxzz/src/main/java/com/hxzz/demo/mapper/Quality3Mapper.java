@@ -26,9 +26,9 @@ public interface Quality3Mapper extends BaseMapper<Quality3> {
 
     List<Quality3> infoClient(LocalDate date1, LocalDate date2);
 
-    void add(String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date);
+    void add(String name, Integer DC, Integer DD, Integer XB, Integer XC,String shift, LocalDate date);
 
     void del(Integer id);
 
-    void change(Integer id, String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date);
+    void change(Integer id, String name, Integer DC, Integer DD, Integer XB, Integer XC,String shift, LocalDate date);
 }

@@ -25,11 +25,10 @@ public interface Quality3Service extends IService<Quality3> {
 
     List<Quality3> infoClient(LocalDate date1, LocalDate date2);
 
-    void add(String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date);
+    void add(String name, Integer DC, Integer DD, Integer XB, Integer XC,String shift, LocalDate date);
 
     void del(Integer id);
 
-    void change(Integer id, String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date);
-
+    void change(Integer id, String name, Integer DC, Integer DD, Integer XB, Integer XC,String shift, LocalDate date);
     PageInfo<Quality3> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 }

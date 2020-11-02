@@ -54,6 +54,7 @@ public class Scgl implements Serializable {
     private Float theoreticalCapacity;
 
     private Float beat;
+    private String shift;
 
     private LocalDate date;
 

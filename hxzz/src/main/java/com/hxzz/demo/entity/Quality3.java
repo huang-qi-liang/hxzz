@@ -49,7 +49,7 @@ public class Quality3 implements Serializable {
     private Integer XC;
 
     private Integer total;
-
+private  String shift;
     private LocalDate date;
 
 

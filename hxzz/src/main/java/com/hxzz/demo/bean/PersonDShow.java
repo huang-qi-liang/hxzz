@@ -25,6 +25,7 @@ public class PersonDShow {
     private Integer bereavementLeave;
 
     private Integer total;
+    private  String shift;
 
     private LocalDate date;
 }

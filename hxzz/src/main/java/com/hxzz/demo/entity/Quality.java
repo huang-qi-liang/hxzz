@@ -57,6 +57,7 @@ public class Quality implements Serializable {
 
     @JsonProperty("DR")
     private Float DR;
+    private  String shift;
 
     private LocalDate date;
 

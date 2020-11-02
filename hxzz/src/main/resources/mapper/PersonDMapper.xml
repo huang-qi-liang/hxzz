@@ -34,8 +34,8 @@
     </select>
     <insert id="add">
         insert into PersonD( region, personalLeave, sickLeave, annualLeave, nursingLeave,
-        bereavementLeave,date)
-        values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave},#{date})
+        bereavementLeave,shift,date)
+        values(#{region},#{personalLeave},#{sickLeave},#{annualLeave},#{nursingLeave},#{bereavementLeave},#{shift},#{date})
     </insert>
     <delete id="del">
         delete from PersonD where id=#{id}
@@ -44,7 +44,7 @@
     <update id="change">
         update PersonD set region=#{region},personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
         annualLeave=#{annualLeave},nursingLeave=#{nursingLeave},
-        bereavementLeave=#{bereavementLeave},date=#{date} where id=#{id}
+        bereavementLeave=#{bereavementLeave},shift=#{shift},date=#{date} where id=#{id}
     </update>
 
 

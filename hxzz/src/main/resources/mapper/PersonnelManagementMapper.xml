@@ -4,7 +4,8 @@
     <select id="show" resultType="com.hxzz.demo.entity.PersonnelManagement">
         select id,name, establishment ,actualNumber,
         availableNumber,convert(decimal(18,1),actualArrive/shouldArrive*100) as attendanceRate, shouldArrive,
-        actualArrive,date from PersonnelManagement where date=( select MAX(date) as date from PersonnelManagement) order
+        actualArrive,shift,date from PersonnelManagement where date=( select MAX(date) as date from
+        PersonnelManagement) order
         by name,id DESC
     </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.PersonnelManagement">
@@ -26,7 +27,8 @@
     <select id="info" resultType="com.hxzz.demo.entity.PersonnelManagement">
         select id,name, establishment ,actualNumber,
         availableNumber,convert(decimal(18,1),actualArrive/shouldArrive*100) as attendanceRate, shouldArrive,
-        actualArrive,date from PersonnelManagement where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+        actualArrive,shift,date from PersonnelManagement where date>=#{date1} and date &lt;= #{date2} order by
+        name,id DESC
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.PersonnelManagement">
         select name,sum(establishment) as establishment,sum(actualNumber) as actualNumber,sum(availableNumber) as
@@ -35,13 +37,13 @@
     </select>
     <insert id="add">
         insert into PersonnelManagement( name, establishment, actualNumber, availableNumber, attendanceRate,
-        shouldArrive,actualArrive,date)
-        values(#{name},#{establishment},#{actualNumber},#{ availableNumber},#{shouldArrive},#{actualArrive},#{date})
+        shouldArrive,actualArrive,shift,date)
+        values(#{name},#{establishment},#{actualNumber},#{ availableNumber},#{shouldArrive},#{actualArrive},#{shift},#{date})
     </insert>
     <update id="change">
         update PersonnelManagement
         set
-        name=#{name},establishment=#{establishment},actualNumber=#{actualNumber},availableNumber=#{ availableNumber},shouldArrive=#{shouldArrive},actualArrive=#{actualArrive},date=#{date}
+        name=#{name},establishment=#{establishment},actualNumber=#{actualNumber},availableNumber=#{ availableNumber},shouldArrive=#{shouldArrive},actualArrive=#{actualArrive},shift=#{shift},date=#{date}
         where id=#{id}
     </update>
     <delete id="del">

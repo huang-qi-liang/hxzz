@@ -51,6 +51,7 @@ public class PersonX implements Serializable {
     private Integer bereavementLeave;
 
     private Integer total;
+    private String shift;
 
     private LocalDate date;
 

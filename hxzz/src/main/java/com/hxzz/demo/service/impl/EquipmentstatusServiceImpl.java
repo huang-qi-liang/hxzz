@@ -69,16 +69,16 @@ public class EquipmentstatusServiceImpl extends ServiceImpl<EquipmentstatusMappe
     }
 
     //增删改方法
-    public void add(String name, Float failureTime, Float officeTime, LocalDate date) {
-        equipmentstatusMapper.add(name, failureTime, officeTime, date);
+    public void add(String name, Float failureTime, Float officeTime,String shift, LocalDate date) {
+        equipmentstatusMapper.add(name, failureTime, officeTime,shift, date);
     }
 
     public void del(Integer id) {
         equipmentstatusMapper.del(id);
     }
 
-    public void change(Integer id, String name, Float failureTime, Float officeTime, LocalDate date) {
-        equipmentstatusMapper.change(id, name, failureTime, officeTime, date);
+    public void change(Integer id, String name, Float failureTime, Float officeTime,String shift, LocalDate date) {
+        equipmentstatusMapper.change(id, name, failureTime, officeTime, shift,date);
     }
 
     public PageInfo<Equipmentstatus> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {

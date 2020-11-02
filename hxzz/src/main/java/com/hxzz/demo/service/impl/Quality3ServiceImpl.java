@@ -42,17 +42,18 @@ public class Quality3ServiceImpl extends ServiceImpl<Quality3Mapper, Quality3> i
         return quality3Mapper.infoClient(date1, date2);
     }
 
-    public void add(String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date) {
+    public void add(String name, Integer DC, Integer DD, Integer XB, Integer XC,String shift, LocalDate date) {
         quality3Mapper.add(name,
-                DC, DD, XB, XC, date);
+                DC, DD, XB, XC,shift, date);
     }
 
     public void del(Integer id) {
         quality3Mapper.del(id);
     }
 
-    public void change(Integer id, String name, Integer DC, Integer DD, Integer XB, Integer XC, LocalDate date) {
-        quality3Mapper.change(id, name, DC, DD, XB, XC, date);
+    public void change(Integer id, String name, Integer DC, Integer DD, Integer XB, Integer XC,String shift,
+                       LocalDate date) {
+        quality3Mapper.change(id, name, DC, DD, XB, XC, shift,date);
     }
 
     public PageInfo<Quality3> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {

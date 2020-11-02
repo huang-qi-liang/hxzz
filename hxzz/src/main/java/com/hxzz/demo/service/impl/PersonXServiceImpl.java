@@ -54,9 +54,9 @@ public class PersonXServiceImpl extends ServiceImpl<PersonXMapper, PersonX> impl
     }
 
     public void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                    Integer bereavementLeave, LocalDate date) {
+                    Integer bereavementLeave,String shift, LocalDate date) {
         personXMapper.add(region, personalLeave, sickLeave, annualLeave, nursingLeave,
-                bereavementLeave, date);
+                bereavementLeave,shift, date);
     }
 
     public void del(Integer id) {
@@ -64,9 +64,9 @@ public class PersonXServiceImpl extends ServiceImpl<PersonXMapper, PersonX> impl
     }
 
     public void change(Integer id, String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                       Integer bereavementLeave, LocalDate date) {
+                       Integer bereavementLeave,String shift, LocalDate date) {
         personXMapper.change(id, region, personalLeave, sickLeave, annualLeave, nursingLeave,
-                bereavementLeave, date);
+                bereavementLeave, shift,date);
     }
 
     public PageInfo<PersonX> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {

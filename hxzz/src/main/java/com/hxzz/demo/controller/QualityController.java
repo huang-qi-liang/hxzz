@@ -122,7 +122,7 @@ public class QualityController {
             qualityService.add(jsonObject.getString("name"),jsonObject.getFloat("offLine"),jsonObject.getFloat(
                     "acoffLine"),jsonObject.getFloat("dLine"),jsonObject.getFloat("acdLine"),jsonObject.getFloat(
                             "lingYu"),jsonObject.getFloat("aclingYu"),jsonObject.getFloat("careLine"),
-                    jsonObject.getFloat("accareLine"),jsonObject.getFloat("roadTest"),jsonObject.getFloat("acroadTest"),date);
+                    jsonObject.getFloat("accareLine"),jsonObject.getFloat("roadTest"),jsonObject.getFloat("acroadTest"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }
@@ -141,7 +141,7 @@ public class QualityController {
                     jsonObject.getFloat(
                     "acoffLine"),jsonObject.getFloat("dLine"),jsonObject.getFloat("acdLine"),jsonObject.getFloat(
                     "lingYu"),jsonObject.getFloat("aclingYu"),jsonObject.getFloat("careLine"),
-                    jsonObject.getFloat("accareLine"),jsonObject.getFloat("roadTest"),jsonObject.getFloat("acroadTest"),date);
+                    jsonObject.getFloat("accareLine"),jsonObject.getFloat("roadTest"),jsonObject.getFloat("acroadTest"),jsonObject.getString("shift"),date);
         }
         return Result.succ("success");
     }

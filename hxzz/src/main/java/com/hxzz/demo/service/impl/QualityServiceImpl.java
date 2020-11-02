@@ -53,16 +53,18 @@ public class QualityServiceImpl extends ServiceImpl<QualityMapper, Quality> impl
     }
 
     public void add(String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
-                    Float careLine, Float accareLine, Float roadTest, Float acroadTest,
+                    Float careLine, Float accareLine, Float roadTest, Float acroadTest,String shift,
                     LocalDate date) {
-        qualityMapper.add(name, offLine, acoffLine, dLine, acdLine, lingYu, aclingYu, careLine, accareLine, roadTest, acroadTest, date);
+        qualityMapper.add(name, offLine, acoffLine, dLine, acdLine, lingYu, aclingYu, careLine, accareLine, roadTest,
+                acroadTest,shift, date);
     }
 
     public void change(Integer id, String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu,
                        Float aclingYu,
-                       Float careLine, Float accareLine, Float roadTest, Float acroadTest,
+                       Float careLine, Float accareLine, Float roadTest, Float acroadTest,String shift,
                        LocalDate date) {
-        qualityMapper.change(id, name, offLine, acoffLine, dLine, acdLine, lingYu, aclingYu, careLine, accareLine, roadTest, acroadTest, date);
+        qualityMapper.change(id, name, offLine, acoffLine, dLine, acdLine, lingYu, aclingYu, careLine, accareLine,
+                roadTest, acroadTest,shift, date);
     }
 
 

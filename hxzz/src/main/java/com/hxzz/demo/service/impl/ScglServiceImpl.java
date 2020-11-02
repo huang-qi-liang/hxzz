@@ -54,9 +54,9 @@ public class ScglServiceImpl extends ServiceImpl<ScglMapper, Scgl> implements Sc
     }
 
     public void add(String name, Integer targetCapacity, Float actualCapacity,  Float workingHours,
-                    Float beat, LocalDate date) {
+                    Float beat,String shift, LocalDate date) {
         scglMapper.add(name, targetCapacity, actualCapacity,
-                workingHours, beat, date);
+                workingHours, beat,shift, date);
     }
 
     public void del(Integer id) {
@@ -65,9 +65,9 @@ public class ScglServiceImpl extends ServiceImpl<ScglMapper, Scgl> implements Sc
 
     public void change(Integer id, String name, Integer targetCapacity, Float actualCapacity,
                        Float workingHours,
-                       Float beat, LocalDate date) {
+                       Float beat,String shift, LocalDate date) {
         scglMapper.change(id, name, targetCapacity, actualCapacity,
-                workingHours, beat, date);
+                workingHours, beat,shift, date);
     }
 
     public PageInfo<Scgl> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {

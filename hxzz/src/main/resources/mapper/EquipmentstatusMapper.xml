@@ -3,7 +3,7 @@
 <mapper namespace="com.hxzz.demo.mapper.EquipmentstatusMapper">
     <select id="show" resultType="com.hxzz.demo.entity.Equipmentstatus">
         select id,name, failureTime,  officeTime,convert(decimal(18,2),failureTime/officeTime*100) as
-        rate,date from Equipmentstatus where date=( select MAX(date) as date from Equipmentstatus) order
+        rate,shift,date from Equipmentstatus where date=( select MAX(date) as date from Equipmentstatus) order
         by name,id DESC
     </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
@@ -19,7 +19,7 @@
 
     <select id="info" resultType="com.hxzz.demo.entity.Equipmentstatus">
         select id,name, failureTime, officeTime,convert(decimal(18,2),failureTime/officeTime*100) as
-        rate,date from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+        rate,shift,date from Equipmentstatus where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Equipmentstatus">
         select name,sum(failureTime) as failureTime,sum(officeTime) as officeTime,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
@@ -64,12 +64,14 @@
     </select>
 
     <insert id="add">
-        insert into Equipmentstatus(name,failureTime,officeTime,date) values (#{name},#{failureTime},#{officeTime},#{date})
+        insert into Equipmentstatus(name,failureTime,officeTime,shift,date) values
+        (#{name},#{failureTime},#{officeTime},#{shift},#{date})
     </insert>
     <delete id="del">
         delete from Equipmentstatus where id=#{id}
     </delete>
     <update id="change">
-        update Equipmentstatus set name=#{name},failureTime=#{failureTime},officeTime=#{officeTime},date=#{date} where id=#{id}
+        update Equipmentstatus set
+        name=#{name},failureTime=#{failureTime},officeTime=#{officeTime},shift=#{shift},date=#{date} where id=#{id}
     </update>
 </mapper>

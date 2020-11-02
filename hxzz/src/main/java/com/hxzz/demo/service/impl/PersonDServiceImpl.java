@@ -53,9 +53,9 @@ public class PersonDServiceImpl extends ServiceImpl<PersonDMapper, PersonD> impl
     }
 
     public void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                    Integer bereavementLeave, LocalDate date) {
+                    Integer bereavementLeave,String shift, LocalDate date) {
         personDMapper.add(region, personalLeave, sickLeave, annualLeave, nursingLeave,
-                bereavementLeave, date);
+                bereavementLeave,shift, date);
     }
 
     public void del(Integer id) {
@@ -63,9 +63,9 @@ public class PersonDServiceImpl extends ServiceImpl<PersonDMapper, PersonD> impl
     }
 
     public void change(Integer id, String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
-                       Integer bereavementLeave, LocalDate date) {
+                       Integer bereavementLeave, String shift,LocalDate date) {
         personDMapper.change(id, region, personalLeave, sickLeave, annualLeave, nursingLeave,
-                bereavementLeave, date);
+                bereavementLeave, shift,date);
     }
 
     public PageInfo<PersonD> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {

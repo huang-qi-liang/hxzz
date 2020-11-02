@@ -53,9 +53,9 @@ public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagem
     }
 
     public void add(String name, Integer establishment, Integer actualNumber, Integer availableNumber,
-                      Integer shouldArrive, Float actualArrive, LocalDate date) {
+                      Integer shouldArrive, Float actualArrive,String shift, LocalDate date) {
         personnelManagementMapper.add(name, establishment, actualNumber, availableNumber,
-                shouldArrive, actualArrive, date);
+                shouldArrive, actualArrive,shift, date);
     }
 
     public void del(Integer id) {
@@ -66,9 +66,9 @@ public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagem
 
     public void change(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
 
-                         Integer shouldArrive, Float actualArrive, LocalDate date) {
+                         Integer shouldArrive, Float actualArrive,String shift, LocalDate date) {
         personnelManagementMapper.change(id, name, establishment, actualNumber, availableNumber,
-                shouldArrive, actualArrive, date);
+                shouldArrive, actualArrive,shift, date);
     }
 
     public PageInfo<PersonnelManagement> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {

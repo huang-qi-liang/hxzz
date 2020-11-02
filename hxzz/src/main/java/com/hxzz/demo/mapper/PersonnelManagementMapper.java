@@ -33,13 +33,13 @@ public interface PersonnelManagementMapper extends BaseMapper<PersonnelManagemen
     PersonnelManagement infoSum(LocalDate date1, LocalDate date2);
 
     void add(String name, Integer establishment, Integer actualNumber, Integer availableNumber,
-             Integer shouldArrive, Float actualArrive, LocalDate date);
+             Integer shouldArrive, Float actualArrive,String shift, LocalDate date);
 
     void del(Integer id);
 
     void change(Integer id, String name, Integer establishment, Integer actualNumber, Integer availableNumber,
 
-                Integer shouldArrive, Float actualArrive, LocalDate date);
+                Integer shouldArrive, Float actualArrive,String shift, LocalDate date);
 
 
 }
