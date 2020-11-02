@@ -52,19 +52,19 @@ public class EquipmentstatusServiceImpl extends ServiceImpl<EquipmentstatusMappe
     }
 
     //图表数据
-    public List<Equipment> each(String date, String name) {
+    public List<Equipment> each(Integer date, String name) {
         return equipmentstatusMapper.each(date, name);
     }
 
-    public Equipment eachYear(String date, String name) {
+    public Equipment eachYear(Integer date, String name) {
         return equipmentstatusMapper.eachYear(date, name);
     }
 
-    public List<Equipment> total(String date) {
+    public List<Equipment> total(Integer date) {
         return equipmentstatusMapper.total(date);
     }
 
-    public Equipment totalYear(String date) {
+    public Equipment totalYear(Integer date) {
         return equipmentstatusMapper.totalYear(date);
     }
 

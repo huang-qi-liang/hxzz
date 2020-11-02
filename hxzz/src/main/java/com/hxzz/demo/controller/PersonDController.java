@@ -104,6 +104,7 @@ public class PersonDController {
         LocalDate date1 = LocalDate.parse(date.getTime1(), dateTimeFormatter);
 
         LocalDate date2 = LocalDate.parse(date.getTime2(), dateTimeFormatter);
+        log.println(date);
         List list = new ArrayList();
         JSONObject jsonObject = new JSONObject(new LinkedHashMap<>());
         jsonObject = personDPackage.ClientPackage(date1, date2);

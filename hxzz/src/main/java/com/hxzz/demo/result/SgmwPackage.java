@@ -34,7 +34,7 @@ public class SgmwPackage {
     public List showPackage() {
         List list = new ArrayList();
         JSONObject jsonObject1 = new JSONObject(new LinkedHashMap<>());
-        jsonObject1.put("namw", "目标");
+        jsonObject1.put("name", "目标");
         jsonObject1.put("safe", aimService.show().getSecurity());
         jsonObject1.put("production", scglService.showSum().getTargetCapacity());
         jsonObject1.put("lzc", aimService.show().getLzcsj());
@@ -44,7 +44,7 @@ public class SgmwPackage {
         jsonObject1.put("equipment", aimService.showClient().getEquipment());
         list.add(jsonObject1);
         JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
-        jsonObject2.put("namw", "实际");
+        jsonObject2.put("name", "实际");
         jsonObject2.put("safe", safeService.showSum().getRed());
         jsonObject2.put("production", scglService.showSum().getActualCapacity());
         jsonObject2.put("lzc", lzcsjService.showSum().getTotal());
@@ -62,7 +62,7 @@ public class SgmwPackage {
 
 
         JSONObject jsonObject1 = new JSONObject(new LinkedHashMap<>());
-        jsonObject1.put("namw", "目标");
+        jsonObject1.put("name", "目标");
         jsonObject1.put("safe", safeService.amount(date1, date2).size() * aimService.show().getSecurity());
         jsonObject1.put("production", scglService.infoSum(date1, date2).getTargetCapacity());
         jsonObject1.put("lzc", aimService.show().getLzcsj() * lzcsjService.amount(date1, date2).size());
@@ -72,7 +72,7 @@ public class SgmwPackage {
         jsonObject1.put("equipment", aimService.showClient().getEquipment());
         list.add(jsonObject1);
         JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
-        jsonObject2.put("namw", "实际");
+        jsonObject2.put("name", "实际");
         jsonObject2.put("safe", safeService.infoSum(date1, date2).getRed());
         jsonObject2.put("production", scglService.infoSum(date1, date2).getActualCapacity());
         jsonObject2.put("lzc", lzcsjService.infoSum(date1, date2).getTotal());

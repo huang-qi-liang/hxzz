@@ -39,13 +39,13 @@ public interface EquipmentstatusMapper extends BaseMapper<Equipmentstatus> {
      Integer totalSum(LocalDate date);
 
      */
-    List<Equipment> each(String date, String name);
+    List<Equipment> each(Integer date, String name);
 
-    Equipment eachYear(String date, String name);
+    Equipment eachYear(Integer date, String name);
 
-    List<Equipment> total(String date);
+    List<Equipment> total(Integer date);
 
-    Equipment totalYear(String date);
+    Equipment totalYear(Integer date);
 
 
     void add(String name, Float failureTime, Float officeTime, LocalDate date);
