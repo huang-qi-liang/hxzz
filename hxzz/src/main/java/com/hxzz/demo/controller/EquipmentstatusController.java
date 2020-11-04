@@ -159,8 +159,12 @@ list.add(jsonObject);
             jsonObject = list.get(i);
             DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
-            equipmentstatusService.add(jsonObject.getString("name"),jsonObject.getFloat("failureTime"),
-                    jsonObject.getFloat("officeTime"),jsonObject.getString("shift"),date);
+
+
+                equipmentstatusService.add(jsonObject.getString("name"), jsonObject.getFloat("failureTime"),
+                        jsonObject.getFloat("officeTime"), jsonObject.getString("shift"), date);
+
+
         }
         return Result.succ("success");
     }

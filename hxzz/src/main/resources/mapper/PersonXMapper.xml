@@ -45,7 +45,7 @@
     <update id="change">
         update PersonX set region=#{region},personalLeave=#{personalLeave}, sickLeave=#{sickLeave},
         annualLeave=#{annualLeave},nursingLeave=#{nursingLeave},
-        bereavementLeave=#{bereavementLeave},shift={shift},date=#{date} where id=#{id}
+        bereavementLeave=#{bereavementLeave},shift=#{shift},date=#{date} where id=#{id}
     </update>
 
 </mapper>

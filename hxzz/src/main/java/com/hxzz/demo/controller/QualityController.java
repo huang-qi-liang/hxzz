@@ -119,6 +119,7 @@ public class QualityController {
             jsonObject = list.get(i);
             DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date=LocalDate.parse(jsonObject.getString("date"),dateTimeFormatter);
+            log.println(jsonObject);
             qualityService.add(jsonObject.getString("name"),jsonObject.getFloat("offLine"),jsonObject.getFloat(
                     "acoffLine"),jsonObject.getFloat("dLine"),jsonObject.getFloat("acdLine"),jsonObject.getFloat(
                             "lingYu"),jsonObject.getFloat("aclingYu"),jsonObject.getFloat("careLine"),

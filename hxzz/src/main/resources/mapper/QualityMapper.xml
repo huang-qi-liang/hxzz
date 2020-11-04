@@ -47,8 +47,10 @@
         select * from Quality where datediff(mm,date,getdate()) = 0
     </select>
     <insert id="add">
-        insert into Quality( name, offLine, dLine, lingYu, careLine, roadTest,shift,date) values
-        (#{name},#{offLine},#{dLine},#{lingYu},#{careLine},#{roadTest},#{shift},#{date})
+        insert into Quality( name, offLine,acoffLine, dLine,acdLine, lingYu,aclingYu, careLine,accareLine,
+        roadTest,acroadTest,shift,date)
+        values
+        (#{name},#{offLine},#{acoffLine},#{dLine},#{acdLine},#{lingYu},#{aclingYu},#{careLine},#{accareLine},#{roadTest},#{acroadTest},#{shift},#{date})
     </insert>
     <delete id="del">
         delete from Quality where id=#{id}
@@ -56,7 +58,7 @@
     <update id="change">
         update Quality
         set
-        name=#{name},offLine=#{offLine},dLine=#{dLine},lingYu=#{lingYu},careLine=#{careLine},roadTest=#{roadTest},shift=#{shift},date=#{date}
+        name=#{name},offLine=#{offLine},acoffLine=#{acoffLine},dLine=#{dLine},acdLine=#{acdLine},lingYu=#{lingYu},aclingYu=#{aclingYu},careLine=#{careLine},accareLine=#{accareLine},roadTest=#{roadTest},acroadTest=#{acroadTest},shift=#{shift},date=#{date}
         where id=#{id}
     </update>
 
