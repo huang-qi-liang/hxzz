@@ -19,6 +19,9 @@
     <select id="info" resultType="com.hxzz.demo.entity.Lzcsj">
         select * from Lzcsj where (date &gt;=#{date1} and date &lt;= #{date2}) order by name,id DESC
     </select>
+    <select id="infoShift" resultType="com.hxzz.demo.entity.Lzcsj">
+         select * from Lzcsj where (date &gt;=#{date1} and date &lt;= #{date2}) and name=#{name} order by name,date DESC
+    </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Lzcsj">
         select name as name,sum(waitingToBeLoaded) as waitingToBeLoaded,sum(loopToCrossTheLine) as loopToCrossTheLine
         ,sum(bhCirculation) as bhCirculation,sum(actualCirculation) as actualCirculation,sum(total) as total

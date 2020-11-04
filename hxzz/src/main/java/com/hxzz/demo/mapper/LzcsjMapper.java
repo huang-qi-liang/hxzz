@@ -30,8 +30,10 @@ public interface LzcsjMapper extends BaseMapper<Lzcsj> {
     Lzcsj showSum();
 
     List<Lzcsj> info(LocalDate date1, LocalDate date2);
+    List<Lzcsj> infoShift(String name,LocalDate date1, LocalDate date2);
 
     List<Lzcsj> infoClient(LocalDate date1, LocalDate date2);
+
 
     Lzcsj infoSum(LocalDate date1, LocalDate date2);
 

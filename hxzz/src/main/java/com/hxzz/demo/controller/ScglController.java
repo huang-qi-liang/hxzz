@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
 import com.hxzz.demo.bean.Id;
 import com.hxzz.demo.bean.Info;
+import com.hxzz.demo.bean.InfoShift;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Quality2;
 import com.hxzz.demo.entity.Quality3;
@@ -74,6 +75,20 @@ public class ScglController {
         LocalDate date2 = LocalDate.parse(info.getTime2(), dateTimeFormatter);
 
         PageInfo<Scgl> pageInfo = scglService.findAll(info.getPageNum(), info.getPageSize(), date1, date2);
+
+        return Result.succ(pageInfo);
+
+    }
+    @RequestMapping("/infoShift")
+    public Result infoShift(@RequestBody InfoShift info) {
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = LocalDate.parse(info.getTime1(), dateTimeFormatter);
+
+        LocalDate date2 = LocalDate.parse(info.getTime2(), dateTimeFormatter);
+
+        PageInfo<Scgl> pageInfo = scglService.findShiftAll(info.getName(),info.getPageNum(), info.getPageSize(),
+                date1, date2);
 
         return Result.succ(pageInfo);
 

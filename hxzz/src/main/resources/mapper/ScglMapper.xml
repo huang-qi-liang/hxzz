@@ -31,6 +31,13 @@
         targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as actualEfficiency,workingHours,theoreticalCapacity,beat,shift,date from Scgl where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
 
     </select>
+    <select id="infoShift" resultType="com.hxzz.demo.entity.Scgl">
+      	select id,name,targetCapacity,actualCapacity,convert(decimal(18,1),actualCapacity/targetCapacity*100) as
+        targetEfficiency,convert(decimal(18,1),actualCapacity/theoreticalCapacity*100) as
+        actualEfficiency,workingHours,theoreticalCapacity,beat,shift,date from Scgl where (date>=#{date1} and date
+        &lt;= #{date2}) and name=#{name} order by name,id DESC
+
+    </select>
     <select id="infoClient" resultType="com.hxzz.demo.bean.ScglShow">
         select name,sum(targetCapacity) as targetCapacity,sum(actualCapacity) as
        actualCapacity,convert(decimal(18,1),sum(actualCapacity)/sum(targetCapacity)*100) as

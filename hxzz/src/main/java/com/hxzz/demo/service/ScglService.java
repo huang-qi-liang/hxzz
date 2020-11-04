@@ -27,7 +27,7 @@ public interface ScglService extends IService<Scgl> {
     List<Scgl> info(LocalDate date1, LocalDate date2);
 
     List<ScglShow> infoClient(LocalDate date1, LocalDate date2);
-
+    List<Scgl> infoShift(String name,LocalDate date1, LocalDate date2);
     ScglShow infoSum(LocalDate date1, LocalDate date2);
 
     void add(String name, Integer targetCapacity, Float actualCapacity,  Float workingHours,
@@ -39,5 +39,6 @@ public interface ScglService extends IService<Scgl> {
                 Float beat, String shift,LocalDate date);
 
     PageInfo<Scgl> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
+    PageInfo<Scgl> findShiftAll(String name,Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

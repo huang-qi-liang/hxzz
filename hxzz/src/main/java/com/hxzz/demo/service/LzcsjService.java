@@ -26,6 +26,7 @@ public interface LzcsjService extends IService<Lzcsj> {
     Lzcsj showSum();
 
     List<Lzcsj> info(LocalDate date1, LocalDate date2);
+    List<Lzcsj> infoShift(String name,LocalDate date1, LocalDate date2);
 
     List<Lzcsj> infoClient(LocalDate date1, LocalDate date2);
 
@@ -42,5 +43,6 @@ public interface LzcsjService extends IService<Lzcsj> {
                 Integer actualCirculation, LocalDate date);
 
     PageInfo<Lzcsj> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
+    PageInfo<Lzcsj> findShiftAll(String name,Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2);
 
 }

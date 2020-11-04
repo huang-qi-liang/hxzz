@@ -26,6 +26,7 @@ public interface ScglMapper extends BaseMapper<Scgl> {
     ScglShow showSum();
 
     List<Scgl> info(LocalDate date1, LocalDate date2);
+    List<Scgl> infoShift(String name,LocalDate date1, LocalDate date2);
 
     List<ScglShow> infoClient(LocalDate date1, LocalDate date2);
 

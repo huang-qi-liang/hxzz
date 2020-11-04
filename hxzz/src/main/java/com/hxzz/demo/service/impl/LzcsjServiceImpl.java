@@ -44,7 +44,8 @@ public class LzcsjServiceImpl extends ServiceImpl<LzcsjMapper, Lzcsj> implements
     public List<Lzcsj> info(LocalDate date1, LocalDate date2) {
         return lzcsjMapper.info(date1, date2);
     }
-
+    public List<Lzcsj> infoShift(String name,LocalDate date1, LocalDate date2){return lzcsjMapper.infoShift(name,date1,
+            date2);}
     public List<Lzcsj> infoClient(LocalDate date1, LocalDate date2) {
         return lzcsjMapper.infoClient(date1, date2);
     }
@@ -76,6 +77,13 @@ public class LzcsjServiceImpl extends ServiceImpl<LzcsjMapper, Lzcsj> implements
     public PageInfo<Lzcsj> findAll(Integer pageNum, Integer pageSize, LocalDate date1, LocalDate date2) {
         PageHelper.startPage(pageNum, pageSize);
         List<Lzcsj> list = lzcsjMapper.info(date1, date2);
+        PageInfo<Lzcsj> pageInfo = new PageInfo<Lzcsj>(list);
+        return pageInfo;
+    }
+    public PageInfo<Lzcsj> findShiftAll(String name,Integer pageNum, Integer pageSize, LocalDate date1,
+                                        LocalDate date2) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Lzcsj> list = lzcsjMapper.infoShift(name,date1, date2);
         PageInfo<Lzcsj> pageInfo = new PageInfo<Lzcsj>(list);
         return pageInfo;
     }

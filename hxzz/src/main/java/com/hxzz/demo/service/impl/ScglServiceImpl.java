@@ -44,6 +44,8 @@ public class ScglServiceImpl extends ServiceImpl<ScglMapper, Scgl> implements Sc
     public List<Scgl> info(LocalDate date1, LocalDate date2) {
         return scglMapper.info(date1, date2);
     }
+    public List<Scgl> infoShift(String name,LocalDate date1, LocalDate date2){return scglMapper.infoShift(name, date1
+            , date2);}
 
     public List<ScglShow> infoClient(LocalDate date1, LocalDate date2) {
         return scglMapper.infoClient(date1, date2);
@@ -76,5 +78,11 @@ public class ScglServiceImpl extends ServiceImpl<ScglMapper, Scgl> implements Sc
         PageInfo<Scgl> pageInfo = new PageInfo<Scgl>(list);
         return pageInfo;
     }
-
+    public PageInfo<Scgl> findShiftAll(String name,Integer pageNum, Integer pageSize, LocalDate date1,
+                                       LocalDate date2) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Scgl> list = scglMapper.infoShift(name,date1, date2);
+        PageInfo<Scgl> pageInfo = new PageInfo<Scgl>(list);
+        return pageInfo;
+    }
 }
