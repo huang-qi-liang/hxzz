@@ -42,6 +42,49 @@
         standardsElectricity,sum(electricity)/count(*) as electricity,sum(standardsGas)/count(*) as
         standardsGas,sum(gas)/count(*) as gas from Energy where (date>=#{date1} and date &lt;= #{date2}) group by name
     </select>
+    <select id="eachWater" resultType="com.hxzz.demo.bean.View">
+		select sum(standardsWater)/count(*) as indicators,sum(water)/count(*) as rate,month(Energy.date) as month
+		from Energy where YEAR ( Energy.date ) = #{date} GROUP BY
+        MONTH ( Energy.date )
+    </select>
+    <select id="eachElectricity" resultType="com.hxzz.demo.bean.View">
+				select sum(standardsElectricity)/count(*) as indicators,sum(electricity)/count(*) as
+				rate,month(Energy.date) as month from Energy where YEAR ( Energy.date ) = #{date} GROUP BY
+        MONTH ( Energy.date )
+    </select>
+    <select id="eachGas" resultType="com.hxzz.demo.bean.View">
+				select sum(standardsGas)/count(*) as indicators,sum(gas)/count(*) as rate,month(Energy.date) as month
+				 from Energy where YEAR ( Energy.date ) = #{date} GROUP BY
+        MONTH ( Energy.date )
+    </select>
+    <select id="eachWaterYear" resultType="com.hxzz.demo.bean.View">
+ 		select sum(standardsWater)/count(*) as indicators,sum(water)/count(*) as yearRate from Energy where YEAR (
+ 		Energy.date ) = #{date}
+    </select>
+    <select id="eachElectricityYear" resultType="com.hxzz.demo.bean.View">
+       		select sum(standardsElectricity)/count(*) as indicators,sum(electricity)/count(*) as yearRate from Energy
+       		where YEAR ( Energy.date ) = #{date}
+    </select>
+    <select id="eachGasYear" resultType="com.hxzz.demo.bean.View">
+  		select sum(standardsGas)/count(*) as indicators,sum(gas)/count(*) as yearRate from Energy where YEAR (
+  		Energy.date ) = #{date}
+    </select>
+    <select id="total" resultType="com.hxzz.demo.bean.View">
+        select convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        rate,month(Equipmentstatus.date) as
+        month from Equipmentstatus,Aim WHERE
+        YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date}
+        GROUP BY
+        MONTH ( Equipmentstatus.date ),Aim.equipment
+    </select>
+    <select id="totalYear" resultType="com.hxzz.demo.bean.View">
+        select Aim.equipment as indicators,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        yearRate
+        from Equipmentstatus,Aim WHERE
+        YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date}
+        GROUP BY
+        Aim.equipment
+    </select>
     <insert id="add">
         insert into Energy( name, standardsWater, water, standardsElectricity, electricity, standardsGas, gas,date)
         values

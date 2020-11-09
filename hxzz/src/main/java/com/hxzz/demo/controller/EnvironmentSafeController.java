@@ -41,7 +41,7 @@ import static java.lang.Integer.parseInt;
 @EnableScheduling
 @RestController
 @CrossOrigin
-@RequestMapping("/environment-safe")
+@RequestMapping("/Environment-safe")
 public class EnvironmentSafeController {
     @Autowired
     EnvironmentSafeService environmentSafeService;

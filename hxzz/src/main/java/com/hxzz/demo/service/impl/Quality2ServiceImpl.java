@@ -2,6 +2,7 @@ package com.hxzz.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.PersonX;
 import com.hxzz.demo.entity.Quality2;
 import com.hxzz.demo.mapper.Quality2Mapper;
@@ -50,7 +51,17 @@ public class Quality2ServiceImpl extends ServiceImpl<Quality2Mapper, Quality2> i
     public Quality2 infoSum(LocalDate date1, LocalDate date2) {
         return quality2Mapper.infoSum(date1, date2);
     }
+    public   List<View> each(Integer date, String name){
+        return quality2Mapper.each(date,name);
+    }
 
+    public View eachYear(Integer date, String name){return
+            quality2Mapper.eachYear(date,name);}
+
+    public List<View> total(Integer date){return
+            quality2Mapper.total(date);}
+
+    public View totalYear(Integer date){return quality2Mapper.totalYear(date);}
     public void add(String productionLine, Integer breakpoint, Integer paa, Integer ptr, Integer craft, Integer tools
             ,String shift, LocalDate date) {
         quality2Mapper.add(productionLine, breakpoint, paa, ptr, craft, tools,shift, date);

@@ -2,6 +2,7 @@ package com.hxzz.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Quality;
 import com.hxzz.demo.entity.Quality;
 import com.hxzz.demo.entity.Quality3;
@@ -51,7 +52,17 @@ public class QualityServiceImpl extends ServiceImpl<QualityMapper, Quality> impl
     public Quality infoSum(LocalDate date1, LocalDate date2) {
         return qualityMapper.infoSum(date1, date2);
     }
+    public   List<View> each(Integer date, String name){
+        return qualityMapper.each(date,name);
+    }
 
+    public View eachYear(Integer date, String name){return
+            qualityMapper.eachYear(date,name);}
+
+    public List<View> total(Integer date){return
+            qualityMapper.total(date);}
+
+    public View totalYear(Integer date){return qualityMapper.totalYear(date);}
     public void add(String name, Float offLine, Float acoffLine, Float dLine, Float acdLine, Float lingYu, Float aclingYu,
                     Float careLine, Float accareLine, Float roadTest, Float acroadTest,String shift,
                     LocalDate date) {

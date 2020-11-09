@@ -4,6 +4,7 @@ package com.hxzz.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
+import com.hxzz.demo.bean.EquipmentDate;
 import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonX;
@@ -90,6 +91,52 @@ public class Quality2Controller {
         list.add(jsonObject);
 
 
+        return Result.succ(list);
+
+    }
+    @RequestMapping("/lineTotal")
+    public Result lineTotal(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = quality2Package.lineTotal(date.getTime());
+
+        return Result.succ(list);
+
+    }
+
+    @RequestMapping("/lineA")
+    public Result lineA(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = quality2Package.line(date.getTime(), "西部A线");
+
+        return Result.succ(list);
+
+    }
+
+    @RequestMapping("/lineB")
+    public Result lineB(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = quality2Package.line(date.getTime(), "西部B线");
+        return Result.succ(list);
+
+    }
+
+    @RequestMapping("/lineC")
+    public Result lineC(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = quality2Package.line(date.getTime(), "东部C线");
+        return Result.succ(list);
+
+    }
+
+    @RequestMapping("/lineD")
+    public Result lineD(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = quality2Package.line(date.getTime(), "东部D线");
         return Result.succ(list);
 
     }

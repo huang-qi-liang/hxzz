@@ -1,6 +1,7 @@
 package com.hxzz.demo.mapper;
 
 import com.hxzz.demo.bean.ScglShow;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Scgl;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -31,6 +32,13 @@ public interface ScglMapper extends BaseMapper<Scgl> {
     List<ScglShow> infoClient(LocalDate date1, LocalDate date2);
 
     ScglShow infoSum(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void add(String name, Integer targetCapacity, Float actualCapacity,  Float workingHours,
              Float beat,String shoft, LocalDate date);

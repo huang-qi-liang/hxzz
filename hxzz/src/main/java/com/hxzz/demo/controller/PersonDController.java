@@ -8,10 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hxzz.demo.bean.Date;
-import com.hxzz.demo.bean.Id;
-import com.hxzz.demo.bean.Info;
-import com.hxzz.demo.bean.PersonDShow;
+import com.hxzz.demo.bean.*;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonD;
 import com.hxzz.demo.page.PersonDPage;
@@ -111,6 +108,15 @@ public class PersonDController {
         list = personDService.getClient(date1, date2);
         list.add(jsonObject);
 
+
+        return Result.succ(list);
+
+    }
+    @RequestMapping("/total")
+    public Result total(@RequestBody viewTime date) {
+
+        List list = new ArrayList();
+        list = personDPackage.Total(date.getTime());
 
         return Result.succ(list);
 

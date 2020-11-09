@@ -1,5 +1,6 @@
 package com.hxzz.demo.mapper;
 
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Quality2;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,13 @@ public interface Quality2Mapper extends BaseMapper<Quality2> {
     List<Quality2> infoClient(LocalDate date1, LocalDate date2);
 
     Quality2 infoSum(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
 
     void add(String productionLine, Integer breakpoint, Integer paa, Integer ptr, Integer craft, Integer tools,

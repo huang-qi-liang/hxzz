@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
 import com.hxzz.demo.bean.Info;
+import com.hxzz.demo.bean.viewTime;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonD;
 import com.hxzz.demo.entity.PersonX;
@@ -104,6 +105,16 @@ public class PersonXController {
         return Result.succ(list);
 
     }
+    @RequestMapping("/total")
+    public Result total(@RequestBody viewTime date) {
+
+        List list = new ArrayList();
+        list = personXPackage.Total(date.getTime());
+
+        return Result.succ(list);
+
+    }
+
 
     @RequestMapping("/delete")
     public Result delete(@RequestBody List<JSONObject> list) {

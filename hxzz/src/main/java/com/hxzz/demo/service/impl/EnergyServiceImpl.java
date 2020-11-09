@@ -2,6 +2,7 @@ package com.hxzz.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Energy;
 import com.hxzz.demo.entity.Energy;
 import com.hxzz.demo.entity.Energy;
@@ -51,6 +52,14 @@ public class EnergyServiceImpl extends ServiceImpl<EnergyMapper, Energy> impleme
     public Energy infoClient(LocalDate date1, LocalDate date2) {
         return energyMapper.infoClient(date1, date2);
     }
+   public List<View> eachWater(Integer date){return energyMapper.eachWater(date);}
+    public List<View> eachElectricity(Integer date){return energyMapper.eachElectricity(date);}
+    public List<View> eachGas(Integer date){return energyMapper.eachGas(date);}
+
+    public View eachWaterYear(Integer date){return energyMapper.eachWaterYear(date);}
+   public View eachElectricityYear(Integer date){return energyMapper.eachElectricityYear(date);}
+   public View eachGasYear(Integer date){return energyMapper.eachGasYear(date);}
+
 
     public void add(String name, Float standardsWater, Float water, Float standardsElectricity, Float electricity,
                     Float standardsGas, Float gas, LocalDate date) {

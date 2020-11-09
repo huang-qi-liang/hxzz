@@ -3,6 +3,7 @@ package com.hxzz.demo.service;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.LzcsjShow;
 import com.hxzz.demo.bean.LzcsjSum;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Lzcsj;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hxzz.demo.entity.Quality2;
@@ -33,6 +34,13 @@ public interface LzcsjService extends IService<Lzcsj> {
     Lzcsj infoSum(LocalDate date1, LocalDate date2);
 
     List<Lzcsj> amount(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void add(String name, Integer waitingToBeLoaded, Integer loopToCrossTheLine, Integer bhCirculation,
              Integer actualCirculation, LocalDate date);

@@ -3,6 +3,7 @@ package com.hxzz.demo.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.PersonnelManagementClient;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.hxzz.demo.entity.PersonnelManagement;
@@ -51,7 +52,17 @@ public class PersonnelManagementServiceImpl extends ServiceImpl<PersonnelManagem
     public PersonnelManagement infoSum(LocalDate date1, LocalDate date2) {
         return personnelManagementMapper.infoSum(date1, date2);
     }
+    public   List<View> each(Integer date, String name){
+        return personnelManagementMapper.each(date,name);
+    }
 
+    public View eachYear(Integer date, String name){return
+            personnelManagementMapper.eachYear(date,name);}
+
+    public List<View> total(Integer date){return
+            personnelManagementMapper.total(date);}
+
+    public View totalYear(Integer date){return personnelManagementMapper.totalYear(date);}
     public void add(String name, Integer establishment, Integer actualNumber, Integer availableNumber,
                       Integer shouldArrive, Float actualArrive,String shift, LocalDate date) {
         personnelManagementMapper.add(name, establishment, actualNumber, availableNumber,

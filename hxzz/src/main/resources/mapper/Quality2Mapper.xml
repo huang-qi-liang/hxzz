@@ -30,6 +30,14 @@
         where (date&gt;=#{date1} and date&lt;= #{date2})
 
     </select>
+    <select id="each" resultType="com.hxzz.demo.bean.View">
+        select sum(Quality2.total) as rate,month(date) as month from Quality2  where YEAR(date)=#{date} and
+        productionLine=#{name} group by MONTH(date)
+    </select>
+    <select id="total" resultType="com.hxzz.demo.bean.View">
+        select sum(Quality2.total) as rate,month(date) as month from Quality2  where YEAR(date)=#{date}  group by
+        MONTH(date)
+    </select>
     <insert id="add">
         insert into Quality2( productionLine, breakpoint, paa, ptr, craft, tools,shift,date) values
         (#{productionLine},#{breakpoint},#{paa},#{ptr},#{craft},#{tools},#{shift},#{date})

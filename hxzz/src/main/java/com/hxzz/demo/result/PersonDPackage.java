@@ -84,5 +84,15 @@ public class PersonDPackage {
 
     */
 
+    public List Total(String date) {
+        List list = new ArrayList();
 
+        String string=date.substring(0,4);
+
+        Integer date2=Integer.valueOf(string);
+
+        //list.add(lzcsjService.totalYear(date2));
+        list.addAll(personDService.total(date2));
+        return list;
+    }
 }

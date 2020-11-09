@@ -19,7 +19,11 @@
         (date&gt;=#{date1}
         and date&lt;= #{date2}) group by name
     </select>
-
+    <select id="each" resultType="com.hxzz.demo.bean.View">
+        select sum(total) as rate,MONTH(date) as month from Quality3 where YEAR(date)=#{date} and name=#{name} group
+         by
+        MONTH(date)
+    </select>
     <insert id="add">
         insert into Quality3(name,DC,DD,XB,XC,shift,date) values (#{name},#{DC},#{DD},#{XB},#{XC},#{shift},#{date})
     </insert>

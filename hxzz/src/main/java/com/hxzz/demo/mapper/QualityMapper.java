@@ -3,6 +3,7 @@ package com.hxzz.demo.mapper;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Quality;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hxzz.demo.entity.Quality;
@@ -35,6 +36,14 @@ public interface QualityMapper extends BaseMapper<Quality> {
     Quality infoSum(LocalDate date1, LocalDate date2);
 
     List<Quality> month();
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
+
 
     void del(Integer id);
 

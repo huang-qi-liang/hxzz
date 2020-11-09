@@ -52,4 +52,16 @@ public class LzcsjPackage {
         jsonObject.put("date", lzcsjService.infoSum(date1, date2).getDate());
         return jsonObject;
     }
+    public List Total(String date) {
+        List list = new ArrayList();
+
+        String string=date.substring(0,4);
+
+        Integer date2=Integer.valueOf(string);
+
+        //list.add(lzcsjService.totalYear(date2));
+        list.addAll(lzcsjService.total(date2));
+        return list;
+    }
+
 }

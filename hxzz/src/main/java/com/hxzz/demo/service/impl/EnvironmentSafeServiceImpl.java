@@ -2,6 +2,7 @@ package com.hxzz.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.EnvironmentSafe;
 import com.hxzz.demo.mapper.EnvironmentSafeMapper;
 import com.hxzz.demo.service.EnvironmentSafeService;
@@ -48,7 +49,17 @@ public class EnvironmentSafeServiceImpl extends ServiceImpl<EnvironmentSafeMappe
     public List<EnvironmentSafe> amount(LocalDate date1, LocalDate date2) {
         return environmentSafeMapper.amount(date1, date2);
     }
+    public   List<View> each(Integer date, String name){
+        return environmentSafeMapper.each(date,name);
+    }
 
+    public View eachYear(Integer date, String name){return
+            environmentSafeMapper.eachYear(date,name);}
+
+    public List<View> total(Integer date){return
+            environmentSafeMapper.total(date);}
+
+    public View totalYear(Integer date){return environmentSafeMapper.totalYear(date);}
     public void del(Integer id) {
         environmentSafeMapper.del(id);
     }

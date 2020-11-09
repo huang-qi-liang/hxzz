@@ -1,5 +1,6 @@
 package com.hxzz.demo.mapper;
 
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Quality3;
 import com.hxzz.demo.entity.Quality3;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -25,6 +26,13 @@ public interface Quality3Mapper extends BaseMapper<Quality3> {
     List<Quality3> info(LocalDate date1, LocalDate date2);
 
     List<Quality3> infoClient(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void add(String name, Integer DC, Integer DD, Integer XB, Integer XC,String shift, LocalDate date);
 

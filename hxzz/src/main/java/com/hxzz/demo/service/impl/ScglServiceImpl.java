@@ -3,6 +3,7 @@ package com.hxzz.demo.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.ScglShow;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Quality;
 import com.hxzz.demo.entity.Scgl;
 import com.hxzz.demo.entity.Scgl;
@@ -54,7 +55,17 @@ public class ScglServiceImpl extends ServiceImpl<ScglMapper, Scgl> implements Sc
     public ScglShow infoSum(LocalDate date1, LocalDate date2) {
         return scglMapper.infoSum(date1, date2);
     }
+    public   List<View> each(Integer date, String name){
+        return scglMapper.each(date,name);
+    }
 
+    public View eachYear(Integer date, String name){return
+            scglMapper.eachYear(date,name);}
+
+    public List<View> total(Integer date){return
+            scglMapper.total(date);}
+
+    public View totalYear(Integer date){return scglMapper.totalYear(date);}
     public void add(String name, Integer targetCapacity, Float actualCapacity,  Float workingHours,
                     Float beat,String shift, LocalDate date) {
         scglMapper.add(name, targetCapacity, actualCapacity,

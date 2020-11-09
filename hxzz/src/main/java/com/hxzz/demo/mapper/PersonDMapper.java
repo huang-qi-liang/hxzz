@@ -2,6 +2,7 @@ package com.hxzz.demo.mapper;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.hxzz.demo.bean.PersonDShow;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.PersonD;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,13 @@ public interface PersonDMapper extends BaseMapper<PersonD> {
     List<PersonDShow> getClient(LocalDate date1, LocalDate date2);
 
     PersonDShow sumClient(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
              Integer bereavementLeave, String shift,LocalDate date);

@@ -1,6 +1,7 @@
 package com.hxzz.demo.service;
 
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Quality3;
 import com.hxzz.demo.entity.Safe;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -28,6 +29,13 @@ public interface SafeService extends IService<Safe> {
     Safe infoSum(LocalDate date1, LocalDate date2);
 
     List<Safe> amount(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void del(Integer id);
 

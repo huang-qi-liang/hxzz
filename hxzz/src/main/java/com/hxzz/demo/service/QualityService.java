@@ -1,6 +1,7 @@
 package com.hxzz.demo.service;
 
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Quality;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hxzz.demo.entity.Quality3;
@@ -30,6 +31,13 @@ public interface QualityService extends IService<Quality> {
     Quality infoSum(LocalDate date1, LocalDate date2);
 
     List<Quality> month();
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void del(Integer id);
 

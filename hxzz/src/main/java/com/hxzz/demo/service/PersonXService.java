@@ -3,6 +3,7 @@ package com.hxzz.demo.service;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.PersonDShow;
 import com.hxzz.demo.bean.PersonXShow;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.PersonX;
 
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -30,6 +31,13 @@ public interface PersonXService extends IService<PersonX> {
     List<PersonXShow> getClient(LocalDate date1, LocalDate date2);
 
     PersonXShow sumClient(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
              Integer bereavementLeave,String shift, LocalDate date);

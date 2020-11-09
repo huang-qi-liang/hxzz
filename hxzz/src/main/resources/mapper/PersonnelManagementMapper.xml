@@ -35,6 +35,17 @@
         availableNumber,convert(decimal(18,1),sum(actualArrive)/sum(shouldArrive)*100) as attendanceRate,sum(shouldArrive) as shouldArrive,sum(actualArrive) as
         actualArrive from PersonnelManagement where (date&gt;=#{date1} and date&lt;= #{date2}) group by name
     </select>
+    <select id="each" resultType="com.hxzz.demo.bean.View">
+        		select CONVERT(decimal(18,1),sum(actualArrive)/sum(shouldArrive)*100) as rate,MONTH(date) as month from PersonnelManagement
+		where YEAR(date)=#{date} and name=#{name}
+		group by MONTH(date)
+    </select>
+    <select id="eachYear" resultType="com.hxzz.demo.bean.View">
+        		select CONVERT(decimal(18,1),sum(actualArrive)/sum(shouldArrive)*100) as yearRate from
+        		PersonnelManagement
+		where YEAR(date)=#{date} and name=#{name}
+
+    </select>
     <insert id="add">
         insert into PersonnelManagement( name, establishment, actualNumber, availableNumber, attendanceRate,
         shouldArrive,actualArrive,shift,date)

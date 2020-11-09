@@ -36,6 +36,18 @@
     <select id="amount" resultType="com.hxzz.demo.entity.Lzcsj">
         select date from Lzcsj where date>=#{date1} and date &lt;= #{date2} group by date
     </select>
+
+    <select id="total" resultType="com.hxzz.demo.bean.View">
+ 		select Aim.lzcsj*count(Lzcsj.id) as indicators,sum(Lzcsj.total) as rate,MONTH(Lzcsj.date) as month  from Aim,Lzcsj
+		where YEAR ( Lzcsj.date ) = #{date} GROUP BY
+        MONTH ( Lzcsj.date ),Aim.lzcsj
+
+    </select>
+    <select id="totalYear" resultType="com.hxzz.demo.bean.View">
+		select Aim.lzcsj*count(Lzcsj.id) as indicators,sum(Lzcsj.total) as yearRate  from Aim,Lzcsj
+		where YEAR ( Lzcsj.date ) = #{date} GROUP BY
+       Aim.lzcsj
+    </select>
     <insert id="add">
         insert into Lzcsj(name,waitingToBeLoaded,loopToCrossTheLine,bhCirculation,actualCirculation,date) values
         (#{name},#{waitingToBeLoaded},#{loopToCrossTheLine},#{bhCirculation},#{actualCirculation},#{date})

@@ -1,6 +1,7 @@
 package com.hxzz.demo.service;
 
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Energy;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hxzz.demo.entity.Energy;
@@ -28,6 +29,13 @@ public interface EnergyService extends IService<Energy> {
     Energy showSum();
 
     Energy infoSum(LocalDate date1, LocalDate date2);
+    List<View> eachWater(Integer date);
+    List<View> eachElectricity(Integer date);
+    List<View> eachGas(Integer date);
+
+    View eachWaterYear(Integer date);
+    View eachElectricityYear(Integer date);
+    View eachGasYear(Integer date);
 
     void add(String name, Float standardsWater, Float water, Float standardsElectricity, Float electricity, Float standardsGas, Float gas, LocalDate date);
 

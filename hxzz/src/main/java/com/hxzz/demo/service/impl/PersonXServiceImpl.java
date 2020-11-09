@@ -3,6 +3,7 @@ package com.hxzz.demo.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.PersonXShow;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.PersonX;
 import com.hxzz.demo.entity.PersonX;
 import com.hxzz.demo.mapper.PersonDMapper;
@@ -52,7 +53,17 @@ public class PersonXServiceImpl extends ServiceImpl<PersonXMapper, PersonX> impl
     public PersonXShow sumClient(LocalDate date1, LocalDate date2) {
         return personXMapper.sumClient(date1, date2);
     }
+    public   List<View> each(Integer date, String name){
+        return personXMapper.each(date,name);
+    }
 
+    public View eachYear(Integer date, String name){return
+            personXMapper.eachYear(date,name);}
+
+    public List<View> total(Integer date){return
+            personXMapper.total(date);}
+
+    public View totalYear(Integer date){return personXMapper.totalYear(date);}
     public void add(String region, Integer personalLeave, Integer sickLeave, Integer annualLeave, Integer nursingLeave,
                     Integer bereavementLeave,String shift, LocalDate date) {
         personXMapper.add(region, personalLeave, sickLeave, annualLeave, nursingLeave,

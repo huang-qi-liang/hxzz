@@ -2,6 +2,7 @@ package com.hxzz.demo.service;
 
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.PersonnelManagementClient;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hxzz.demo.entity.Quality3;
@@ -29,6 +30,13 @@ public interface PersonnelManagementService extends IService<PersonnelManagement
     PersonnelManagement showSum();
 
     PersonnelManagement infoSum(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void add(String name, Integer establishment, Integer actualNumber, Integer availableNumber,
                Integer shouldArrive, Float actualArrive,String shift, LocalDate date);

@@ -33,6 +33,9 @@
         sum(bereavementLeave) as bereavementLeave,sum(total) as total from PersonX where date>=#{date1} and
         date&lt;=#{date2}
     </select>
+    <select id="total" resultType="com.hxzz.demo.bean.View">
+  select sum(total) as rate,month(date) as month from PersonX where YEAR(date)=#{date} group by MONTH (date)
+    </select>
     <insert id="add">
         insert into PersonX( region, personalLeave, sickLeave, annualLeave, nursingLeave,
         bereavementLeave,shift,date)

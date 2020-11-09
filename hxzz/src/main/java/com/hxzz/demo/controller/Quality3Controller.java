@@ -5,10 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
+import com.hxzz.demo.bean.EquipmentDate;
 import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Quality2;
 import com.hxzz.demo.entity.Quality3;
+import com.hxzz.demo.result.Quality3Package;
 import com.hxzz.demo.service.Quality3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +47,8 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 public class Quality3Controller {
     @Autowired
     Quality3Service quality3Service;
+    @Autowired
+    Quality3Package quality3Package;
 
     @RequestMapping("/show")
     public Result show() {
@@ -91,6 +95,24 @@ public class Quality3Controller {
         Collections.reverse(list);
 
 
+        return Result.succ(list);
+
+    }
+    @RequestMapping("/lineA")
+    public Result lineA(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = quality3Package.line(date.getTime(), "总装责任错漏装");
+
+        return Result.succ(list);
+
+    }
+
+    @RequestMapping("/lineB")
+    public Result lineB(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = quality3Package.line(date.getTime(), "总装拦截问题");
         return Result.succ(list);
 
     }

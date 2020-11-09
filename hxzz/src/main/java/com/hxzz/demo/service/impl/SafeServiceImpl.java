@@ -2,6 +2,7 @@ package com.hxzz.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Safe;
 import com.hxzz.demo.entity.Safe;
 import com.hxzz.demo.mapper.SafeMapper;
@@ -49,7 +50,17 @@ public class SafeServiceImpl extends ServiceImpl<SafeMapper, Safe> implements Sa
     public List<Safe> amount(LocalDate date1, LocalDate date2) {
         return safeMapper.amount(date1, date2);
     }
+    public   List<View> each(Integer date, String name){
+        return safeMapper.each(date,name);
+    }
 
+    public View eachYear(Integer date, String name){return
+            safeMapper.eachYear(date,name);}
+
+    public List<View> total(Integer date){return
+            safeMapper.total(date);}
+
+    public View totalYear(Integer date){return safeMapper.totalYear(date);}
     public void del(Integer id) {
         safeMapper.del(id);
     }

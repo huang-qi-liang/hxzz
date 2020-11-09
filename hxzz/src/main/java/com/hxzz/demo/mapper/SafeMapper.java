@@ -1,5 +1,6 @@
 package com.hxzz.demo.mapper;
 
+import com.hxzz.demo.bean.View;
 import com.hxzz.demo.entity.Safe;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,13 @@ public interface SafeMapper extends BaseMapper<Safe> {
     Safe infoSum(LocalDate date1, LocalDate date2);
 
     List<Safe> amount(LocalDate date1, LocalDate date2);
+    List<View> each(Integer date, String name);
+
+    View eachYear(Integer date, String name);
+
+    List<View> total(Integer date);
+
+    View totalYear(Integer date);
 
     void del(Integer id);
 

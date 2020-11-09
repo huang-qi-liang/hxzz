@@ -4,10 +4,12 @@ package com.hxzz.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
+import com.hxzz.demo.bean.EquipmentDate;
 import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.PersonnelManagement;
 import com.hxzz.demo.entity.Quality3;
+import com.hxzz.demo.result.PersonManagementPackage;
 import com.hxzz.demo.service.PersonnelManagementService;
 import org.apache.shiro.web.filter.mgt.NamedFilterList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,8 @@ import static java.lang.Integer.parseInt;
 public class PersonnelManagementController {
     @Autowired
     PersonnelManagementService personnelManagementService;
-
+@Autowired
+    PersonManagementPackage personManagementPackage;
     @RequestMapping("/show")
     public Result show() {
         List list = new ArrayList<>();
@@ -92,6 +95,24 @@ public class PersonnelManagementController {
 
     }
 
+    @RequestMapping("/sgmw")
+    public Result sgmw(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = personManagementPackage.line(date.getTime(), "SGMW");
+
+        return Result.succ(list);
+
+    }
+    @RequestMapping("/epiboly")
+    public Result epiboly(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = personManagementPackage.line(date.getTime(), "外包");
+
+        return Result.succ(list);
+
+    }
     @RequestMapping("/delete")
     public Result delete(@RequestBody List<JSONObject> list) {
 

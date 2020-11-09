@@ -4,9 +4,8 @@ package com.hxzz.demo.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.hxzz.demo.bean.Id;
-import com.hxzz.demo.bean.Info;
-import com.hxzz.demo.bean.InfoShift;
+import com.hxzz.demo.bean.*;
+import com.hxzz.demo.bean.Date;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Lzcsj;
 import com.hxzz.demo.entity.Quality2;
@@ -24,8 +23,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-
-import com.hxzz.demo.bean.Date;
 
 
 import static java.lang.Integer.parseInt;
@@ -109,6 +106,15 @@ public class LzcsjController {
         list.add(jsonObject);
 
         log.println("lzcsjinfoClient");
+
+        return Result.succ(list);
+
+    }
+    @RequestMapping("/total")
+    public Result lineTotal(@RequestBody viewTime date) {
+
+        List list = new ArrayList();
+        list = lzcsjPackage.Total(date.getTime());
 
         return Result.succ(list);
 

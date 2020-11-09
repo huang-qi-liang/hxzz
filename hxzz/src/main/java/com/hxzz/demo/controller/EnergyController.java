@@ -5,10 +5,12 @@ import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
 import com.hxzz.demo.bean.Id;
 import com.hxzz.demo.bean.Info;
+import com.hxzz.demo.bean.viewTime;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Energy;
 import com.hxzz.demo.result.EnergyPackage;
 import com.hxzz.demo.service.EnergyService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Async;
@@ -90,6 +92,31 @@ public class EnergyController {
         return Result.succ(jsonObject);
 
     }
+    @RequestMapping("/water")
+    public Result water(@RequestBody viewTime viewTime){
+        List list= new ArrayList();
+        list=energyPackage.Water(viewTime.getTime());
+        return Result.succ(list);
+
+
+    }
+    @RequestMapping("/electricity")
+    public Result electricity(@RequestBody viewTime viewTime){
+        List list= new ArrayList();
+        list=energyPackage.Electricity(viewTime.getTime());
+        return Result.succ(list);
+
+
+    }
+    @RequestMapping("/gas")
+    public Result gas(@RequestBody viewTime viewTime){
+        List list= new ArrayList();
+        list=energyPackage.Gas(viewTime.getTime());
+        return Result.succ(list);
+
+
+    }
+
     @RequestMapping("/add")
     public Result add(@RequestBody List<JSONObject> list) {
         int size = list.size();

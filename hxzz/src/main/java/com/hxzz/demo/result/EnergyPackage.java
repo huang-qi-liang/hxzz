@@ -7,7 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 @Configuration
 @Component
@@ -85,6 +89,44 @@ public class EnergyPackage {
         return corlor;
 
     }
+    public List Water(String date) {
+
+        List list = new ArrayList();
+        String string=date.substring(0,4);
+
+
+        Integer date2=Integer.valueOf(string);
+        log.println(date2);
+        list.add(energyService.eachWaterYear(date2));
+        list.addAll(energyService.eachWater(date2));
+        return list;
+    }
+    public List Electricity(String date) {
+
+        List list = new ArrayList();
+        String string=date.substring(0,4);
+
+
+        Integer date2=Integer.valueOf(string);
+        log.println(date2);
+        list.add(energyService.eachElectricityYear(date2));
+        list.addAll(energyService.eachElectricity(date2));
+        return list;
+    }
+
+    public List Gas(String date) {
+
+        List list = new ArrayList();
+        String string=date.substring(0,4);
+
+
+        Integer date2=Integer.valueOf(string);
+        log.println(date2);
+        list.add(energyService.eachGasYear(date2));
+        list.addAll(energyService.eachGas(date2));
+        return list;
+    }
+
 
 
 }
