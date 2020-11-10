@@ -46,6 +46,16 @@
     <select id="month" resultType="com.hxzz.demo.entity.Quality">
         select * from Quality where datediff(mm,date,getdate()) = 0
     </select>
+    <select id="total" resultType="com.hxzz.demo.bean.View">
+		select convert(decimal(10,1),Aim.quality*100) as indicators,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
+        as rate,MONTH(Quality.date) as month from Aim,Quality where YEAR(Quality.date)=#{date} group by
+        MONTH(quality.date),quality
+    </select>
+    <select id="totalYear" resultType="com.hxzz.demo.bean.View">
+ 		select convert(decimal(10,1),Aim.quality*100) as indicators,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
+        as yearRate from Aim,Quality where YEAR(Quality.date)=#{date} group by quality
+    </select>
+
     <insert id="add">
         insert into Quality( name, offLine,acoffLine, dLine,acdLine, lingYu,aclingYu, careLine,accareLine,
         roadTest,acroadTest,shift,date)

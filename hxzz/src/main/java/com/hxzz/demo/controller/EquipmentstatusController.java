@@ -88,7 +88,7 @@ list.add(jsonObject);
         return Result.succ(list);
 
     }
-
+//设备状态统计和柱形图接口
     @RequestMapping("/lineTotal")
     public Result lineTotal(@RequestBody EquipmentDate date) {
 
@@ -98,7 +98,7 @@ list.add(jsonObject);
         return Result.succ(list);
 
     }
-
+//A线设备状态统计柱形图接口
     @RequestMapping("/lineA")
     public Result lineA(@RequestBody EquipmentDate date) {
 
@@ -108,7 +108,7 @@ list.add(jsonObject);
         return Result.succ(list);
 
     }
-
+    //B线设备状态统计柱形图接口
     @RequestMapping("/lineB")
     public Result lineB(@RequestBody EquipmentDate date) {
 
@@ -117,7 +117,7 @@ list.add(jsonObject);
         return Result.succ(list);
 
     }
-
+    //C线设备状态统计柱形图接口
     @RequestMapping("/lineC")
     public Result lineC(@RequestBody EquipmentDate date) {
 
@@ -126,7 +126,7 @@ list.add(jsonObject);
         return Result.succ(list);
 
     }
-
+    //D线设备状态统计柱形图接口
     @RequestMapping("/lineD")
     public Result lineD(@RequestBody EquipmentDate date) {
 

@@ -110,6 +110,7 @@ public class LzcsjController {
         return Result.succ(list);
 
     }
+    //流转车柱状图接口
     @RequestMapping("/total")
     public Result lineTotal(@RequestBody viewTime date) {
 

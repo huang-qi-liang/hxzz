@@ -94,6 +94,7 @@ public class Quality2Controller {
         return Result.succ(list);
 
     }
+    //质量变化点总计柱形图接口
     @RequestMapping("/lineTotal")
     public Result lineTotal(@RequestBody EquipmentDate date) {
 
@@ -103,7 +104,7 @@ public class Quality2Controller {
         return Result.succ(list);
 
     }
-
+    //质量变化点A线柱形图接口
     @RequestMapping("/lineA")
     public Result lineA(@RequestBody EquipmentDate date) {
 
@@ -113,7 +114,7 @@ public class Quality2Controller {
         return Result.succ(list);
 
     }
-
+    //质量变化点B线柱形图接口
     @RequestMapping("/lineB")
     public Result lineB(@RequestBody EquipmentDate date) {
 
@@ -122,7 +123,7 @@ public class Quality2Controller {
         return Result.succ(list);
 
     }
-
+    //质量变化点C线柱形图接口
     @RequestMapping("/lineC")
     public Result lineC(@RequestBody EquipmentDate date) {
 
@@ -131,7 +132,7 @@ public class Quality2Controller {
         return Result.succ(list);
 
     }
-
+    //质量变化点D线柱形图接口
     @RequestMapping("/lineD")
     public Result lineD(@RequestBody EquipmentDate date) {
 

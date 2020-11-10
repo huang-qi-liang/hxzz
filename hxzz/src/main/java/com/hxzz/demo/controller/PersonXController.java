@@ -105,6 +105,7 @@ public class PersonXController {
         return Result.succ(list);
 
     }
+    //人员管理西部柱形图接口
     @RequestMapping("/total")
     public Result total(@RequestBody viewTime date) {
 

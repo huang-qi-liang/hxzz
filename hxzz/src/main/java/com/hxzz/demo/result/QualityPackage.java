@@ -8,7 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 @Configuration
 @Component
@@ -43,5 +47,17 @@ public class QualityPackage {
         jsonObject.put("DR", qualityService.infoSum(date1, date2).getDR());
         jsonObject.put("date", qualityService.infoSum(date1, date2).getDate());
         return jsonObject;
+    }
+    public List lineTotal(String date) {
+        List list = new ArrayList();
+
+        String string=date.substring(0,4);
+        log.println(string);
+
+        Integer date2=Integer.valueOf(string);
+        log.println(date2);
+        list.add(qualityService.totalYear(date2));
+        list.addAll(qualityService.total(date2));
+        return list;
     }
 }

@@ -112,6 +112,7 @@ public class PersonDController {
         return Result.succ(list);
 
     }
+    //人员管理东部柱形图接口
     @RequestMapping("/total")
     public Result total(@RequestBody viewTime date) {
 

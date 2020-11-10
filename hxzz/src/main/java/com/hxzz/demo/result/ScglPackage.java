@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 @Configuration
 @Component
 public class ScglPackage {
@@ -122,6 +124,31 @@ public class ScglPackage {
         jsonObject3.put("合计", scglService.infoSum(date1, date2).getActualEfficiency());
         list.add(jsonObject3);
 
+        return list;
+    }
+    public List lineTotal(String date) {
+        List list = new ArrayList();
+
+        String string=date.substring(0,4);
+        log.println(string);
+
+        Integer date2=Integer.valueOf(string);
+        log.println(date2);
+
+        list.addAll(scglService.total(date2));
+        return list;
+    }
+
+    public List line(String date, String name) {
+
+        List list = new ArrayList();
+        String string=date.substring(0,4);
+        log.println(string);
+
+        Integer date2=Integer.valueOf(string);
+        log.println(date2);
+
+        list.addAll(scglService.each(date2, name));
         return list;
     }
 }

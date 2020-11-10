@@ -51,7 +51,14 @@
         targetEfficiency,convert(decimal(18,1),sum(actualCapacity)/sum(theoreticalCapacity)*100) as actualEfficiency,sum(workingHours) as
         workingHours,sum(theoreticalCapacity) as theoreticalCapacity,sum(beat) as beat  from Scgl where (date&gt;=#{date1}
         and date&lt;= #{date2})
-
+    </select>
+    <select id="each" resultType="com.hxzz.demo.bean.View">
+       select SUM(Scgl.targetCapacity) as indicators,SUM(Scgl.actualCapacity) as rate,MONTH(date)as month from Scgl
+       where YEAR(date) =#{date} and name=#{name} group by MONTH(date)
+    </select>
+    <select id="total" resultType="com.hxzz.demo.bean.View">
+    select SUM(Scgl.targetCapacity) as indicators,SUM(Scgl.actualCapacity) as rate,MONTH(date)as month from Scgl
+    where YEAR(date) =#{date}  group by MONTH(date)
     </select>
     <insert id="add">
         insert into Scgl( name,targetCapacity, actualCapacity, workingHours, beat,shift,date)

@@ -3,10 +3,7 @@ package com.hxzz.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.hxzz.demo.bean.Date;
-import com.hxzz.demo.bean.Id;
-import com.hxzz.demo.bean.Info;
-import com.hxzz.demo.bean.InfoShift;
+import com.hxzz.demo.bean.*;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Quality2;
 import com.hxzz.demo.entity.Quality3;
@@ -127,6 +124,53 @@ public class ScglController {
         List list = new ArrayList();
         list = scglPackage.infoAllPackage(date1, date2);
 
+        return Result.succ(list);
+
+    }
+    //生产管理总计柱形图接口
+    @RequestMapping("/lineTotal")
+    public Result lineTotal(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = scglPackage.lineTotal(date.getTime());
+
+        return Result.succ(list);
+
+    }
+    //生产管理A线柱形图接口
+    @RequestMapping("/lineA")
+    public Result lineA(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = scglPackage.line(date.getTime(), "西部A线");
+
+        return Result.succ(list);
+
+    }
+    //生产管理B线柱形图接口
+    @RequestMapping("/lineB")
+    public Result lineB(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = scglPackage.line(date.getTime(), "西部B线");
+        return Result.succ(list);
+
+    }
+    //生产管理C线柱形图接口
+    @RequestMapping("/lineC")
+    public Result lineC(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = scglPackage.line(date.getTime(), "东部C线");
+        return Result.succ(list);
+
+    }
+    //生产管理D线柱形图接口
+    @RequestMapping("/lineD")
+    public Result lineD(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = scglPackage.line(date.getTime(), "东部D线");
         return Result.succ(list);
 
     }

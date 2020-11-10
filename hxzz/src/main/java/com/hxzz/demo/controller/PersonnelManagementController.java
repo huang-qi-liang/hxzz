@@ -94,7 +94,7 @@ public class PersonnelManagementController {
         return Result.succ(list);
 
     }
-
+//人员管理SGMW柱形图接口
     @RequestMapping("/sgmw")
     public Result sgmw(@RequestBody EquipmentDate date) {
 
@@ -104,6 +104,7 @@ public class PersonnelManagementController {
         return Result.succ(list);
 
     }
+    //人员管理外包柱形图接口
     @RequestMapping("/epiboly")
     public Result epiboly(@RequestBody EquipmentDate date) {
 

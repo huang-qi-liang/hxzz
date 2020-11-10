@@ -4,6 +4,7 @@ package com.hxzz.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hxzz.demo.bean.Date;
+import com.hxzz.demo.bean.EquipmentDate;
 import com.hxzz.demo.bean.Info;
 import com.hxzz.demo.common.lang.Result;
 import com.hxzz.demo.entity.Quality;
@@ -91,6 +92,15 @@ public class QualityController {
         list = qualityService.infoClient(date1, date2);
         list.add(jsonObject);
 
+
+        return Result.succ(list);
+
+    }//质量DR柱状图
+    @RequestMapping("/total")
+    public Result total(@RequestBody EquipmentDate date) {
+
+        List list = new ArrayList();
+        list = qualityPackage.lineTotal(date.getTime());
 
         return Result.succ(list);
 

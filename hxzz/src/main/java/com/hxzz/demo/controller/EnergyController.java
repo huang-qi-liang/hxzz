@@ -92,6 +92,7 @@ public class EnergyController {
         return Result.succ(jsonObject);
 
     }
+    //柱形图水消耗接口
     @RequestMapping("/water")
     public Result water(@RequestBody viewTime viewTime){
         List list= new ArrayList();
@@ -100,6 +101,7 @@ public class EnergyController {
 
 
     }
+    //柱形图电消耗接口
     @RequestMapping("/electricity")
     public Result electricity(@RequestBody viewTime viewTime){
         List list= new ArrayList();
@@ -108,6 +110,7 @@ public class EnergyController {
 
 
     }
+    //柱形图汽消耗接口
     @RequestMapping("/gas")
     public Result gas(@RequestBody viewTime viewTime){
         List list= new ArrayList();
