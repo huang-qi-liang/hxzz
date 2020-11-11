@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.QualityMapper">
     <select id="show" resultType="com.hxzz.demo.entity.Quality">
-       	select
-       	id,name,offLine,acoffLine,dLine,acdLine,lingYu,aclingYu,careLine,accareLine,roadTest,acroadTest,CONVERT(decimal(18,1),DR*100) as DR,shift,date from Quality where date=( select MAX(date) as date from Quality) order
-        by name,id DESC
-
+            	select
+       	id,name,offLine,acoffLine,dLine,acdLine,lingYu,aclingYu,careLine,accareLine,roadTest,acroadTest,
+		convert(decimal(10,1) ,acoffLine/offLine*acdLine/dLine*aclingYu/lingYu*accareLine/careLine*acroadTest/roadTest*100)
+        as DR,shift,date from Quality where date=( select MAX(date) as date from Quality) order
+        by name,date DESC
     </select>
     <select id="showClient" resultType="com.hxzz.demo.entity.Quality">
         select name,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*100) as offLine,convert(decimal(10,1) ,sum(acdLine)/sum(dLine)*100) as dLine,
@@ -25,7 +26,8 @@
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Quality">
         select
-        id,name,offLine,acoffLine,dLine,acdLine,lingYu,aclingYu,careLine,accareLine,roadTest,acroadTest,CONVERT(decimal(18,1),DR*100) as DR,shift,date from Quality where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
+        id,name,offLine,acoffLine,dLine,acdLine,lingYu,aclingYu,careLine,accareLine,roadTest,acroadTest,convert(decimal(10,1) ,acoffLine/offLine*acdLine/dLine*aclingYu/lingYu*accareLine/careLine*acroadTest/roadTest*100)
+        as DR,shift,date from Quality where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
 
     </select>
     <select id="infoClient" resultType="com.hxzz.demo.entity.Quality">
