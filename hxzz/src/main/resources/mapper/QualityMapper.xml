@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hxzz.demo.mapper.QualityMapper">
     <select id="show" resultType="com.hxzz.demo.entity.Quality">
-            	select
+      	select
        	id,name,offLine,acoffLine,dLine,acdLine,lingYu,aclingYu,careLine,accareLine,roadTest,acroadTest,
-		convert(decimal(10,1) ,acoffLine/offLine*acdLine/dLine*aclingYu/lingYu*accareLine/careLine*acroadTest/roadTest*100)
+		convert(decimal(10,1) ,isnull(acoffLine/nullif(offLine,0),0)*isnull(acdLine/nullif(dLine,0),0)*isnull(aclingYu/nullif(lingYu,0),0)*isnull(accareLine/nullif(careLine,0),0)*isnull(acroadTest/nullif(roadTest,0),0)*100)
         as DR,shift,date from Quality where date=( select MAX(date) as date from Quality) order
         by name,date DESC
     </select>
@@ -12,7 +12,7 @@
         select name,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*100) as offLine,convert(decimal(10,1) ,sum(acdLine)/sum(dLine)*100) as dLine,
   convert(decimal(10,1) ,sum(aclingYu)/sum(lingYu)*100) as
         lingYu,convert(decimal(10,1) ,sum(accareLine)/sum(careLine)*100) as careLine,convert(decimal(10,1) ,sum(acroadTest)/sum(roadTest)*100) as
-        roadTest,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
+        roadTest,convert(decimal(10,1) ,isnull(acoffLine/nullif(offLine,0),0)*isnull(acdLine/nullif(dLine,0),0)*isnull(aclingYu/nullif(lingYu,0),0)*isnull(accareLine/nullif(careLine,0),0)*isnull(acroadTest/nullif(roadTest,0),0)*100)
         as DR,date from Quality where date=( select MAX(date) as date from Quality) group by date,name
 
     </select>
@@ -21,12 +21,12 @@
         select convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*100) as offLine,convert(decimal(10,1) ,sum(acdLine)/sum(dLine)*100) as dLine,
   convert(decimal(10,1) ,sum(aclingYu)/sum(lingYu)*100) as
         lingYu,convert(decimal(10,1) ,sum(accareLine)/sum(careLine)*100) as careLine,convert(decimal(10,1) ,sum(acroadTest)/sum(roadTest)*100) as
-        roadTest,convert(decimal(10,1) ,sum(acoffLine)/sum(offLine)*sum(acdLine)/sum(dLine)*sum(aclingYu)/sum(lingYu)*sum(accareLine)/sum(careLine)*sum(acroadTest)/sum(roadTest)*100)
+        roadTest,convert(decimal(10,1) ,isnull(acoffLine/nullif(offLine,0),0)*isnull(acdLine/nullif(dLine,0),0)*isnull(aclingYu/nullif(lingYu,0),0)*isnull(accareLine/nullif(careLine,0),0)*isnull(acroadTest/nullif(roadTest,0),0)*100)
         as DR,date from Quality where date=( select MAX(date) as date from Quality) group by date
     </select>
     <select id="info" resultType="com.hxzz.demo.entity.Quality">
         select
-        id,name,offLine,acoffLine,dLine,acdLine,lingYu,aclingYu,careLine,accareLine,roadTest,acroadTest,convert(decimal(10,1) ,acoffLine/offLine*acdLine/dLine*aclingYu/lingYu*accareLine/careLine*acroadTest/roadTest*100)
+        id,name,offLine,acoffLine,dLine,acdLine,lingYu,aclingYu,careLine,accareLine,roadTest,acroadTest,convert(decimal(10,1) ,isnull(acoffLine/nullif(offLine,0),0)*isnull(acdLine/nullif(dLine,0),0)*isnull(aclingYu/nullif(lingYu,0),0)*isnull(accareLine/nullif(careLine,0),0)*isnull(acroadTest/nullif(roadTest,0),0)*100)
         as DR,shift,date from Quality where date>=#{date1} and date &lt;= #{date2} order by name,id DESC
 
     </select>
