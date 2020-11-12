@@ -38,13 +38,13 @@
     </select>
 
     <select id="total" resultType="com.hxzz.demo.bean.View">
- 		select Aim.lzcsj*count(Lzcsj.id) as indicators,sum(Lzcsj.total) as rate,MONTH(Lzcsj.date) as month  from Aim,Lzcsj
-		where YEAR ( Lzcsj.date ) = #{date} GROUP BY
-        MONTH ( Lzcsj.date ),Aim.lzcsj
+  		select monthAim.lzcsj as indicators,sum(Lzcsj.total) as rate,MONTH(Lzcsj.date) as month  from monthAim,Lzcsj
+		where YEAR ( Lzcsj.date ) = #{date}and month(monthAim.date)=month(Lzcsj.date) GROUP BY
+        MONTH ( Lzcsj.date ),monthAim.lzcsj
 
     </select>
     <select id="totalYear" resultType="com.hxzz.demo.bean.View">
-		select Aim.lzcsj*count(Lzcsj.id) as indicators,sum(Lzcsj.total) as yearRate  from Aim,Lzcsj
+		select Aim.lzcsj as indicators,sum(Lzcsj.total) as yearRate  from Aim,Lzcsj
 		where YEAR ( Lzcsj.date ) = #{date} GROUP BY
        Aim.lzcsj
     </select>

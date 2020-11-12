@@ -30,18 +30,22 @@ public class SgmwPackage {
     LzcsjService lzcsjService;
     @Autowired
     EquipmentstatusService equipmentstatusService;
+    @Autowired
+    MonthAimService monthAimService;
+    @Autowired
+    DateAimService dateAimService;
 
     public List showPackage() {
         List list = new ArrayList();
         JSONObject jsonObject1 = new JSONObject(new LinkedHashMap<>());
         jsonObject1.put("name", "目标");
-        jsonObject1.put("safe", aimService.show().getSecurity());
+        jsonObject1.put("safe", monthAimService.show().getSecurity());
         jsonObject1.put("production", scglService.showSum().getTargetCapacity());
-        jsonObject1.put("lzc", aimService.show().getLzcsj());
-        jsonObject1.put("quality", aimService.showClient().getQuality());
+        jsonObject1.put("lzc", dateAimService.show().getLzcsj());
+        jsonObject1.put("quality", monthAimService.showClient().getQuality());
         jsonObject1.put("personnel", personnelManagementService.showSum().getShouldArrive());
         jsonObject1.put("energyConsumption", "green");
-        jsonObject1.put("equipment", aimService.showClient().getEquipment());
+        jsonObject1.put("equipment", monthAimService.showClient().getEquipment());
         list.add(jsonObject1);
         JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
         jsonObject2.put("name", "实际");
@@ -63,13 +67,13 @@ public class SgmwPackage {
 
         JSONObject jsonObject1 = new JSONObject(new LinkedHashMap<>());
         jsonObject1.put("name", "目标");
-        jsonObject1.put("safe", safeService.amount(date1, date2).size() * aimService.show().getSecurity());
+        jsonObject1.put("safe", 0);
         jsonObject1.put("production", scglService.infoSum(date1, date2).getTargetCapacity());
-        jsonObject1.put("lzc", aimService.show().getLzcsj() * lzcsjService.amount(date1, date2).size());
-        jsonObject1.put("quality", aimService.showClient().getQuality());
+        jsonObject1.put("lzc", dateAimService.infoClient(date1,date2).getLzcsj());
+        jsonObject1.put("quality", monthAimService.aimInfo(date1, date2).getQuality());
         jsonObject1.put("personnel", personnelManagementService.infoSum(date1, date2).getShouldArrive());
         jsonObject1.put("energyConsumption", "green");
-        jsonObject1.put("equipment", aimService.showClient().getEquipment());
+        jsonObject1.put("equipment", monthAimService.aimInfo(date1, date2).getEquipment());
         list.add(jsonObject1);
         JSONObject jsonObject2 = new JSONObject(new LinkedHashMap<>());
         jsonObject2.put("name", "实际");

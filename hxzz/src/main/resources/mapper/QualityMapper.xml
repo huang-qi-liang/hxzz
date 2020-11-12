@@ -49,12 +49,13 @@
         select * from Quality where datediff(mm,date,getdate()) = 0
     </select>
     <select id="total" resultType="com.hxzz.demo.bean.View">
-		select convert(decimal(10,1),Aim.quality*100) as indicators,convert(decimal(10,1) ,isnull(sum(acoffLine)/nullif(sum(offLine),0),0)*isnull(sum(acdLine)/nullif(sum(dLine),0),0)*isnull(sum(aclingYu)/nullif(sum(lingYu),0),0)*isnull(sum(accareLine)/nullif(sum(careLine),0),0)*isnull(sum(acroadTest)/nullif(sum(roadTest),0),0)*100)
-        as  rate,MONTH(Quality.date) as month from Aim,Quality where YEAR(Quality.date)=#{date} group by
+		select convert(decimal(10,1),monthAim.quality*100) as indicators,convert(decimal(10,1) ,isnull(sum(acoffLine)/nullif(sum(offLine),0),0)*isnull(sum(acdLine)/nullif(sum(dLine),0),0)*isnull(sum(aclingYu)/nullif(sum(lingYu),0),0)*isnull(sum(accareLine)/nullif(sum(careLine),0),0)*isnull(sum(acroadTest)/nullif(sum(roadTest),0),0)*100)
+        as  rate,MONTH(Quality.date) as month from monthAim,Quality where YEAR(Quality.date)=#{date} and
+        month(monthAim.date)=month(quality.date) group by
         MONTH(quality.date),quality
     </select>
     <select id="totalYear" resultType="com.hxzz.demo.bean.View">
- 		select convert(decimal(10,1) ,isnull(sum(acoffLine)/nullif(sum(offLine),0),0)*isnull(sum(acdLine)/nullif(sum(dLine),0),0)*isnull(sum(aclingYu)/nullif(sum(lingYu),0),0)*isnull(sum(accareLine)/nullif(sum(careLine),0),0)*isnull(sum(acroadTest)/nullif(sum(roadTest),0),0)*100)
+ select convert(decimal(10,1),Aim.quality*100) as indicators,convert(decimal(10,1) ,isnull(sum(acoffLine)/nullif(sum(offLine),0),0)*isnull(sum(acdLine)/nullif(sum(dLine),0),0)*isnull(sum(aclingYu)/nullif(sum(lingYu),0),0)*isnull(sum(accareLine)/nullif(sum(careLine),0),0)*isnull(sum(acroadTest)/nullif(sum(roadTest),0),0)*100)
         as  yearRate from Aim,Quality where YEAR(Quality.date)=#{date} group by quality
     </select>
 

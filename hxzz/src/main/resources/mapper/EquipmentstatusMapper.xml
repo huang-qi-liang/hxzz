@@ -31,11 +31,11 @@
         date>=#{date1} and date &lt;= #{date2}
     </select>
     <select id="each" resultType="com.hxzz.demo.bean.Equipment">
-        select Equipmentstatus.name as name,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
-        rate,month(Equipmentstatus.date) as month from Equipmentstatus,Aim WHERE
-        YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date} and Equipmentstatus.name=#{name}
+        select Equipmentstatus.name as name,convert(decimal(18,2), monthAim.equipment*100) as indicators,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        rate,month(Equipmentstatus.date) as month from Equipmentstatus,monthAim WHERE
+        YEAR ( Equipmentstatus.date ) = #{date} and YEAR(monthAim.date)=#{date} and Equipmentstatus.name=#{name}and month(monthAim.date)=month(Equipmentstatus.date)
         GROUP BY
-        MONTH ( Equipmentstatus.date ),Aim.equipment ,Equipmentstatus.name
+        MONTH ( Equipmentstatus.date ),monthAim.equipment ,Equipmentstatus.name
     </select>
     <select id="eachYear" resultType="com.hxzz.demo.bean.Equipment">
         select Equipmentstatus.name as name,Aim.equipment as
@@ -47,12 +47,11 @@
         Aim.equipment ,Equipmentstatus.name
     </select>
     <select id="total" resultType="com.hxzz.demo.bean.Equipment">
-        select convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
-        rate,month(Equipmentstatus.date) as
-        month from Equipmentstatus,Aim WHERE
-        YEAR ( Equipmentstatus.date ) = #{date} and YEAR(Aim.date)=#{date}
+  select convert(decimal(18,2), monthAim.equipment*100) as indicators,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
+        rate,month(Equipmentstatus.date) as month from Equipmentstatus,monthAim WHERE
+        YEAR ( Equipmentstatus.date ) = #{date} and YEAR(monthAim.date)=#{date} and month(monthAim.date)=month(Equipmentstatus.date)
         GROUP BY
-        MONTH ( Equipmentstatus.date ),Aim.equipment
+        MONTH ( Equipmentstatus.date ),monthAim.equipment
     </select>
     <select id="totalYear" resultType="com.hxzz.demo.bean.Equipment">
         select Aim.equipment as indicators,convert(decimal(18,2),sum(failureTime)/sum(officeTime)*100) as
