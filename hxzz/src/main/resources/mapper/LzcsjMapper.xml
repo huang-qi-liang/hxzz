@@ -39,7 +39,7 @@
 
     <select id="total" resultType="com.hxzz.demo.bean.View">
   		select monthAim.lzcsj as indicators,sum(Lzcsj.total) as rate,MONTH(Lzcsj.date) as month  from monthAim,Lzcsj
-		where YEAR ( Lzcsj.date ) = #{date}and month(monthAim.date)=month(Lzcsj.date) GROUP BY
+		where YEAR ( Lzcsj.date )=#{date} and month(monthAim.date)=month(Lzcsj.date) and Lzcsj.date  in (select MAX(date) from Lzcsj group by MONTH(date)) GROUP BY
         MONTH ( Lzcsj.date ),monthAim.lzcsj
 
     </select>
